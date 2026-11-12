@@ -7,28 +7,19 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <link rel="preload" as="image" href="Foto10.webp">
 
   <style>
     :root {
-      /* --- PALETA DE COLORES OFICIAL DE YADER & ANGÉLICA --- */
-      --rosa-pastel: #f7b2b7;
-      --rosa-empolvado: #e28086;
-      --coral: #f86f64;
-      --verde-eucalipto: #7d937e;
-      --azul-petroleo: #0a4c68;
-      --amarillo-pastel: #fce181;
-      --caqui: #c8a67d;
-      --camel: #b5895c;
-      --terracota: #a94f35;
-      --cafe: #6b371c;
-
-      /* Variables principales aplicadas al diseño */
-      --gold: #fce181; /* Amarillo Pastel / Dorado suave para títulos y acentos */
-      --btn-bg: #c8a67d; /* Caqui / Camel para botones */
-      --rose-accent: #a94f35; /* Terracota para etiquetas de hora */
+      /* --- PALETA DE COLORES VINTAGE FLORAL --- */
+      --cream-bg: #fbf8f3;       /* Fondo de papel o lienzo marfil claro */
+      --dark-brown: #4a2521;     /* Tono café/vino profundo de la imagen (textos y títulos) */
+      --gold: #d4af37;           /* Oro viejo para bordes e ilustraciones */
+      --rose-accent: #b5837d;    /* Rosa empolvado de las rosas (botones, píldoras y acentos) */
+      --sage-green: #7d937e;     /* Verde eucalipto para las hojas (detalles secundarios) */
+      --glass-white: rgba(255, 255, 255, 0.9); /* Blanco translúcido para las tarjetas */
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -36,10 +27,11 @@
     body { 
       margin: 0; 
       font-family: 'Poppins', sans-serif; 
-      /* Fondo general combinando Verde Eucalipto, Azul Petróleo y Terracota */
-      background: radial-gradient(circle at center, var(--verde-eucalipto) 0%, var(--azul-petroleo) 60%, var(--cafe) 100%); 
+      /* Fondo claro vintage */
+      background-color: var(--cream-bg); 
+      background-image: radial-gradient(circle at center, rgba(251, 248, 243, 0.8) 0%, rgba(244, 238, 227, 0.95) 100%);
       background-attachment: fixed;
-      color: white; 
+      color: var(--dark-brown); 
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
       overscroll-behavior-y: none;
@@ -63,7 +55,7 @@
       mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
     }
 
-    /* --- PORTADA CENTRADA TOTALMENTE --- */
+    /* --- PORTADA --- */
     .hero { 
       margin-top: 0; 
       z-index: 10; 
@@ -86,14 +78,14 @@
     .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-final { z-index: 2; align-items: flex-end; justify-content: center; padding-right: 10%; -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); mask-image: linear-gradient(to top, black 85%, transparent 100%); } 
 
-    /* Velo suave en tono Azul Petróleo y Verde Eucalipto en lugar de negro */
+    /* Velo suave para integrar la fotografía sin oscurecer la pantalla */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(10, 76, 104, 0.25) 0%, rgba(169, 79, 53, 0.2) 100%); 
+      background: linear-gradient(135deg, rgba(251, 248, 243, 0.45) 0%, rgba(244, 238, 227, 0.55) 100%); 
       z-index: 1; 
     }
 
-    /* --- NUBE DIFUMINADA CON LOS COLORES DE LA PALETA (SIN NEGRO) --- */
+    /* --- TARJETA CLARA (ESTILO RETRO / LIENZO) --- */
     .glass-card {
       background: transparent; 
       border: none; 
@@ -112,43 +104,36 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      /* Nube en Azul Petróleo y Verde Eucalipto para resaltar el texto blanco y dorado */
-      background: radial-gradient(circle, rgba(10, 76, 104, 0.88) 0%, rgba(74, 100, 82, 0.78) 60%, transparent 100%); 
-      -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 82%);
-      mask-image: radial-gradient(ellipse at center, black 30%, transparent 82%);
+      /* Fondo traslúcido claro, similar al estilo de la imagen del itinerario */
+      background: var(--glass-white); 
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 12px;
+      /* Sombras muy suaves de día */
+      box-shadow: 0 15px 35px rgba(74, 37, 33, 0.08), 0 5px 15px rgba(0,0,0,0.03);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
+      mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
       z-index: -1; 
       pointer-events: none;
     }
 
-    /* Variación cálida (Terracota / Café) intercalada en secciones pares para lucir toda la paleta */
-    .seccion-pase .glass-card::before,
-    .seccion-vestimenta .glass-card::before,
-    .seccion-regalos .glass-card::before,
-    .seccion-final .glass-card::before {
-      background: radial-gradient(circle, rgba(169, 79, 53, 0.88) 0%, rgba(107, 55, 28, 0.78) 60%, transparent 100%);
-    }
-    
     .glass-card-wide { max-width: 650px; }
     .glass-card-wide::before {
-      -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
-      mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 95%);
+      mask-image: radial-gradient(ellipse at center, black 65%, transparent 95%);
     }
 
-    /* --- SOMBRAS GENERALES PARA LEGIBILIDAD --- */
+    /* --- SOMBRAS MUY LIGERAS --- */
     h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
-      text-shadow: 2px 2px 10px rgba(10, 40, 55, 0.9), 0px 0px 6px rgba(0, 0, 0, 0.75);
+      text-shadow: 1px 1px 3px rgba(251, 248, 243, 0.9), 0px 1px 2px rgba(74, 37, 33, 0.15);
     }
 
-    /* --- EFECTO DE CONTRASTE EXTRA PARA FRASES --- */
+    /* --- EFECTO DE CONTRASTE EXTRA PARA FRASES (CON CALIGRAFÍA VINTAGE) --- */
     .cita-biblica {
-      font-family: 'Playfair Display', serif; 
-      font-style: italic; 
-      color: white;
-      text-shadow: 
-        2px 2px 6px rgba(10, 40, 55, 0.95),    
-        -2px -2px 6px rgba(10, 40, 55, 0.95),  
-        0px 0px 15px rgba(0, 0, 0, 0.8); 
-      line-height: 1.6;
+      font-family: 'Great Vibes', cursive; 
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--rose-accent);
+      line-height: 1.3;
       max-width: 90%;
       margin-left: auto;
       margin-right: auto;
@@ -158,7 +143,7 @@
       box-shadow: none !important;
     }
 
-    /* --- CONTADOR --- */
+    /* --- CONTADOR CLARO --- */
     .countdown {
       display: flex;
       gap: 12px;
@@ -167,27 +152,27 @@
       flex-wrap: wrap;
     }
     .time-box {
-      background: rgba(10, 76, 104, 0.45);
-      border: 1px solid rgba(252, 225, 129, 0.35); 
+      background: rgba(251, 248, 243, 0.85);
+      border: 1.5px solid var(--gold); 
       border-radius: 12px;
       padding: 10px 15px;
       min-width: 70px;
       text-align: center;
-      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 10px rgba(74, 37, 33, 0.05);
     }
-    .time-box span { font-size: 2rem; font-weight: 600; color: var(--gold); display: block; line-height: 1.2; }
-    .time-box p { font-size: 0.8rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: white; font-weight: bold;}
+    .time-box span { font-size: 1.9rem; font-weight: 600; color: var(--rose-accent); display: block; line-height: 1.2; }
+    .time-box p { font-size: 0.75rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-brown); font-weight: bold;}
 
-    /* --- FRASES LATERALES SOLICITADAS --- */
+    /* --- FRASES LATERALES --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 1.6rem; 
-      color: #fff; 
+      font-size: 1.5rem; 
+      color: var(--dark-brown); 
       max-width: 320px;
-      line-height: 1.3;
+      line-height: 1.35;
       z-index: 5; 
       pointer-events: none;
     }
@@ -198,7 +183,7 @@
     .seccion-qr .floating-text { right: 8%; text-align: right; }
     .seccion-nosotros .floating-text { left: 8%; text-align: left; }
 
-    /* --- DISEÑO DE ITINERARIO / LÍNEA DE TIEMPO --- */
+    /* --- DISEÑO DE ITINERARIO (CONECTOR Y ETIQUETAS IDENTICAS A LA IMAGEN) --- */
     .timeline-container {
       display: flex;
       flex-direction: column;
@@ -218,6 +203,7 @@
       position: relative;
     }
 
+    /* Conector de oro viejo */
     .tl-row:not(:last-child)::after {
       content: '';
       position: absolute;
@@ -225,7 +211,8 @@
       top: 50%;
       height: 100%;
       width: 2px;
-      background: rgba(252, 225, 129, 0.5);
+      background: var(--gold);
+      opacity: 0.6;
       z-index: 1;
     }
 
@@ -235,17 +222,18 @@
       padding-right: 8px;
     }
 
+    /* Píldora de hora en Rosa Empolvado de la imagen */
     .tl-pill {
-      background: var(--terracota);
+      background: var(--rose-accent);
       color: #fff;
       font-size: 0.75rem;
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 20px;
       letter-spacing: 0.5px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+      box-shadow: 0 3px 10px rgba(181, 131, 125, 0.3);
       white-space: nowrap;
-      border: 1px solid rgba(252, 225, 129, 0.4);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
     .tl-node-col {
@@ -260,11 +248,12 @@
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background: var(--rosa-empolvado);
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 8px rgba(252, 225, 129, 0.6);
+      background: var(--cream-bg);
+      border: 2px solid var(--rose-accent);
+      box-shadow: 0 0 8px rgba(181, 131, 125, 0.4);
     }
 
+    /* Iconos del itinerario en oro viejo */
     .tl-icon-col {
       display: flex;
       justify-content: center;
@@ -275,8 +264,8 @@
     .tl-icon-col svg {
       width: 22px;
       height: 22px;
-      stroke: var(--gold);
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+      stroke: var(--rose-accent);
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.05));
     }
 
     .tl-text-col {
@@ -287,12 +276,12 @@
     .tl-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
-      color: #fff;
+      color: var(--dark-brown);
       font-weight: 600;
       letter-spacing: 0.3px;
     }
 
-    /* --- ESTILOS VESTIMENTA (DOS COLUMNAS) --- */
+    /* --- ESTILOS VESTIMENTA --- */
     .vestimenta-wrapper {
       display: flex;
       flex-direction: row;
@@ -322,7 +311,8 @@
     .vestimenta-img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+      border: 2px solid var(--gold);
+      box-shadow: 0 8px 25px rgba(74, 37, 33, 0.08);
       cursor: pointer;
     }
 
@@ -331,7 +321,8 @@
       max-width: 390px;
       margin-top: 20px;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      border: 1px solid var(--gold);
+      box-shadow: 0 4px 18px rgba(74, 37, 33, 0.05);
       cursor: pointer;
     }
 
@@ -350,20 +341,21 @@
       height: 300px !important; 
       object-fit: cover !important; 
       border-radius: 10px;
-      border: none; 
+      border: 2px solid var(--gold); 
       flex-shrink: 0;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.45); 
+      box-shadow: 0 10px 25px rgba(74, 37, 33, 0.08); 
       cursor: pointer;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(169, 79, 53, 0.9); color: white; border: 1px solid rgba(252, 225, 129, 0.4);
+      background: var(--cream-bg); color: var(--rose-accent); border: 1.5px solid var(--gold);
       border-radius: 50%; width: 50px; height: 50px; font-size: 1.6rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
+      transition: all 0.3s ease;
     }
-    .carousel-btn:hover { background: var(--terracota); }
+    .carousel-btn:hover { background: var(--rose-accent); color: white; }
     .carousel-btn.prev { left: 5px; }
     .carousel-btn.next { right: 5px; }
 
@@ -380,11 +372,11 @@
       background: white; 
       padding: 12px; 
       border-radius: 10px;
-      border: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.05);
     }
 
-    /* --- MODAL / LIGHTBOX DE IMÁGENES --- */
+    /* --- LIGHTBOX --- */
     .modal {
       display: none;
       position: fixed;
@@ -393,7 +385,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(10, 45, 62, 0.95);
+      background-color: rgba(251, 248, 243, 0.98);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       opacity: 0;
@@ -406,8 +398,9 @@
     .modal-content {
       max-width: 90%;
       max-height: 85vh;
-      border-radius: 10px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      border-radius: 12px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 20px 50px rgba(74, 37, 33, 0.15);
       transform: scale(0.8);
       transition: transform 0.3s ease;
       object-fit: contain;
@@ -417,22 +410,22 @@
       position: absolute;
       top: 20px;
       right: 30px;
-      color: #fff;
+      color: var(--dark-brown);
       font-size: 40px;
       font-weight: bold;
       cursor: pointer;
       transition: color 0.3s;
       z-index: 10000;
     }
-    .close-modal:hover { color: var(--gold); }
+    .close-modal:hover { color: var(--rose-accent); }
     
     .modal-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(169, 79, 53, 0.9);
-      color: white;
-      border: none;
+      background: var(--cream-bg);
+      color: var(--rose-accent);
+      border: 1.5px solid var(--gold);
       border-radius: 50%;
       width: 50px;
       height: 50px;
@@ -442,13 +435,14 @@
       display: none;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s ease;
+      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
+      transition: all 0.3s ease;
     }
-    .modal-nav:hover { background: var(--terracota); }
+    .modal-nav:hover { background: var(--rose-accent); color: white; }
     .modal-nav.prev { left: 20px; }
     .modal-nav.next { right: 20px; }
 
-    /* --- FONDOS Y ENCUADRES (Fotos a WebP) --- */
+    /* --- FONDOS --- */
     .hero { background-image: url('Foto10.webp'); background-position: center; }
     .seccion-pase { background-image: url('Foto11.webp'); background-position: center; }
     .seccion-lugar { background-image: url('Foto1.webp'); background-position: center 35% !important; }
@@ -459,14 +453,14 @@
     .seccion-regalos { background-image: url('Foto3.webp'); background-position: center 40%; }
     .seccion-qr { background-image: url('Foto4.webp'); background-position: center; }
 
-    h1 { font-family: 'Playfair Display', serif; font-size: 3.8rem; color: var(--gold); margin: 0; line-height: 1.1; }
-    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-weight: 600; }
-    h3 { font-size: 1.6rem; color: white; margin: 0; font-weight: 600; } 
+    h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; color: var(--rose-accent); margin: 0; line-height: 1.1; font-weight: 400; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--rose-accent); margin-bottom: 20px; font-weight: 600; }
+    h3 { font-size: 1.6rem; color: var(--dark-brown); margin: 0; font-weight: 600; } 
     p { font-size: 1.25rem; line-height: 1.7; margin: 12px 0; }
 
-    /* --- BOTONES EN TONO TERRACOTA / CAMEL DE LA PALETA --- */
+    /* --- BOTONES ROMANTICOS --- */
     .btn {
-      background: linear-gradient(135deg, var(--terracota) 0%, var(--camel) 100%); 
+      background: linear-gradient(135deg, var(--rose-accent) 0%, var(--gold) 100%); 
       color: #ffffff; 
       padding: 16px 32px; 
       border-radius: 8px;
@@ -478,8 +472,8 @@
       font-size: 14px;
       letter-spacing: 1.5px;
       font-family: 'Poppins', sans-serif;
-      border: 1px solid rgba(252, 225, 129, 0.45);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35); 
+      border: 1.5px solid #fff;
+      box-shadow: 0 10px 25px rgba(181, 131, 125, 0.25); 
       cursor: pointer; 
       transition: all 0.3s ease;
     }
@@ -499,7 +493,7 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES (SIN SOMBRAS NEGRAS)
+       AJUSTES PARA MÓVILES (FONDOS CLAROS NATURALES)
        ============================================================== */
     @media (max-width: 800px) {
       .vestimenta-wrapper {
@@ -521,17 +515,9 @@
         padding-bottom: 10vh !important; 
       }
       
-      /* Degradado móvil usando Azul Petróleo y Verde Eucalipto en vez de negro */
+      /* Degradados claros para móviles */
       section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(125, 147, 126, 0.05) 0%, rgba(10, 76, 104, 0.35) 45%, rgba(10, 76, 104, 0.85) 95%) !important;
-      }
-
-      /* Degradado cálido terracota en secciones pares móviles */
-      section.seccion-pase .overlay,
-      section.seccion-vestimenta .overlay,
-      section.seccion-regalos .overlay,
-      section.seccion-final .overlay {
-        background: linear-gradient(to bottom, rgba(226, 128, 134, 0.05) 0%, rgba(169, 79, 53, 0.35) 45%, rgba(107, 55, 28, 0.85) 95%) !important;
+        background: linear-gradient(to bottom, rgba(251, 248, 243, 0.1) 0%, rgba(251, 248, 243, 0.6) 45%, rgba(244, 238, 227, 0.96) 95%) !important;
       }
       
       .glass-card {
@@ -558,7 +544,7 @@
         padding-left: 15px; padding-right: 15px; align-items: center !important; 
       }
       
-      h1 { font-size: 3.2rem; }
+      h1 { font-size: 4.2rem; }
       h2 { font-size: 2.1rem; margin-bottom: 15px; } 
       h3 { font-size: 1.4rem; }
       p { font-size: 1.05rem; line-height: 1.6; margin: 10px 0; }
@@ -576,7 +562,7 @@
         padding: 0;
         background: transparent !important;
         border: none !important;
-        font-size: 1.15rem !important;
+        font-size: 1.8rem !important;
       }
 
       .tl-row {
@@ -590,21 +576,21 @@
       }
     }
 
-    /* --- BOTÓN DE MÚSICA FLOTANTE --- */
+    /* --- BOTÓN DE MÚSICA VINTAGE --- */
     .music-btn {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background: var(--terracota);
-      color: #fff;
-      border: 1px solid var(--gold);
+      background: var(--cream-bg);
+      color: var(--rose-accent);
+      border: 1.5px solid var(--gold);
       border-radius: 50%;
       width: 55px;
       height: 55px;
       font-size: 20px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -640,12 +626,12 @@
   <section class="hero">
     <div class="overlay"></div>
     <div class="reveal active">
-      <p class="cita-biblica" style="font-size: 1.35rem; margin-bottom: 25px;">
-        Nos elegimos hoy y siempre.
+      <p class="cita-biblica" style="margin-bottom: 25px;">
+        "Nos elegimos hoy y siempre"
       </p>
       
-      <h1>Yader &<br>Angélica</h1>
-      <p style="letter-spacing: 3px; font-weight: 600;">14 de marzo de 2027.</p>
+      <h1>Yader & Angélica</h1>
+      <p style="letter-spacing: 3px; font-weight: 600; text-transform: uppercase;">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="days">00</span><p>Días</p></div>
@@ -664,11 +650,11 @@
     <div class="glass-card reveal">
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 24px 0; font-size: 1.9rem; color: var(--gold); font-family: 'Playfair Display', serif;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 24px 0; font-size: 2.2rem; color: var(--rose-accent); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
-      <p id="pases-invitado" style="font-size: 1.5rem; color: var(--gold); font-weight: 600; margin-top: 20px; margin-bottom: 0;"></p>
+      <p id="pases-invitado" style="font-size: 1.3rem; color: var(--rose-accent); font-weight: 600; margin-top: 20px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 1.5px;"></p>
     </div>
   </section>
 
@@ -681,11 +667,11 @@
       <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(252, 225, 129, 0.35);">
-        <p style="font-size: 1.1rem; margin-bottom: 18px;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
+      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.25);">
+        <p style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 500;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
         <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
-          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: #9e3a34; color: white;">No podré asistir</button>
+          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: #e74c3c; color: white;">No podré asistir</button>
         </div>
       </div>
     </div>
@@ -695,8 +681,8 @@
   <section class="seccion-itinerario">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; margin-bottom: 0; color: rgba(255,255,255,0.95);">Boda de</p>
-      <h2 style="margin-top: 2px; margin-bottom: 15px; font-size: 2.5rem;">Yader y Angélica</h2>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; margin-bottom: 0; color: var(--rose-accent); text-shadow: none;">Boda de</p>
+      <h2 style="margin-top: 0px; margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 2.5rem; text-transform: none;">Yader y Angélica</h2>
 
       <div class="timeline-container">
         <div class="tl-row">
@@ -801,11 +787,11 @@
     </div>
   </section>
 
-  <!-- 5. FOTOS / HISTORIA DE AMOR -->
+  <!-- 5. FOTOS -->
   <section class="seccion-nosotros">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
-      <h2 style="color:var(--gold);">Un vistazo a nuestra historia de amor.</h2>
+      <h2 style="color:var(--rose-accent);">Un vistazo a nuestra historia de amor.</h2>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
@@ -834,7 +820,7 @@
       <div class="vestimenta-col-right">
         <div class="glass-card" style="margin: 0; width: 100%;">
           <h2>Código de vestimenta:</h2>
-          <p style="letter-spacing: 1px; font-weight: 600; color: var(--gold); font-size: 1.4rem;">Semi formal / Casual</p>
+          <p style="letter-spacing: 1px; font-weight: 600; color: var(--rose-accent); font-size: 1.4rem;">Semi formal / Casual</p>
           <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
           <p>Te adjuntamos algunos ejemplos.</p>
           <img src="paleta.png?v=3" alt="Paleta de Colores" class="paleta-img">
@@ -874,12 +860,12 @@
   <section class="seccion-final">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-size: 1.4rem; margin-bottom: 25px;">Deseamos que puedas acompañarnos.</p>
-      <p style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 1.6rem; margin-top: 10px; line-height: 1.5;">
+      <p style="font-size: 1.4rem; margin-bottom: 25px; font-weight: 500;">Deseamos que puedas acompañarnos.</p>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--rose-accent); margin-top: 10px; line-height: 1.2;">
         Con todo nuestro amor,<br>
-        Yader Betanco Valle<br>
+        <span style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; font-weight: 600; color: var(--dark-brown);">Yader Betanco Valle</span><br>
         &<br>
-        Angélica Calderón Quirós.
+        <span style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; font-weight: 600; color: var(--dark-brown);">Angélica Calderón Quirós.</span>
       </p>
     </div>
   </section>
@@ -1065,7 +1051,7 @@
       const distance = countDownDate - now;
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:var(--gold);'>Llegó el gran día</p>";
+        document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:var(--rose-accent);'>Llegó el gran día</p>";
         return;
       }
       document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
