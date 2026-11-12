@@ -13,13 +13,16 @@
 
   <style>
     :root {
-      /* --- PALETA DE COLORES VINTAGE FLORAL --- */
-      --cream-bg: #fbf8f3;       /* Fondo de papel o lienzo marfil claro */
-      --dark-brown: #4a2521;     /* Tono café/vino profundo de la imagen (textos y títulos) */
-      --gold: #d4af37;           /* Oro viejo para bordes e ilustraciones */
-      --rose-accent: #b5837d;    /* Rosa empolvado de las rosas (botones, píldoras y acentos) */
-      --sage-green: #7d937e;     /* Verde eucalipto para las hojas (detalles secundarios) */
-      --glass-white: rgba(255, 255, 255, 0.9); /* Blanco translúcido para las tarjetas */
+      --cream-bg: #fbf8f3;
+      --paper-card: rgba(251, 248, 243, 0.94);
+      --dark-brown: #4a2c2a;
+      --gold: #c5a059;
+      --gold-light: #e2c792;
+      --rose-accent: #b5837d;
+      --rose-light: #e8c5c1;
+      --rose-deep: #9e6b66;
+      --sage-green: #7d937e;
+      --sage-dark: #5c715e;
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -27,9 +30,8 @@
     body { 
       margin: 0; 
       font-family: 'Poppins', sans-serif; 
-      /* Fondo claro vintage */
       background-color: var(--cream-bg); 
-      background-image: radial-gradient(circle at center, rgba(251, 248, 243, 0.8) 0%, rgba(244, 238, 227, 0.95) 100%);
+      background-image: radial-gradient(circle at center, #ffffff 0%, #f3ece1 100%);
       background-attachment: fixed;
       color: var(--dark-brown); 
       overflow-x: hidden; 
@@ -37,7 +39,56 @@
       overscroll-behavior-y: none;
     }
 
-    /* --- ESTILOS DE UNIÓN INFINITA (SEAMLESS) --- */
+    /* ==============================================================
+       MARCO DORADO CURVO Y FLORES EN LAS ESQUINAS (FIJOS EN PANTALLA)
+       ============================================================== */
+    .ornamental-frame {
+      position: fixed;
+      inset: 14px;
+      border: 1.5px solid var(--gold);
+      pointer-events: none;
+      z-index: 9000;
+      box-shadow: inset 0 0 0 4px rgba(251, 248, 243, 0.35), inset 0 0 0 5px rgba(197, 160, 89, 0.4);
+    }
+
+    /* Esquinas curvas estilo papelería fina */
+    .ornamental-frame::before,
+    .ornamental-frame::after {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 1.5px solid var(--gold);
+      pointer-events: none;
+    }
+    .ornamental-frame::before {
+      top: -1.5px; left: -1.5px;
+      border-top: none; border-left: none;
+      border-bottom-right-radius: 26px;
+      background: rgba(251, 248, 243, 0.4);
+    }
+    .ornamental-frame::after {
+      bottom: -1.5px; right: -1.5px;
+      border-bottom: none; border-right: none;
+      border-top-left-radius: 26px;
+      background: rgba(251, 248, 243, 0.4);
+    }
+
+    .floral-corner {
+      position: fixed;
+      width: 195px;
+      height: 195px;
+      pointer-events: none;
+      z-index: 9001;
+      filter: drop-shadow(0 4px 10px rgba(74, 44, 42, 0.14));
+      transition: transform 0.3s ease;
+    }
+    .floral-tl { top: 0; left: 0; }
+    .floral-tr { top: 0; right: 0; transform: scaleX(-1); }
+    .floral-bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .floral-br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+    /* --- ESTILOS DE SECCIONES --- */
     section { 
       min-height: 100vh; 
       display: flex; 
@@ -55,7 +106,6 @@
       mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
     }
 
-    /* --- PORTADA --- */
     .hero { 
       margin-top: 0; 
       z-index: 10; 
@@ -68,7 +118,7 @@
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC --- */
+    /* --- ZIG-ZAG EN PC --- */
     .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 10%; } 
     .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 10%; }
@@ -78,101 +128,104 @@
     .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-final { z-index: 2; align-items: flex-end; justify-content: center; padding-right: 10%; -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); mask-image: linear-gradient(to top, black 85%, transparent 100%); } 
 
-    /* Velo suave para integrar la fotografía sin oscurecer la pantalla */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(251, 248, 243, 0.45) 0%, rgba(244, 238, 227, 0.55) 100%); 
+      background: linear-gradient(135deg, rgba(251, 248, 243, 0.38) 0%, rgba(244, 236, 225, 0.48) 100%); 
       z-index: 1; 
     }
 
-    /* --- TARJETA CLARA (ESTILO RETRO / LIENZO) --- */
+    /* --- TARJETA DE PAPELERÍA CON BORDES DORADOS Y ESQUINAS DE ENCAJE --- */
     .glass-card {
-      background: transparent; 
-      border: none; 
-      box-shadow: none; 
-      padding: 60px 40px; 
+      background: var(--paper-card); 
+      border: 1.5px solid var(--gold); 
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(74, 44, 42, 0.14), inset 0 0 0 6px var(--cream-bg), inset 0 0 0 7px rgba(197, 160, 89, 0.55); 
+      padding: 50px 38px; 
       width: 100%; 
       max-width: 480px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
-      backdrop-filter: none !important; 
-      -webkit-backdrop-filter: none !important; 
+      backdrop-filter: blur(6px); 
+      -webkit-backdrop-filter: blur(6px); 
+    }
+
+    /* Ramillete superior e inferior sutil en cada tarjeta */
+    .card-garland {
+      width: 180px;
+      height: 36px;
+      margin: 0 auto 12px auto;
+      display: block;
+    }
+    .card-garland-bottom {
+      width: 150px;
+      height: 30px;
+      margin: 15px auto 0 auto;
+      display: block;
+      transform: scaleY(-1);
+    }
+
+    .rings-divider {
+      width: 240px;
+      height: 58px;
+      margin: 8px auto 15px auto;
+      display: block;
     }
     
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      /* Fondo traslúcido claro, similar al estilo de la imagen del itinerario */
-      background: var(--glass-white); 
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      border-radius: 12px;
-      /* Sombras muy suaves de día */
-      box-shadow: 0 15px 35px rgba(74, 37, 33, 0.08), 0 5px 15px rgba(0,0,0,0.03);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
-      mask-image: radial-gradient(ellipse at center, black 50%, transparent 95%);
-      z-index: -1; 
-      pointer-events: none;
-    }
-
     .glass-card-wide { max-width: 650px; }
-    .glass-card-wide::before {
-      -webkit-mask-image: radial-gradient(ellipse at center, black 65%, transparent 95%);
-      mask-image: radial-gradient(ellipse at center, black 65%, transparent 95%);
-    }
 
-    /* --- SOMBRAS MUY LIGERAS --- */
+    /* --- SOMBRAS LIGERAS --- */
     h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
-      text-shadow: 1px 1px 3px rgba(251, 248, 243, 0.9), 0px 1px 2px rgba(74, 37, 33, 0.15);
+      text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.85);
     }
 
-    /* --- EFECTO DE CONTRASTE EXTRA PARA FRASES (CON CALIGRAFÍA VINTAGE) --- */
     .cita-biblica {
-      font-family: 'Great Vibes', cursive; 
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: var(--rose-accent);
-      line-height: 1.3;
+      font-family: 'Playfair Display', serif; 
+      font-style: italic;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--dark-brown);
+      line-height: 1.5;
       max-width: 90%;
       margin-left: auto;
       margin-right: auto;
-      background: transparent !important;
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
     }
 
-    /* --- CONTADOR CLARO --- */
+    /* --- CONTADOR --- */
     .countdown {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       margin: 20px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: rgba(251, 248, 243, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       border: 1.5px solid var(--gold); 
       border-radius: 12px;
-      padding: 10px 15px;
-      min-width: 70px;
+      padding: 10px 14px;
+      min-width: 68px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(74, 37, 33, 0.05);
+      box-shadow: 0 4px 12px rgba(74, 44, 42, 0.08);
     }
-    .time-box span { font-size: 1.9rem; font-weight: 600; color: var(--rose-accent); display: block; line-height: 1.2; }
-    .time-box p { font-size: 0.75rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-brown); font-weight: bold;}
+    .time-box span { font-size: 1.85rem; font-weight: 600; color: var(--rose-accent); display: block; line-height: 1.2; }
+    .time-box p { font-size: 0.72rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-brown); font-weight: bold;}
 
-    /* --- FRASES LATERALES --- */
+    /* --- FRASES LATERALES EN BANDAS DE PAPEL ELEGANTE --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 1.5rem; 
+      font-size: 1.35rem; 
       color: var(--dark-brown); 
+      background: rgba(251, 248, 243, 0.9);
+      padding: 20px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--gold);
+      box-shadow: 0 10px 25px rgba(74, 44, 42, 0.12);
       max-width: 320px;
-      line-height: 1.35;
+      line-height: 1.45;
       z-index: 5; 
       pointer-events: none;
     }
@@ -183,12 +236,12 @@
     .seccion-qr .floating-text { right: 8%; text-align: right; }
     .seccion-nosotros .floating-text { left: 8%; text-align: left; }
 
-    /* --- DISEÑO DE ITINERARIO (CONECTOR Y ETIQUETAS IDENTICAS A LA IMAGEN) --- */
+    /* --- DISEÑO DE ITINERARIO --- */
     .timeline-container {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin: 20px auto 0 auto;
+      margin: 10px auto 0 auto;
       width: 100%;
       max-width: 380px;
       position: relative;
@@ -199,11 +252,10 @@
       grid-template-columns: 82px 28px 36px 1fr;
       align-items: center;
       width: 100%;
-      padding: 9px 0;
+      padding: 8px 0;
       position: relative;
     }
 
-    /* Conector de oro viejo */
     .tl-row:not(:last-child)::after {
       content: '';
       position: absolute;
@@ -211,8 +263,8 @@
       top: 50%;
       height: 100%;
       width: 2px;
-      background: var(--gold);
-      opacity: 0.6;
+      background: var(--rose-accent);
+      opacity: 0.55;
       z-index: 1;
     }
 
@@ -222,7 +274,6 @@
       padding-right: 8px;
     }
 
-    /* Píldora de hora en Rosa Empolvado de la imagen */
     .tl-pill {
       background: var(--rose-accent);
       color: #fff;
@@ -231,9 +282,8 @@
       padding: 4px 10px;
       border-radius: 20px;
       letter-spacing: 0.5px;
-      box-shadow: 0 3px 10px rgba(181, 131, 125, 0.3);
+      box-shadow: 0 3px 8px rgba(181, 131, 125, 0.35);
       white-space: nowrap;
-      border: 1px solid rgba(255,255,255,0.2);
     }
 
     .tl-node-col {
@@ -248,24 +298,22 @@
       width: 11px;
       height: 11px;
       border-radius: 50%;
-      background: var(--cream-bg);
-      border: 2px solid var(--rose-accent);
-      box-shadow: 0 0 8px rgba(181, 131, 125, 0.4);
+      background: var(--rose-accent);
+      border: 2px solid var(--cream-bg);
+      box-shadow: 0 0 0 1.5px var(--rose-accent);
     }
 
-    /* Iconos del itinerario en oro viejo */
     .tl-icon-col {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: var(--gold);
+      color: var(--dark-brown);
     }
 
     .tl-icon-col svg {
       width: 22px;
       height: 22px;
-      stroke: var(--rose-accent);
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.05));
+      stroke: var(--dark-brown);
     }
 
     .tl-text-col {
@@ -278,7 +326,7 @@
       font-size: 1.15rem;
       color: var(--dark-brown);
       font-weight: 600;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     /* --- ESTILOS VESTIMENTA --- */
@@ -287,7 +335,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 50px;
+      gap: 45px;
       width: 100%;
       max-width: 1100px;
       z-index: 20;
@@ -310,19 +358,20 @@
 
     .vestimenta-img {
       width: 100%;
-      border-radius: 12px;
-      border: 2px solid var(--gold);
-      box-shadow: 0 8px 25px rgba(74, 37, 33, 0.08);
+      border-radius: 16px;
+      border: 3px solid var(--cream-bg);
+      outline: 1.5px solid var(--gold);
+      box-shadow: 0 12px 30px rgba(74, 44, 42, 0.18);
       cursor: pointer;
     }
 
     .paleta-img {
       width: 100%;
       max-width: 390px;
-      margin-top: 20px;
+      margin-top: 15px;
       border-radius: 12px;
-      border: 1px solid var(--gold);
-      box-shadow: 0 4px 18px rgba(74, 37, 33, 0.05);
+      border: 1.5px solid var(--gold);
+      box-shadow: 0 6px 18px rgba(74, 44, 42, 0.1);
       cursor: pointer;
     }
 
@@ -330,29 +379,29 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      margin-top: 25px;
+      margin-top: 15px;
       overflow: hidden;
     }
 
-    .carousel-track { display: flex; padding: 20px 0; gap: 15px; }
+    .carousel-track { display: flex; padding: 15px 0; gap: 15px; }
 
     .carousel-track img { 
       width: 250px !important; 
       height: 300px !important; 
       object-fit: cover !important; 
-      border-radius: 10px;
+      border-radius: 12px;
       border: 2px solid var(--gold); 
       flex-shrink: 0;
-      box-shadow: 0 10px 25px rgba(74, 37, 33, 0.08); 
+      box-shadow: 0 8px 20px rgba(74, 44, 42, 0.14); 
       cursor: pointer;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: var(--cream-bg); color: var(--rose-accent); border: 1.5px solid var(--gold);
-      border-radius: 50%; width: 50px; height: 50px; font-size: 1.6rem;
+      background: var(--cream-bg); color: var(--dark-brown); border: 1.5px solid var(--gold);
+      border-radius: 50%; width: 48px; height: 48px; font-size: 1.5rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
+      box-shadow: 0 4px 12px rgba(74, 44, 42, 0.15);
       transition: all 0.3s ease;
     }
     .carousel-btn:hover { background: var(--rose-accent); color: white; }
@@ -361,19 +410,17 @@
 
     .qr-link {
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 10px;
       transition: transform 0.3s ease; 
     }
-    .qr-link:hover {
-      transform: scale(1.05); 
-    }
+    .qr-link:hover { transform: scale(1.05); }
     .qr-link img {
       width: 150px; 
       background: white; 
       padding: 12px; 
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1.5px solid var(--gold);
-      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.05);
+      box-shadow: 0 6px 15px rgba(74, 44, 42, 0.1);
     }
 
     /* --- LIGHTBOX --- */
@@ -385,7 +432,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(251, 248, 243, 0.98);
+      background-color: rgba(251, 248, 243, 0.96);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       opacity: 0;
@@ -398,9 +445,9 @@
     .modal-content {
       max-width: 90%;
       max-height: 85vh;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 3px solid var(--gold);
-      box-shadow: 0 20px 50px rgba(74, 37, 33, 0.15);
+      box-shadow: 0 20px 50px rgba(74, 44, 42, 0.2);
       transform: scale(0.8);
       transition: transform 0.3s ease;
       object-fit: contain;
@@ -408,23 +455,21 @@
     .modal.show .modal-content { transform: scale(1); }
     .close-modal {
       position: absolute;
-      top: 20px;
-      right: 30px;
+      top: 25px;
+      right: 35px;
       color: var(--dark-brown);
       font-size: 40px;
       font-weight: bold;
       cursor: pointer;
-      transition: color 0.3s;
       z-index: 10000;
     }
-    .close-modal:hover { color: var(--rose-accent); }
     
     .modal-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       background: var(--cream-bg);
-      color: var(--rose-accent);
+      color: var(--dark-brown);
       border: 1.5px solid var(--gold);
       border-radius: 50%;
       width: 50px;
@@ -435,10 +480,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
-      transition: all 0.3s ease;
     }
-    .modal-nav:hover { background: var(--rose-accent); color: white; }
     .modal-nav.prev { left: 20px; }
     .modal-nav.next { right: 20px; }
 
@@ -453,34 +495,32 @@
     .seccion-regalos { background-image: url('Foto3.webp'); background-position: center 40%; }
     .seccion-qr { background-image: url('Foto4.webp'); background-position: center; }
 
-    h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; color: var(--rose-accent); margin: 0; line-height: 1.1; font-weight: 400; }
-    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--rose-accent); margin-bottom: 20px; font-weight: 600; }
+    h1 { font-family: 'Great Vibes', cursive; font-size: 4.6rem; color: var(--dark-brown); margin: 0; line-height: 1.05; font-weight: 400; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--dark-brown); margin-top: 5px; margin-bottom: 12px; font-weight: 600; }
     h3 { font-size: 1.6rem; color: var(--dark-brown); margin: 0; font-weight: 600; } 
-    p { font-size: 1.25rem; line-height: 1.7; margin: 12px 0; }
+    p { font-size: 1.15rem; line-height: 1.65; margin: 10px 0; color: var(--dark-brown); }
 
-    /* --- BOTONES ROMANTICOS --- */
+    /* --- BOTONES EN ROSA EMPOLVADO Y BORDE DORADO --- */
     .btn {
-      background: linear-gradient(135deg, var(--rose-accent) 0%, var(--gold) 100%); 
+      background: linear-gradient(135deg, var(--rose-accent) 0%, var(--rose-deep) 100%); 
       color: #ffffff; 
-      padding: 16px 32px; 
-      border-radius: 8px;
+      padding: 15px 30px; 
+      border-radius: 30px;
       text-decoration: none; 
       font-weight: 600;
       display: inline-block; 
-      margin-top: 20px;
+      margin-top: 18px;
       text-transform: uppercase; 
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 1.5px;
       font-family: 'Poppins', sans-serif;
-      border: 1.5px solid #fff;
-      box-shadow: 0 10px 25px rgba(181, 131, 125, 0.25); 
+      border: 1.5px solid var(--gold-light);
+      box-shadow: 0 8px 20px rgba(181, 131, 125, 0.35); 
       cursor: pointer; 
       transition: all 0.3s ease;
     }
     
-    .btn:active {
-      transform: scale(0.95);
-    }
+    .btn:active { transform: scale(0.95); }
 
     .reveal { 
       opacity: 0; 
@@ -493,7 +533,7 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES (FONDOS CLAROS NATURALES)
+       AJUSTES PARA MÓVILES
        ============================================================== */
     @media (max-width: 800px) {
       .vestimenta-wrapper {
@@ -503,6 +543,9 @@
     }
 
     @media (max-width: 600px) {
+      .ornamental-frame { inset: 8px; }
+      .floral-corner { width: 125px; height: 125px; }
+
       section {
         min-height: 100svh !important; 
         padding-top: 80px;
@@ -511,19 +554,18 @@
       
       section:not(.hero) {
         justify-content: center !important;
-        padding-top: 15vh !important; 
+        padding-top: 14vh !important; 
         padding-bottom: 10vh !important; 
       }
       
-      /* Degradados claros para móviles */
       section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(251, 248, 243, 0.1) 0%, rgba(251, 248, 243, 0.6) 45%, rgba(244, 238, 227, 0.96) 95%) !important;
+        background: linear-gradient(to bottom, rgba(251, 248, 243, 0.15) 0%, rgba(251, 248, 243, 0.45) 50%, rgba(244, 236, 225, 0.85) 95%) !important;
       }
       
       .glass-card {
-        padding: 40px 18px; 
+        padding: 36px 20px; 
         width: 100%;
-        max-width: 96%;
+        max-width: 94%;
       }
       
       .floating-text { 
@@ -532,88 +574,145 @@
         right: auto !important; 
         left: auto !important; 
         text-align: center !important; 
-        max-width: 100%; 
-        margin-top: 25px; 
+        max-width: 94%; 
+        margin-top: 22px; 
         margin-bottom: 0px;
-        font-size: 1.35rem;
+        font-size: 1.2rem;
       }
       .floating-text.reveal { transform: translateY(20px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
       
       .seccion-pase, .seccion-lugar, .seccion-itinerario, .seccion-nosotros, .seccion-vestimenta, .seccion-regalos, .seccion-qr, .seccion-final { 
-        padding-left: 15px; padding-right: 15px; align-items: center !important; 
+        padding-left: 14px; padding-right: 14px; align-items: center !important; 
       }
       
-      h1 { font-size: 4.2rem; }
-      h2 { font-size: 2.1rem; margin-bottom: 15px; } 
-      h3 { font-size: 1.4rem; }
-      p { font-size: 1.05rem; line-height: 1.6; margin: 10px 0; }
+      h1 { font-size: 3.8rem; }
+      h2 { font-size: 2rem; margin-bottom: 12px; } 
+      h3 { font-size: 1.35rem; }
+      p { font-size: 1.02rem; line-height: 1.6; margin: 10px 0; }
       
-      .time-box span { font-size: 1.6rem; }
-      .time-box { padding: 8px 10px; min-width: 60px; }
+      .time-box span { font-size: 1.55rem; }
+      .time-box { padding: 8px 10px; min-width: 58px; }
       
-      .carousel-track img { width: 220px !important; height: 280px !important; } 
+      .carousel-track img { width: 215px !important; height: 270px !important; } 
       
-      .modal-nav { width: 40px; height: 40px; font-size: 1.2rem; }
-      .modal-nav.prev { left: 10px; }
-      .modal-nav.next { right: 10px; }
-
-      .cita-biblica {
-        padding: 0;
-        background: transparent !important;
-        border: none !important;
-        font-size: 1.8rem !important;
-      }
-
-      .tl-row {
-        grid-template-columns: 74px 24px 32px 1fr;
-      }
-      .tl-row:not(:last-child)::after {
-        left: 85px;
-      }
-      .tl-title {
-        font-size: 1.05rem;
-      }
+      .tl-row { grid-template-columns: 74px 24px 32px 1fr; }
+      .tl-row:not(:last-child)::after { left: 85px; }
+      .tl-title { font-size: 1.05rem; }
     }
 
-    /* --- BOTÓN DE MÚSICA VINTAGE --- */
+    /* --- BOTÓN DE MÚSICA --- */
     .music-btn {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      bottom: 24px;
+      right: 24px;
       background: var(--cream-bg);
       color: var(--rose-accent);
-      border: 1.5px solid var(--gold);
+      border: 2px solid var(--gold);
       border-radius: 50%;
-      width: 55px;
-      height: 55px;
+      width: 52px;
+      height: 52px;
       font-size: 20px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 4px 15px rgba(74, 37, 33, 0.08);
+      box-shadow: 0 5px 15px rgba(74, 44, 42, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.3s ease, background 0.3s;
+      transition: transform 0.3s ease;
     }
-    .music-btn.playing {
-      animation: spin 4s linear infinite;
-    }
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
+    .music-btn.playing { animation: spin 4s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
     @media (max-width: 600px) {
-      .music-btn {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-      }
+      .music-btn { bottom: 18px; right: 18px; width: 44px; height: 44px; font-size: 18px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- DEFINICIÓN DE GRÁFICOS VECTORIALES (ROSAS, HOJAS DE EUCALIPTO Y ANILLOS DE BODA) -->
+  <svg style="display: none;">
+    <defs>
+      <!-- Ramillete floral de esquina (Rosas empolvadas, rosa marfil y hojas de eucalipto) -->
+      <g id="floral-corner-art">
+        <!-- Ramas y hojas de eucalipto -->
+        <path d="M10,160 Q30,90 95,45" fill="none" stroke="#5c715e" stroke-width="2" />
+        <path d="M25,105 Q10,80 32,65 Q48,82 25,105 Z" fill="#7d937e" opacity="0.9" />
+        <path d="M45,88 Q68,75 75,92 Q55,105 45,88 Z" fill="#5c715e" opacity="0.85" />
+        <path d="M62,65 Q48,40 70,30 Q82,48 62,65 Z" fill="#7d937e" opacity="0.9" />
+        <path d="M88,48 Q115,38 125,55 Q100,68 88,48 Z" fill="#8fa590" opacity="0.9" />
+        <path d="M15,138 Q38,125 46,142 Q26,154 15,138 Z" fill="#8fa590" opacity="0.85" />
+        <path d="M110,30 Q135,12 155,22 Q135,40 110,30 Z" fill="#7d937e" opacity="0.9" />
+        <!-- Tallo dorado decorativo -->
+        <path d="M5,120 Q45,55 140,12" fill="none" stroke="#c5a059" stroke-width="1.3" stroke-dasharray="3,2" />
+        <!-- Rosa principal (Rosa Empolvado) -->
+        <g transform="translate(42, 42)">
+          <circle cx="0" cy="0" r="28" fill="#d8a39d" />
+          <path d="M-20,-8 C-10,-26 15,-24 22,-5 C26,14 8,26 -12,20 C-26,14 -24,-4 -12,-14 C-2,-22 14,-14 14,2 C14,14 -4,18 -10,8 C-16,-2 -4,-12 4,-6" fill="#b5837d" stroke="#fbf8f3" stroke-width="1.2" />
+          <circle cx="0" cy="0" r="5" fill="#9e6b66" />
+        </g>
+        <!-- Rosa secundaria (Marfil / Crema) -->
+        <g transform="translate(82, 24) scale(0.72)">
+          <circle cx="0" cy="0" r="25" fill="#f5ebe1" />
+          <path d="M-18,-6 C-8,-22 14,-20 20,-4 C22,12 6,22 -10,18 C-22,12 -20,-4 -10,-12 C0,-18 12,-10 12,2 C12,12 -4,14 -8,6" fill="#e8dacb" stroke="#c5a059" stroke-width="1" />
+          <circle cx="0" cy="0" r="4" fill="#c5a059" />
+        </g>
+        <!-- Capullo rosa -->
+        <g transform="translate(24, 82) scale(0.55)">
+          <circle cx="0" cy="0" r="22" fill="#e8c5c1" />
+          <path d="M-14,-5 C-6,-18 12,-16 16,-3 C18,10 5,18 -8,14 C-18,10 -14,-6 -4,-10" fill="#b5837d" stroke="#fbf8f3" stroke-width="1.2" />
+        </g>
+        <!-- Pequeñas flores blancas (Gypsophila) -->
+        <circle cx="105" cy="48" r="3.5" fill="#ffffff" stroke="#c5a059" stroke-width="0.8" />
+        <circle cx="114" cy="42" r="2.5" fill="#ffffff" />
+        <circle cx="52" cy="86" r="3.5" fill="#ffffff" stroke="#c5a059" stroke-width="0.8" />
+        <circle cx="36" cy="115" r="3" fill="#ffffff" />
+      </g>
+
+      <!-- Adorno de Anillos Entrelazados y Ramas de Eucalipto (Idéntico a la imagen del itinerario) -->
+      <g id="wedding-rings-art">
+        <!-- Rama izquierda -->
+        <path d="M15,32 Q55,26 90,34" fill="none" stroke="#5c715e" stroke-width="1.8" />
+        <path d="M28,30 Q18,18 32,14 Q42,22 28,30 Z" fill="#7d937e" />
+        <path d="M48,29 Q40,16 54,13 Q62,22 48,29 Z" fill="#8fa590" />
+        <path d="M68,31 Q62,18 75,16 Q82,25 68,31 Z" fill="#7d937e" />
+        <path d="M35,31 Q25,43 40,46 Q48,38 35,31 Z" fill="#5c715e" />
+        <path d="M58,31 Q48,44 63,46 Q70,38 58,31 Z" fill="#7d937e" />
+        <!-- Rama derecha -->
+        <path d="M225,32 Q185,26 150,34" fill="none" stroke="#5c715e" stroke-width="1.8" />
+        <path d="M212,30 Q222,18 208,14 Q198,22 212,30 Z" fill="#7d937e" />
+        <path d="M192,29 Q200,16 186,13 Q178,22 192,29 Z" fill="#8fa590" />
+        <path d="M172,31 Q178,18 165,16 Q158,25 172,31 Z" fill="#7d937e" />
+        <path d="M205,31 Q215,43 200,46 Q192,38 205,31 Z" fill="#5c715e" />
+        <path d="M182,31 Q192,44 177,46 Q170,38 182,31 Z" fill="#7d937e" />
+        <!-- Anillos Dorados -->
+        <ellipse cx="110" cy="30" rx="16" ry="13" transform="rotate(-12 110 30)" fill="none" stroke="#c5a059" stroke-width="4" />
+        <ellipse cx="110" cy="30" rx="16" ry="13" transform="rotate(-12 110 30)" fill="none" stroke="#f5e1a4" stroke-width="1.2" />
+        <ellipse cx="130" cy="32" rx="16" ry="13" transform="rotate(10 130 32)" fill="none" stroke="#b38b40" stroke-width="4" />
+        <ellipse cx="130" cy="32" rx="16" ry="13" transform="rotate(10 130 32)" fill="none" stroke="#f5e1a4" stroke-width="1.2" />
+      </g>
+
+      <!-- Guirnalda floral delicada para encabezados de tarjetas -->
+      <g id="card-garland-art">
+        <path d="M15,18 Q90,28 165,18" fill="none" stroke="#c5a059" stroke-width="1.2" />
+        <path d="M55,20 Q42,10 58,7 Q68,14 55,20 Z" fill="#7d937e" />
+        <path d="M125,20 Q138,10 122,7 Q112,14 125,20 Z" fill="#7d937e" />
+        <path d="M72,22 Q62,31 76,33 Q82,27 72,22 Z" fill="#8fa590" />
+        <path d="M108,22 Q118,31 104,33 Q98,27 108,22 Z" fill="#8fa590" />
+        <circle cx="90" cy="20" r="9" fill="#b5837d" />
+        <path d="M84,18 C87,12 94,12 96,18 C97,23 90,26 86,23 C83,20 86,15 90,17" fill="none" stroke="#fbf8f3" stroke-width="1" />
+        <circle cx="68" cy="18" r="4" fill="#f5ebe1" stroke="#c5a059" stroke-width="0.8" />
+        <circle cx="112" cy="18" r="4" fill="#f5ebe1" stroke="#c5a059" stroke-width="0.8" />
+      </g>
+    </defs>
+  </svg>
+
+  <!-- MARCO DORADO Y FLORES FIJAS EN LAS 4 ESQUINAS -->
+  <div class="ornamental-frame"></div>
+  <svg class="floral-corner floral-tl" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
+  <svg class="floral-corner floral-tr" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
+  <svg class="floral-corner floral-bl" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
+  <svg class="floral-corner floral-br" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
 
   <audio id="bg-music" loop>
     <source src="musica.mp3.mp3" type="audio/mpeg">
@@ -625,13 +724,15 @@
   <!-- 1. PORTADA -->
   <section class="hero">
     <div class="overlay"></div>
-    <div class="reveal active">
-      <p class="cita-biblica" style="margin-bottom: 25px;">
-        "Nos elegimos hoy y siempre"
+    <div class="glass-card reveal active">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <p class="cita-biblica" style="margin-bottom: 18px;">
+        Nos elegimos hoy y siempre.
       </p>
       
       <h1>Yader & Angélica</h1>
-      <p style="letter-spacing: 3px; font-weight: 600; text-transform: uppercase;">14 de marzo de 2027.</p>
+      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
+      <p style="letter-spacing: 3px; font-weight: 600;">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="days">00</span><p>Días</p></div>
@@ -648,13 +749,15 @@
   <section class="seccion-pase">
     <div class="overlay"></div>
     <div class="glass-card reveal">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 24px 0; font-size: 2.2rem; color: var(--rose-accent); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 22px 0; font-size: 2.3rem; color: var(--rose-accent); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
-      <p id="pases-invitado" style="font-size: 1.3rem; color: var(--rose-accent); font-weight: 600; margin-top: 20px; margin-bottom: 0; text-transform: uppercase; letter-spacing: 1.5px;"></p>
+      <p id="pases-invitado" style="font-size: 1.25rem; color: var(--rose-deep); font-weight: 600; margin-top: 18px; margin-bottom: 0; letter-spacing: 1px;"></p>
+      <svg class="card-garland-bottom" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
     </div>
   </section>
 
@@ -662,34 +765,36 @@
   <section class="seccion-lugar">
     <div class="overlay"></div>
     <div class="glass-card reveal">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
       <h2>Ceremonia y recepción.</h2>
       <p>Hora de inicio: 3:00pm.</p>
       <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.25);">
-        <p style="font-size: 1.1rem; margin-bottom: 18px; font-weight: 500;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
-        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(197, 160, 89, 0.4);">
+        <p style="font-size: 1.08rem; margin-bottom: 16px; font-weight: 500;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
+        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
-          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: #e74c3c; color: white;">No podré asistir</button>
+          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: #9e6b66; color: white;">No podré asistir</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. ITINERARIO -->
+  <!-- 4. ITINERARIO (DISEÑO IDÉNTICO A LA TARJETA DE ANGÉLICA) -->
   <section class="seccion-itinerario">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; margin-bottom: 0; color: var(--rose-accent); text-shadow: none;">Boda de</p>
-      <h2 style="margin-top: 0px; margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 2.5rem; text-transform: none;">Yader y Angélica</h2>
+      <p style="font-family: 'Great Vibes', cursive; font-size: 2.3rem; margin-bottom: 0; color: var(--dark-brown);">Boda de</p>
+      <h2 style="margin-top: -5px; margin-bottom: 2px; font-family: 'Great Vibes', cursive; font-size: 3.3rem; font-weight: 400; color: var(--dark-brown);">Yader y Angélica</h2>
+      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
 
       <div class="timeline-container">
         <div class="tl-row">
           <div class="tl-time-col"><span class="tl-pill">3:00 pm</span></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M10 5h4M5 21V10l7-5 7 5v11H5z"/><path d="M10 21v-5a2 2 0 1 1 4 0v5"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M10 5h4M5 21V10l7-5 7 5v11H5z"/><path d="M10 21v-5a2 2 0 1 1 4 0v5"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Ceremonia</span></div>
         </div>
@@ -698,7 +803,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5V3H7v7a5 5 0 0 0 5 5z"/><path d="M7 7h10"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5V3H7v7a5 5 0 0 0 5 5z"/><path d="M7 7h10"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Inicio de la recepción</span></div>
         </div>
@@ -707,7 +812,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5.5"/><circle cx="15.5" cy="15.5" r="5.5"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="15" cy="8" r="3"/><path d="M4 21v-4a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"/><path d="M13 21v-3a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v4"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Entrada de los novios</span></div>
         </div>
@@ -716,7 +821,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h4M7 15v6M4 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2L4 4z"/><path d="M15 21h4M17 15v6M14 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2l-1-8z"/><path d="M12 2v2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h4M7 15v6M4 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2L4 4z"/><path d="M15 21h4M17 15v6M14 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2l-1-8z"/><path d="M12 2v2"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Brindis</span></div>
         </div>
@@ -725,7 +830,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Primer baile de esposos</span></div>
         </div>
@@ -734,7 +839,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Fotografías</span></div>
         </div>
@@ -743,7 +848,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M4 17a8 8 0 0 1 16 0M12 7v2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M4 17a8 8 0 0 1 16 0M12 7v2"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Cena y postre</span></div>
         </div>
@@ -752,7 +857,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Baile del billete</span></div>
         </div>
@@ -761,7 +866,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M12 2v4M5 13h14M7 9.5h10M7 16.5h10M12 6v14"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M12 2v4M5 13h14M7 9.5h10M7 16.5h10M12 6v14"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Pista abierta</span></div>
         </div>
@@ -770,7 +875,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M8.5 10.5a3 3 0 1 0-4.2-4.2 3 3 0 0 0 4.2 4.2z"/><path d="M15.5 10.5a3 3 0 1 0 4.2-4.2 3 3 0 0 0-4.2 4.2z"/><path d="M9 12l3 9 3-9"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M8.5 10.5a3 3 0 1 0-4.2-4.2 3 3 0 0 0 4.2 4.2z"/><path d="M15.5 10.5a3 3 0 1 0 4.2-4.2 3 3 0 0 0-4.2 4.2z"/><path d="M9 12l3 9 3-9"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Lanzamiento del ramo</span></div>
         </div>
@@ -779,7 +884,7 @@
           <div class="tl-time-col"><span class="tl-pill">9:00 pm</span></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Fin del evento</span></div>
         </div>
@@ -791,7 +896,8 @@
   <section class="seccion-nosotros">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
-      <h2 style="color:var(--rose-accent);">Un vistazo a nuestra historia de amor.</h2>
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
@@ -814,16 +920,17 @@
     <div class="vestimenta-wrapper reveal">
       
       <div class="vestimenta-col-left">
-        <img src="vestimenta1.jpeg?v=3" alt="Ejemplos de Vestimenta" class="vestimenta-img">
+        <img src="vestimenta1.jpeg?v=4" alt="Ejemplos de Vestimenta" class="vestimenta-img">
       </div>
       
       <div class="vestimenta-col-right">
         <div class="glass-card" style="margin: 0; width: 100%;">
+          <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
           <h2>Código de vestimenta:</h2>
-          <p style="letter-spacing: 1px; font-weight: 600; color: var(--rose-accent); font-size: 1.4rem;">Semi formal / Casual</p>
+          <p style="letter-spacing: 1px; font-weight: 600; color: var(--rose-accent); font-size: 1.35rem;">Semi formal / Casual</p>
           <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
           <p>Te adjuntamos algunos ejemplos.</p>
-          <img src="paleta.png?v=3" alt="Paleta de Colores" class="paleta-img">
+          <img src="paleta.png?v=4" alt="Paleta de Colores" class="paleta-img">
         </div>
       </div>
 
@@ -834,10 +941,12 @@
   <section class="seccion-regalos">
     <div class="overlay"></div>
     <div class="glass-card reveal">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
       <h2>Mesa de regalos</h2>
       <p>Contar con su compañía en nuestro día especial, será nuestro mejor regalo.</p>
       <p>Sin embargo, agradecemos que las muestras de cariño que nos quieran entregar, sean en efectivo, esto nos facilitará el inicio de nuestro viaje juntos.</p>
       <p>En la recepción encontrarás sobres y un cofre donde podrás depositarlos.</p>
+      <svg class="card-garland-bottom" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
     </div>
   </section>
 
@@ -845,6 +954,7 @@
   <section class="seccion-qr">
     <div class="overlay"></div>
     <div class="glass-card reveal">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
       <h2>Comparte tus fotos</h2>
       <p>Escanea este código QR o toca el botón para subir todas las fotos y videos que tomes durante la celebración.</p>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="qr-link">
@@ -860,13 +970,15 @@
   <section class="seccion-final">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-size: 1.4rem; margin-bottom: 25px; font-weight: 500;">Deseamos que puedas acompañarnos.</p>
-      <p style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--rose-accent); margin-top: 10px; line-height: 1.2;">
+      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <p style="font-size: 1.35rem; margin-bottom: 18px; font-weight: 500;">Deseamos que puedas acompañarnos.</p>
+      <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.55rem; color: var(--dark-brown); margin-top: 10px; line-height: 1.55;">
         Con todo nuestro amor,<br>
-        <span style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; font-weight: 600; color: var(--dark-brown);">Yader Betanco Valle</span><br>
+        <span style="font-weight: 600; color: var(--rose-deep);">Yader Betanco Valle</span><br>
         &<br>
-        <span style="font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; font-weight: 600; color: var(--dark-brown);">Angélica Calderón Quirós.</span>
+        <span style="font-weight: 600; color: var(--rose-deep);">Angélica Calderón Quirós.</span>
       </p>
+      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
     </div>
   </section>
 
