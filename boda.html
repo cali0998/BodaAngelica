@@ -23,7 +23,7 @@
       --dusty-rose: #d49b9e;
       --dusty-rose-dark: #b5767a;
       --dusty-rose-soft: #f5e4e5;
-      --text-dark: #2b332e;      /* Contraste alto para lectura perfecta sobre blanco */
+      --text-dark: #2b332e;
       --text-muted: #525e56;
     }
 
@@ -141,7 +141,6 @@
       text-align: center;
     }
 
-    /* Nube blanca luminosa con halo sutil en verde eucalipto y rosa palo */
     .glass-card::before {
       content: '';
       position: absolute;
@@ -822,10 +821,12 @@
     </defs>
   </svg>
 
-  <audio id="bg-music" loop>
+  <!-- REPRODUCTOR CON DOBLE RUTA DE RESPALDO (Funciona con musica.mp3 y con musica.mp3.mp3) -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
     <source src="musica.mp3.mp3" type="audio/mpeg">
   </audio>
-  <button id="music-btn" class="music-btn" onclick="toggleMusic()">
+  <button id="music-btn" class="music-btn" onclick="toggleMusic(event)" aria-label="Música">
     🎵
   </button>
 
@@ -1055,7 +1056,7 @@
     <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
-  <!-- 6. CÓDIGO DE VESTIMENTA (SIN LA FOTO DE PERSONAS, SOLO PALETA DE COLORES) -->
+  <!-- 6. CÓDIGO DE VESTIMENTA -->
   <section class="seccion-vestimenta">
     <div class="overlay"></div>
     <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
@@ -1067,7 +1068,7 @@
       <h2>Código de vestimenta:</h2>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--dusty-rose-dark); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=8" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=9" alt="Paleta de Colores" class="paleta-img">
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
 
@@ -1427,29 +1428,42 @@
       }
     });
 
-    // --- CONTROL DE MÚSICA ---
+    // --- CONTROL DE MÚSICA BLINDADO CONTRA DOBLE CLIC Y NOMBRES DE ARCHIVO ---
     const bgMusic = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-btn');
-    let isMusicPlaying = false;
 
-    function toggleMusic() {
-      if (isMusicPlaying) {
-        bgMusic.pause();
-        musicBtn.classList.remove('playing');
-        musicBtn.innerText = '🔇'; 
-      } else {
-        bgMusic.play().catch(error => console.log("Interacción necesaria para reproducir"));
+    function updateMusicUI() {
+      if (!bgMusic.paused) {
         musicBtn.classList.add('playing');
-        musicBtn.innerText = '🎵'; 
+        musicBtn.innerText = '🎵';
+      } else {
+        musicBtn.classList.remove('playing');
+        musicBtn.innerText = '🔇';
       }
-      isMusicPlaying = !isMusicPlaying;
     }
 
-    document.body.addEventListener('click', function() {
-      if(!isMusicPlaying && bgMusic.paused) {
-        toggleMusic();
+    function toggleMusic(e) {
+      if (e) e.stopPropagation(); // Evita que el clic en el botón dispare también el evento del body
+      if (bgMusic.paused) {
+        bgMusic.play().then(updateMusicUI).catch(err => console.log("Audio esperando interacción:", err));
+      } else {
+        bgMusic.pause();
+        updateMusicUI();
       }
-    }, { once: true });
+    }
+
+    function startMusicOnFirstInteraction() {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          updateMusicUI();
+          document.removeEventListener('click', startMusicOnFirstInteraction);
+          document.removeEventListener('touchstart', startMusicOnFirstInteraction);
+        }).catch(() => {});
+      }
+    }
+
+    document.addEventListener('click', startMusicOnFirstInteraction);
+    document.addEventListener('touchstart', startMusicOnFirstInteraction, { passive: true });
 
   </script>
 </body>
