@@ -7,22 +7,21 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <link rel="preload" as="image" href="Foto10.webp">
 
   <style>
     :root {
-      --cream-bg: #fbf8f3;
-      --paper-card: rgba(251, 248, 243, 0.94);
-      --dark-brown: #4a2c2a;
-      --gold: #c5a059;
-      --gold-light: #e2c792;
-      --rose-accent: #b5837d;
-      --rose-light: #e8c5c1;
-      --rose-deep: #9e6b66;
-      --sage-green: #7d937e;
-      --sage-dark: #5c715e;
+      --cream-soft: #faf6f0;
+      --paper-glass: rgba(250, 246, 240, 0.86);
+      --espresso: #3d2622;
+      --espresso-soft: #5c403b;
+      --champagne-gold: #c29d61;
+      --gold-hairline: rgba(194, 157, 97, 0.45);
+      --dusty-rose: #b5837d;
+      --dusty-rose-dark: #966560;
+      --eucalyptus: #7d937e;
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -30,71 +29,23 @@
     body { 
       margin: 0; 
       font-family: 'Poppins', sans-serif; 
-      background-color: var(--cream-bg); 
-      background-image: radial-gradient(circle at center, #ffffff 0%, #f3ece1 100%);
+      font-weight: 300;
+      background-color: var(--cream-soft); 
+      background-image: radial-gradient(circle at center, #fdfbf8 0%, #EFE6D8 100%);
       background-attachment: fixed;
-      color: var(--dark-brown); 
+      color: var(--espresso); 
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
       overscroll-behavior-y: none;
     }
 
-    /* ==============================================================
-       MARCO DORADO CURVO Y FLORES EN LAS ESQUINAS (FIJOS EN PANTALLA)
-       ============================================================== */
-    .ornamental-frame {
-      position: fixed;
-      inset: 14px;
-      border: 1.5px solid var(--gold);
-      pointer-events: none;
-      z-index: 9000;
-      box-shadow: inset 0 0 0 4px rgba(251, 248, 243, 0.35), inset 0 0 0 5px rgba(197, 160, 89, 0.4);
-    }
-
-    /* Esquinas curvas estilo papelería fina */
-    .ornamental-frame::before,
-    .ornamental-frame::after {
-      content: '';
-      position: absolute;
-      width: 26px;
-      height: 26px;
-      border: 1.5px solid var(--gold);
-      pointer-events: none;
-    }
-    .ornamental-frame::before {
-      top: -1.5px; left: -1.5px;
-      border-top: none; border-left: none;
-      border-bottom-right-radius: 26px;
-      background: rgba(251, 248, 243, 0.4);
-    }
-    .ornamental-frame::after {
-      bottom: -1.5px; right: -1.5px;
-      border-bottom: none; border-right: none;
-      border-top-left-radius: 26px;
-      background: rgba(251, 248, 243, 0.4);
-    }
-
-    .floral-corner {
-      position: fixed;
-      width: 195px;
-      height: 195px;
-      pointer-events: none;
-      z-index: 9001;
-      filter: drop-shadow(0 4px 10px rgba(74, 44, 42, 0.14));
-      transition: transform 0.3s ease;
-    }
-    .floral-tl { top: 0; left: 0; }
-    .floral-tr { top: 0; right: 0; transform: scaleX(-1); }
-    .floral-bl { bottom: 0; left: 0; transform: scaleY(-1); }
-    .floral-br { bottom: 0; right: 0; transform: scale(-1, -1); }
-
-    /* --- ESTILOS DE SECCIONES --- */
+    /* --- TRANSICIÓN INFINITA Y SUAVE ENTRE SECCIONES --- */
     section { 
       min-height: 100vh; 
       display: flex; 
       flex-direction: column; 
       position: relative;
-      padding: 100px 20px;
+      padding: 110px 24px;
       
       background-size: cover !important; 
       background-position: center !important;
@@ -118,7 +69,7 @@
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- ZIG-ZAG EN PC --- */
+    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC --- */
     .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 10%; } 
     .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 10%; }
@@ -128,102 +79,176 @@
     .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-final { z-index: 2; align-items: flex-end; justify-content: center; padding-right: 10%; -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); mask-image: linear-gradient(to top, black 85%, transparent 100%); } 
 
+    /* Velo atmosférico cálido sumamente sutil para que luzcan las fotos */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(251, 248, 243, 0.38) 0%, rgba(244, 236, 225, 0.48) 100%); 
+      background: linear-gradient(180deg, rgba(250, 246, 240, 0.12) 0%, rgba(242, 233, 222, 0.28) 100%); 
       z-index: 1; 
     }
 
-    /* --- TARJETA DE PAPELERÍA CON BORDES DORADOS Y ESQUINAS DE ENCAJE --- */
+    /* ==============================================================
+       TARJETA EDITORIAL SUBLIME (TRAZO DE HILO DORADO Y BLUR SEDOSO)
+       ============================================================== */
     .glass-card {
-      background: var(--paper-card); 
-      border: 1.5px solid var(--gold); 
-      border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(74, 44, 42, 0.14), inset 0 0 0 6px var(--cream-bg), inset 0 0 0 7px rgba(197, 160, 89, 0.55); 
-      padding: 50px 38px; 
+      background: var(--paper-glass); 
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 
+        0 25px 55px rgba(61, 38, 34, 0.12),
+        0 4px 15px rgba(61, 38, 34, 0.05); 
+      padding: 56px 44px; 
       width: 100%; 
-      max-width: 480px; 
+      max-width: 470px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
-      backdrop-filter: blur(6px); 
-      -webkit-backdrop-filter: blur(6px); 
+      backdrop-filter: blur(14px); 
+      -webkit-backdrop-filter: blur(14px); 
     }
 
-    /* Ramillete superior e inferior sutil en cada tarjeta */
-    .card-garland {
-      width: 180px;
-      height: 36px;
-      margin: 0 auto 12px auto;
-      display: block;
+    /* Filete interno ultrafino con esquinas curvas delicadas */
+    .glass-card::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 0.8px solid var(--gold-hairline);
+      border-radius: 16px;
+      pointer-events: none;
     }
-    .card-garland-bottom {
+
+    .glass-card-wide { max-width: 640px; }
+
+    /* Monograma editorial sutil */
+    .monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--champagne-gold);
+      margin-bottom: 10px;
+      display: inline-block;
+      position: relative;
+      padding: 0 18px;
+    }
+    .monogram::before,
+    .monogram::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 0.8px;
+      background: var(--gold-hairline);
+    }
+    .monogram::before { left: -14px; }
+    .monogram::after { right: -14px; }
+
+    /* Ornamentos Line-Art minimalistas */
+    .botanical-line {
       width: 150px;
-      height: 30px;
-      margin: 15px auto 0 auto;
+      height: 24px;
+      margin: 6px auto 14px auto;
       display: block;
-      transform: scaleY(-1);
+      opacity: 0.85;
     }
 
-    .rings-divider {
-      width: 240px;
-      height: 58px;
-      margin: 8px auto 15px auto;
+    .rings-line-art {
+      width: 190px;
+      height: 44px;
+      margin: 6px auto 12px auto;
       display: block;
     }
-    
-    .glass-card-wide { max-width: 650px; }
 
-    /* --- SOMBRAS LIGERAS --- */
-    h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
-      text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.85);
+    /* --- TIPOGRAFÍA CON PERSONALIDAD EDITORIAL --- */
+    h1 { 
+      font-family: 'Great Vibes', cursive; 
+      font-size: 4.5rem; 
+      color: var(--espresso); 
+      margin: 4px 0; 
+      line-height: 1.08; 
+      font-weight: 400; 
+    }
+    h2 { 
+      font-family: 'Cormorant Garamond', serif; 
+      font-size: 2.35rem; 
+      color: var(--espresso); 
+      margin-top: 0; 
+      margin-bottom: 14px; 
+      font-weight: 600; 
+      letter-spacing: 0.5px;
+    }
+    h3 { 
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; 
+      color: var(--espresso); 
+      margin: 0; 
+      font-weight: 600; 
+    } 
+    p { 
+      font-size: 1.06rem; 
+      line-height: 1.75; 
+      margin: 10px 0; 
+      color: var(--espresso-soft); 
     }
 
     .cita-biblica {
-      font-family: 'Playfair Display', serif; 
+      font-family: 'Cormorant Garamond', serif; 
       font-style: italic;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 600;
-      color: var(--dark-brown);
-      line-height: 1.5;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
+      color: var(--dusty-rose-dark);
+      line-height: 1.45;
+      margin: 0 auto 12px auto;
     }
 
-    /* --- CONTADOR --- */
+    /* --- CONTADOR MINIMALISTA --- */
     .countdown {
       display: flex;
       gap: 10px;
-      margin: 20px auto;
+      margin: 22px auto 18px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1.5px solid var(--gold); 
+      background: rgba(255, 255, 255, 0.65);
+      border: 0.8px solid var(--gold-hairline); 
       border-radius: 12px;
-      padding: 10px 14px;
-      min-width: 68px;
+      padding: 10px 12px;
+      min-width: 64px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(74, 44, 42, 0.08);
     }
-    .time-box span { font-size: 1.85rem; font-weight: 600; color: var(--rose-accent); display: block; line-height: 1.2; }
-    .time-box p { font-size: 0.72rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: var(--dark-brown); font-weight: bold;}
+    .time-box span { 
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.95rem; 
+      font-weight: 600; 
+      color: var(--dusty-rose-dark); 
+      display: block; 
+      line-height: 1.1; 
+    }
+    .time-box p { 
+      font-size: 0.65rem; 
+      margin: 3px 0 0 0; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; 
+      color: var(--espresso-soft); 
+      font-weight: 500;
+    }
 
-    /* --- FRASES LATERALES EN BANDAS DE PAPEL ELEGANTE --- */
+    /* --- FRASES LATERALES FLOTANTES SUTILMENTE DIFUMINADAS --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.35rem; 
-      color: var(--dark-brown); 
-      background: rgba(251, 248, 243, 0.9);
-      padding: 20px 24px;
-      border-radius: 14px;
-      border: 1px solid var(--gold);
-      box-shadow: 0 10px 25px rgba(74, 44, 42, 0.12);
+      font-size: 1.45rem; 
+      font-weight: 600;
+      color: var(--espresso); 
+      background: rgba(250, 246, 240, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 22px 28px;
+      border-radius: 18px;
+      border: 0.8px solid var(--gold-hairline);
+      box-shadow: 0 15px 35px rgba(61, 38, 34, 0.08);
       max-width: 320px;
       line-height: 1.45;
       z-index: 5; 
@@ -236,35 +261,35 @@
     .seccion-qr .floating-text { right: 8%; text-align: right; }
     .seccion-nosotros .floating-text { left: 8%; text-align: left; }
 
-    /* --- DISEÑO DE ITINERARIO --- */
+    /* --- DISEÑO DE ITINERARIO FINO --- */
     .timeline-container {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin: 10px auto 0 auto;
+      margin: 12px auto 0 auto;
       width: 100%;
-      max-width: 380px;
+      max-width: 370px;
       position: relative;
     }
 
     .tl-row {
       display: grid;
-      grid-template-columns: 82px 28px 36px 1fr;
+      grid-template-columns: 80px 26px 34px 1fr;
       align-items: center;
       width: 100%;
-      padding: 8px 0;
+      padding: 7.5px 0;
       position: relative;
     }
 
     .tl-row:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 95px;
+      left: 92.5px;
       top: 50%;
       height: 100%;
-      width: 2px;
-      background: var(--rose-accent);
-      opacity: 0.55;
+      width: 1px;
+      background: var(--dusty-rose);
+      opacity: 0.45;
       z-index: 1;
     }
 
@@ -275,14 +300,13 @@
     }
 
     .tl-pill {
-      background: var(--rose-accent);
+      background: var(--dusty-rose);
       color: #fff;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 3.5px 10px;
       border-radius: 20px;
       letter-spacing: 0.5px;
-      box-shadow: 0 3px 8px rgba(181, 131, 125, 0.35);
       white-space: nowrap;
     }
 
@@ -295,25 +319,23 @@
     }
 
     .tl-dot {
-      width: 11px;
-      height: 11px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--rose-accent);
-      border: 2px solid var(--cream-bg);
-      box-shadow: 0 0 0 1.5px var(--rose-accent);
+      background: var(--dusty-rose);
+      box-shadow: 0 0 0 3px var(--cream-soft);
     }
 
     .tl-icon-col {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: var(--dark-brown);
     }
 
     .tl-icon-col svg {
-      width: 22px;
-      height: 22px;
-      stroke: var(--dark-brown);
+      width: 20px;
+      height: 20px;
+      stroke: var(--espresso-soft);
     }
 
     .tl-text-col {
@@ -322,9 +344,9 @@
     }
 
     .tl-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      color: var(--dark-brown);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--espresso);
       font-weight: 600;
       letter-spacing: 0.2px;
     }
@@ -337,7 +359,7 @@
       justify-content: center;
       gap: 45px;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1080px;
       z-index: 20;
     }
 
@@ -346,32 +368,31 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 420px;
+      max-width: 410px;
     }
 
     .vestimenta-col-right {
       flex: 1;
       display: flex;
       justify-content: center;
-      max-width: 480px;
+      max-width: 470px;
     }
 
     .vestimenta-img {
       width: 100%;
-      border-radius: 16px;
-      border: 3px solid var(--cream-bg);
-      outline: 1.5px solid var(--gold);
-      box-shadow: 0 12px 30px rgba(74, 44, 42, 0.18);
+      border-radius: 20px;
+      border: 6px solid rgba(250, 246, 240, 0.9);
+      box-shadow: 0 20px 45px rgba(61, 38, 34, 0.14);
       cursor: pointer;
     }
 
     .paleta-img {
       width: 100%;
-      max-width: 390px;
-      margin-top: 15px;
+      max-width: 380px;
+      margin-top: 14px;
       border-radius: 12px;
-      border: 1.5px solid var(--gold);
-      box-shadow: 0 6px 18px rgba(74, 44, 42, 0.1);
+      border: 0.8px solid var(--gold-hairline);
+      box-shadow: 0 8px 20px rgba(61, 38, 34, 0.08);
       cursor: pointer;
     }
 
@@ -383,44 +404,44 @@
       overflow: hidden;
     }
 
-    .carousel-track { display: flex; padding: 15px 0; gap: 15px; }
+    .carousel-track { display: flex; padding: 15px 0; gap: 16px; }
 
     .carousel-track img { 
-      width: 250px !important; 
-      height: 300px !important; 
+      width: 245px !important; 
+      height: 295px !important; 
       object-fit: cover !important; 
-      border-radius: 12px;
-      border: 2px solid var(--gold); 
+      border-radius: 14px;
+      border: 4px solid rgba(255, 255, 255, 0.85); 
       flex-shrink: 0;
-      box-shadow: 0 8px 20px rgba(74, 44, 42, 0.14); 
+      box-shadow: 0 10px 25px rgba(61, 38, 34, 0.12); 
       cursor: pointer;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: var(--cream-bg); color: var(--dark-brown); border: 1.5px solid var(--gold);
-      border-radius: 50%; width: 48px; height: 48px; font-size: 1.5rem;
+      background: rgba(250, 246, 240, 0.92); color: var(--espresso); border: 0.8px solid var(--gold-hairline);
+      border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(74, 44, 42, 0.15);
+      box-shadow: 0 4px 12px rgba(61, 38, 34, 0.12);
       transition: all 0.3s ease;
     }
-    .carousel-btn:hover { background: var(--rose-accent); color: white; }
-    .carousel-btn.prev { left: 5px; }
-    .carousel-btn.next { right: 5px; }
+    .carousel-btn:hover { background: var(--dusty-rose); color: white; }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
 
     .qr-link {
       display: inline-block;
       margin-top: 10px;
       transition: transform 0.3s ease; 
     }
-    .qr-link:hover { transform: scale(1.05); }
+    .qr-link:hover { transform: scale(1.04); }
     .qr-link img {
-      width: 150px; 
+      width: 145px; 
       background: white; 
       padding: 12px; 
-      border-radius: 12px;
-      border: 1.5px solid var(--gold);
-      box-shadow: 0 6px 15px rgba(74, 44, 42, 0.1);
+      border-radius: 14px;
+      border: 0.8px solid var(--gold-hairline);
+      box-shadow: 0 8px 20px rgba(61, 38, 34, 0.08);
     }
 
     /* --- LIGHTBOX --- */
@@ -432,9 +453,9 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(251, 248, 243, 0.96);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(250, 246, 240, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       opacity: 0;
       transition: opacity 0.3s ease;
       align-items: center;
@@ -446,9 +467,8 @@
       max-width: 90%;
       max-height: 85vh;
       border-radius: 14px;
-      border: 3px solid var(--gold);
-      box-shadow: 0 20px 50px rgba(74, 44, 42, 0.2);
-      transform: scale(0.8);
+      box-shadow: 0 20px 50px rgba(61, 38, 34, 0.18);
+      transform: scale(0.9);
       transition: transform 0.3s ease;
       object-fit: contain;
     }
@@ -457,9 +477,9 @@
       position: absolute;
       top: 25px;
       right: 35px;
-      color: var(--dark-brown);
-      font-size: 40px;
-      font-weight: bold;
+      color: var(--espresso);
+      font-size: 38px;
+      font-weight: 300;
       cursor: pointer;
       z-index: 10000;
     }
@@ -468,13 +488,13 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: var(--cream-bg);
-      color: var(--dark-brown);
-      border: 1.5px solid var(--gold);
+      background: var(--cream-soft);
+      color: var(--espresso);
+      border: 0.8px solid var(--gold-hairline);
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.6rem;
+      width: 48px;
+      height: 48px;
+      font-size: 1.4rem;
       cursor: pointer;
       z-index: 10001;
       display: none;
@@ -495,37 +515,32 @@
     .seccion-regalos { background-image: url('Foto3.webp'); background-position: center 40%; }
     .seccion-qr { background-image: url('Foto4.webp'); background-position: center; }
 
-    h1 { font-family: 'Great Vibes', cursive; font-size: 4.6rem; color: var(--dark-brown); margin: 0; line-height: 1.05; font-weight: 400; }
-    h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; color: var(--dark-brown); margin-top: 5px; margin-bottom: 12px; font-weight: 600; }
-    h3 { font-size: 1.6rem; color: var(--dark-brown); margin: 0; font-weight: 600; } 
-    p { font-size: 1.15rem; line-height: 1.65; margin: 10px 0; color: var(--dark-brown); }
-
-    /* --- BOTONES EN ROSA EMPOLVADO Y BORDE DORADO --- */
+    /* --- BOTONES EDITORIALES --- */
     .btn {
-      background: linear-gradient(135deg, var(--rose-accent) 0%, var(--rose-deep) 100%); 
+      background: var(--dusty-rose); 
       color: #ffffff; 
-      padding: 15px 30px; 
-      border-radius: 30px;
+      padding: 14px 30px; 
+      border-radius: 50px;
       text-decoration: none; 
-      font-weight: 600;
+      font-weight: 500;
       display: inline-block; 
-      margin-top: 18px;
+      margin-top: 16px;
       text-transform: uppercase; 
-      font-size: 13px;
-      letter-spacing: 1.5px;
+      font-size: 12px;
+      letter-spacing: 2px;
       font-family: 'Poppins', sans-serif;
-      border: 1.5px solid var(--gold-light);
-      box-shadow: 0 8px 20px rgba(181, 131, 125, 0.35); 
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 20px rgba(181, 131, 125, 0.28); 
       cursor: pointer; 
       transition: all 0.3s ease;
     }
-    
-    .btn:active { transform: scale(0.95); }
+    .btn:hover { background: var(--dusty-rose-dark); }
+    .btn:active { transform: scale(0.97); }
 
     .reveal { 
       opacity: 0; 
-      transform: translateY(30px); 
-      transition: 1s ease-out; 
+      transform: translateY(25px); 
+      transition: 0.9s ease-out; 
       position: relative; 
       z-index: 20; 
       will-change: opacity, transform; 
@@ -538,18 +553,15 @@
     @media (max-width: 800px) {
       .vestimenta-wrapper {
         flex-direction: column;
-        gap: 30px;
+        gap: 28px;
       }
     }
 
     @media (max-width: 600px) {
-      .ornamental-frame { inset: 8px; }
-      .floral-corner { width: 125px; height: 125px; }
-
       section {
         min-height: 100svh !important; 
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 75px;
+        padding-bottom: 75px;
       }
       
       section:not(.hero) {
@@ -559,14 +571,15 @@
       }
       
       section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(251, 248, 243, 0.15) 0%, rgba(251, 248, 243, 0.45) 50%, rgba(244, 236, 225, 0.85) 95%) !important;
+        background: linear-gradient(to bottom, rgba(250, 246, 240, 0.05) 0%, rgba(250, 246, 240, 0.25) 55%, rgba(242, 233, 222, 0.65) 95%) !important;
       }
       
       .glass-card {
-        padding: 36px 20px; 
+        padding: 42px 22px; 
         width: 100%;
-        max-width: 94%;
+        max-width: 95%;
       }
+      .glass-card::after { inset: 9px; }
       
       .floating-text { 
         position: relative !important; 
@@ -574,10 +587,11 @@
         right: auto !important; 
         left: auto !important; 
         text-align: center !important; 
-        max-width: 94%; 
-        margin-top: 22px; 
+        max-width: 95%; 
+        margin-top: 20px; 
         margin-bottom: 0px;
-        font-size: 1.2rem;
+        font-size: 1.25rem;
+        padding: 18px 22px;
       }
       .floating-text.reveal { transform: translateY(20px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
@@ -586,133 +600,84 @@
         padding-left: 14px; padding-right: 14px; align-items: center !important; 
       }
       
-      h1 { font-size: 3.8rem; }
-      h2 { font-size: 2rem; margin-bottom: 12px; } 
-      h3 { font-size: 1.35rem; }
-      p { font-size: 1.02rem; line-height: 1.6; margin: 10px 0; }
+      h1 { font-size: 3.7rem; }
+      h2 { font-size: 2.05rem; margin-bottom: 10px; } 
+      h3 { font-size: 1.45rem; }
+      p { font-size: 1rem; line-height: 1.65; margin: 8px 0; }
       
-      .time-box span { font-size: 1.55rem; }
+      .time-box span { font-size: 1.65rem; }
       .time-box { padding: 8px 10px; min-width: 58px; }
       
-      .carousel-track img { width: 215px !important; height: 270px !important; } 
+      .carousel-track img { width: 215px !important; height: 265px !important; } 
       
-      .tl-row { grid-template-columns: 74px 24px 32px 1fr; }
-      .tl-row:not(:last-child)::after { left: 85px; }
-      .tl-title { font-size: 1.05rem; }
+      .tl-row { grid-template-columns: 74px 22px 30px 1fr; }
+      .tl-row:not(:last-child)::after { left: 84.5px; }
+      .tl-title { font-size: 1.1rem; }
     }
 
-    /* --- BOTÓN DE MÚSICA --- */
+    /* --- BOTÓN DE MÚSICA DISCRETO --- */
     .music-btn {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--cream-bg);
-      color: var(--rose-accent);
-      border: 2px solid var(--gold);
+      bottom: 22px;
+      right: 22px;
+      background: rgba(250, 246, 240, 0.92);
+      color: var(--dusty-rose-dark);
+      border: 1px solid var(--champagne-gold);
       border-radius: 50%;
-      width: 52px;
-      height: 52px;
-      font-size: 20px;
+      width: 48px;
+      height: 48px;
+      font-size: 18px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 5px 15px rgba(74, 44, 42, 0.2);
+      box-shadow: 0 6px 18px rgba(61, 38, 34, 0.14);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: transform 0.3s ease;
     }
-    .music-btn.playing { animation: spin 4s linear infinite; }
+    .music-btn.playing { animation: spin 5s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @media (max-width: 600px) {
-      .music-btn { bottom: 18px; right: 18px; width: 44px; height: 44px; font-size: 18px; }
+      .music-btn { bottom: 18px; right: 18px; width: 42px; height: 42px; font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- DEFINICIÓN DE GRÁFICOS VECTORIALES (ROSAS, HOJAS DE EUCALIPTO Y ANILLOS DE BODA) -->
+  <!-- GRÁFICOS MINIMALISTAS DE TRAZO FINO (FINE-LINE BOTANICAL & RINGS) -->
   <svg style="display: none;">
     <defs>
-      <!-- Ramillete floral de esquina (Rosas empolvadas, rosa marfil y hojas de eucalipto) -->
-      <g id="floral-corner-art">
-        <!-- Ramas y hojas de eucalipto -->
-        <path d="M10,160 Q30,90 95,45" fill="none" stroke="#5c715e" stroke-width="2" />
-        <path d="M25,105 Q10,80 32,65 Q48,82 25,105 Z" fill="#7d937e" opacity="0.9" />
-        <path d="M45,88 Q68,75 75,92 Q55,105 45,88 Z" fill="#5c715e" opacity="0.85" />
-        <path d="M62,65 Q48,40 70,30 Q82,48 62,65 Z" fill="#7d937e" opacity="0.9" />
-        <path d="M88,48 Q115,38 125,55 Q100,68 88,48 Z" fill="#8fa590" opacity="0.9" />
-        <path d="M15,138 Q38,125 46,142 Q26,154 15,138 Z" fill="#8fa590" opacity="0.85" />
-        <path d="M110,30 Q135,12 155,22 Q135,40 110,30 Z" fill="#7d937e" opacity="0.9" />
-        <!-- Tallo dorado decorativo -->
-        <path d="M5,120 Q45,55 140,12" fill="none" stroke="#c5a059" stroke-width="1.3" stroke-dasharray="3,2" />
-        <!-- Rosa principal (Rosa Empolvado) -->
-        <g transform="translate(42, 42)">
-          <circle cx="0" cy="0" r="28" fill="#d8a39d" />
-          <path d="M-20,-8 C-10,-26 15,-24 22,-5 C26,14 8,26 -12,20 C-26,14 -24,-4 -12,-14 C-2,-22 14,-14 14,2 C14,14 -4,18 -10,8 C-16,-2 -4,-12 4,-6" fill="#b5837d" stroke="#fbf8f3" stroke-width="1.2" />
-          <circle cx="0" cy="0" r="5" fill="#9e6b66" />
-        </g>
-        <!-- Rosa secundaria (Marfil / Crema) -->
-        <g transform="translate(82, 24) scale(0.72)">
-          <circle cx="0" cy="0" r="25" fill="#f5ebe1" />
-          <path d="M-18,-6 C-8,-22 14,-20 20,-4 C22,12 6,22 -10,18 C-22,12 -20,-4 -10,-12 C0,-18 12,-10 12,2 C12,12 -4,14 -8,6" fill="#e8dacb" stroke="#c5a059" stroke-width="1" />
-          <circle cx="0" cy="0" r="4" fill="#c5a059" />
-        </g>
-        <!-- Capullo rosa -->
-        <g transform="translate(24, 82) scale(0.55)">
-          <circle cx="0" cy="0" r="22" fill="#e8c5c1" />
-          <path d="M-14,-5 C-6,-18 12,-16 16,-3 C18,10 5,18 -8,14 C-18,10 -14,-6 -4,-10" fill="#b5837d" stroke="#fbf8f3" stroke-width="1.2" />
-        </g>
-        <!-- Pequeñas flores blancas (Gypsophila) -->
-        <circle cx="105" cy="48" r="3.5" fill="#ffffff" stroke="#c5a059" stroke-width="0.8" />
-        <circle cx="114" cy="42" r="2.5" fill="#ffffff" />
-        <circle cx="52" cy="86" r="3.5" fill="#ffffff" stroke="#c5a059" stroke-width="0.8" />
-        <circle cx="36" cy="115" r="3" fill="#ffffff" />
+      <!-- Divisor botánico minimalista en hilo dorado y eucalipto sutil -->
+      <g id="fine-botanical">
+        <path d="M15,12 C50,12 65,12 75,12 M105,12 C115,12 130,12 165,12" stroke="#c29d61" stroke-width="0.75" stroke-linecap="round" opacity="0.7"/>
+        <!-- Hoja fina izquierda -->
+        <path d="M88,12 C80,5 70,6 65,12 C70,18 80,19 88,12 Z" fill="none" stroke="#7d937e" stroke-width="0.9"/>
+        <!-- Hoja fina derecha -->
+        <path d="M92,12 C100,5 110,6 115,12 C110,18 100,19 92,12 Z" fill="none" stroke="#7d937e" stroke-width="0.9"/>
+        <!-- Punto central delicado -->
+        <circle cx="90" cy="12" r="2" fill="#b5837d"/>
       </g>
 
-      <!-- Adorno de Anillos Entrelazados y Ramas de Eucalipto (Idéntico a la imagen del itinerario) -->
-      <g id="wedding-rings-art">
-        <!-- Rama izquierda -->
-        <path d="M15,32 Q55,26 90,34" fill="none" stroke="#5c715e" stroke-width="1.8" />
-        <path d="M28,30 Q18,18 32,14 Q42,22 28,30 Z" fill="#7d937e" />
-        <path d="M48,29 Q40,16 54,13 Q62,22 48,29 Z" fill="#8fa590" />
-        <path d="M68,31 Q62,18 75,16 Q82,25 68,31 Z" fill="#7d937e" />
-        <path d="M35,31 Q25,43 40,46 Q48,38 35,31 Z" fill="#5c715e" />
-        <path d="M58,31 Q48,44 63,46 Q70,38 58,31 Z" fill="#7d937e" />
-        <!-- Rama derecha -->
-        <path d="M225,32 Q185,26 150,34" fill="none" stroke="#5c715e" stroke-width="1.8" />
-        <path d="M212,30 Q222,18 208,14 Q198,22 212,30 Z" fill="#7d937e" />
-        <path d="M192,29 Q200,16 186,13 Q178,22 192,29 Z" fill="#8fa590" />
-        <path d="M172,31 Q178,18 165,16 Q158,25 172,31 Z" fill="#7d937e" />
-        <path d="M205,31 Q215,43 200,46 Q192,38 205,31 Z" fill="#5c715e" />
-        <path d="M182,31 Q192,44 177,46 Q170,38 182,31 Z" fill="#7d937e" />
-        <!-- Anillos Dorados -->
-        <ellipse cx="110" cy="30" rx="16" ry="13" transform="rotate(-12 110 30)" fill="none" stroke="#c5a059" stroke-width="4" />
-        <ellipse cx="110" cy="30" rx="16" ry="13" transform="rotate(-12 110 30)" fill="none" stroke="#f5e1a4" stroke-width="1.2" />
-        <ellipse cx="130" cy="32" rx="16" ry="13" transform="rotate(10 130 32)" fill="none" stroke="#b38b40" stroke-width="4" />
-        <ellipse cx="130" cy="32" rx="16" ry="13" transform="rotate(10 130 32)" fill="none" stroke="#f5e1a4" stroke-width="1.2" />
-      </g>
-
-      <!-- Guirnalda floral delicada para encabezados de tarjetas -->
-      <g id="card-garland-art">
-        <path d="M15,18 Q90,28 165,18" fill="none" stroke="#c5a059" stroke-width="1.2" />
-        <path d="M55,20 Q42,10 58,7 Q68,14 55,20 Z" fill="#7d937e" />
-        <path d="M125,20 Q138,10 122,7 Q112,14 125,20 Z" fill="#7d937e" />
-        <path d="M72,22 Q62,31 76,33 Q82,27 72,22 Z" fill="#8fa590" />
-        <path d="M108,22 Q118,31 104,33 Q98,27 108,22 Z" fill="#8fa590" />
-        <circle cx="90" cy="20" r="9" fill="#b5837d" />
-        <path d="M84,18 C87,12 94,12 96,18 C97,23 90,26 86,23 C83,20 86,15 90,17" fill="none" stroke="#fbf8f3" stroke-width="1" />
-        <circle cx="68" cy="18" r="4" fill="#f5ebe1" stroke="#c5a059" stroke-width="0.8" />
-        <circle cx="112" cy="18" r="4" fill="#f5ebe1" stroke="#c5a059" stroke-width="0.8" />
+      <!-- Alianzas entrelazadas con ramitas de olivo en trazo fino (Fine-Art) -->
+      <g id="fine-rings">
+        <!-- Ramita izquierda de trazo fino -->
+        <path d="M18,24 Q45,20 72,25" fill="none" stroke="#7d937e" stroke-width="1" stroke-linecap="round"/>
+        <path d="M32,22 C28,15 35,12 40,18 C38,21 35,22 32,22 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M50,22 C46,15 53,12 58,18 C56,21 53,22 50,22 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M40,23 C36,30 43,33 48,27 C46,24 43,23 40,23 Z" fill="#7d937e" opacity="0.4"/>
+        <!-- Ramita derecha de trazo fino -->
+        <path d="M172,24 Q145,20 118,25" fill="none" stroke="#7d937e" stroke-width="1" stroke-linecap="round"/>
+        <path d="M158,22 C162,15 155,12 150,18 C152,21 155,22 158,22 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M140,22 C144,15 137,12 132,18 C134,21 137,22 140,22 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M150,23 C154,30 147,33 142,27 C144,24 147,23 150,23 Z" fill="#7d937e" opacity="0.4"/>
+        <!-- Alianzas finas de joyería -->
+        <circle cx="89" cy="22" r="10.5" fill="none" stroke="#c29d61" stroke-width="1.6"/>
+        <circle cx="101" cy="22" r="10.5" fill="none" stroke="#b5837d" stroke-width="1.5"/>
+        <!-- Destello diamante minimalista -->
+        <path d="M89,8 L90,11 L93,12 L90,13 L89,16 L88,13 L85,12 L88,11 Z" fill="#c29d61" opacity="0.8"/>
       </g>
     </defs>
   </svg>
-
-  <!-- MARCO DORADO Y FLORES FIJAS EN LAS 4 ESQUINAS -->
-  <div class="ornamental-frame"></div>
-  <svg class="floral-corner floral-tl" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
-  <svg class="floral-corner floral-tr" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
-  <svg class="floral-corner floral-bl" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
-  <svg class="floral-corner floral-br" viewBox="0 0 180 180"><use href="#floral-corner-art"/></svg>
 
   <audio id="bg-music" loop>
     <source src="musica.mp3.mp3" type="audio/mpeg">
@@ -725,14 +690,14 @@
   <section class="hero">
     <div class="overlay"></div>
     <div class="glass-card reveal active">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
-      <p class="cita-biblica" style="margin-bottom: 18px;">
+      <div class="monogram">Y &amp; A</div>
+      <p class="cita-biblica">
         Nos elegimos hoy y siempre.
       </p>
       
-      <h1>Yader & Angélica</h1>
-      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
-      <p style="letter-spacing: 3px; font-weight: 600;">14 de marzo de 2027.</p>
+      <h1>Yader &amp; Angélica</h1>
+      <svg class="rings-line-art" viewBox="0 0 190 44"><use href="#fine-rings"/></svg>
+      <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.95rem; text-transform: uppercase; color: var(--espresso);">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="days">00</span><p>Días</p></div>
@@ -749,15 +714,14 @@
   <section class="seccion-pase">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 22px 0; font-size: 2.3rem; color: var(--rose-accent); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 20px 0; font-size: 2.35rem; color: var(--dusty-rose-dark); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
-      <p id="pases-invitado" style="font-size: 1.25rem; color: var(--rose-deep); font-weight: 600; margin-top: 18px; margin-bottom: 0; letter-spacing: 1px;"></p>
-      <svg class="card-garland-bottom" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <p id="pases-invitado" style="font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--espresso); font-weight: 600; margin-top: 16px; margin-bottom: 0; letter-spacing: 1px;"></p>
     </div>
   </section>
 
@@ -765,36 +729,36 @@
   <section class="seccion-lugar">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
       <h2>Ceremonia y recepción.</h2>
       <p>Hora de inicio: 3:00pm.</p>
       <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(197, 160, 89, 0.4);">
-        <p style="font-size: 1.08rem; margin-bottom: 16px; font-weight: 500;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
-        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <div style="margin-top: 26px; padding-top: 20px; border-top: 0.8px solid var(--gold-hairline);">
+        <p style="font-size: 1rem; margin-bottom: 14px; font-weight: 400;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
+        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
-          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: #9e6b66; color: white;">No podré asistir</button>
+          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: transparent; color: var(--espresso-soft); border: 0.8px solid var(--dusty-rose); box-shadow: none;">No podré asistir</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. ITINERARIO (DISEÑO IDÉNTICO A LA TARJETA DE ANGÉLICA) -->
+  <!-- 4. ITINERARIO -->
   <section class="seccion-itinerario">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-family: 'Great Vibes', cursive; font-size: 2.3rem; margin-bottom: 0; color: var(--dark-brown);">Boda de</p>
-      <h2 style="margin-top: -5px; margin-bottom: 2px; font-family: 'Great Vibes', cursive; font-size: 3.3rem; font-weight: 400; color: var(--dark-brown);">Yader y Angélica</h2>
-      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
+      <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; margin-bottom: 0; color: var(--espresso-soft);">Boda de</p>
+      <h2 style="margin-top: -2px; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.2rem; font-weight: 400; color: var(--espresso);">Yader y Angélica</h2>
+      <svg class="rings-line-art" viewBox="0 0 190 44"><use href="#fine-rings"/></svg>
 
       <div class="timeline-container">
         <div class="tl-row">
           <div class="tl-time-col"><span class="tl-pill">3:00 pm</span></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M10 5h4M5 21V10l7-5 7 5v11H5z"/><path d="M10 21v-5a2 2 0 1 1 4 0v5"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M10 5h4M5 21V10l7-5 7 5v11H5z"/><path d="M10 21v-5a2 2 0 1 1 4 0v5"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Ceremonia</span></div>
         </div>
@@ -803,7 +767,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5V3H7v7a5 5 0 0 0 5 5z"/><path d="M7 7h10"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22h8M12 15v7M12 15a5 5 0 0 0 5-5V3H7v7a5 5 0 0 0 5 5z"/><path d="M7 7h10"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Inicio de la recepción</span></div>
         </div>
@@ -812,7 +776,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="15" cy="8" r="3"/><path d="M4 21v-4a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"/><path d="M13 21v-3a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="15" cy="8" r="3"/><path d="M4 21v-4a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v4"/><path d="M13 21v-3a4 4 0 0 1 4-4h1a3 3 0 0 1 3 3v4"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Entrada de los novios</span></div>
         </div>
@@ -821,7 +785,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h4M7 15v6M4 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2L4 4z"/><path d="M15 21h4M17 15v6M14 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2l-1-8z"/><path d="M12 2v2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21h4M7 15v6M4 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2L4 4z"/><path d="M15 21h4M17 15v6M14 4h6l-1 8a2 2 0 0 1-2 2 2 2 0 0 1-2-2l-1-8z"/><path d="M12 2v2"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Brindis</span></div>
         </div>
@@ -830,7 +794,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Primer baile de esposos</span></div>
         </div>
@@ -839,7 +803,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Fotografías</span></div>
         </div>
@@ -848,7 +812,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M4 17a8 8 0 0 1 16 0M12 7v2"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M4 17a8 8 0 0 1 16 0M12 7v2"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Cena y postre</span></div>
         </div>
@@ -857,7 +821,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Baile del billete</span></div>
         </div>
@@ -866,7 +830,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M12 2v4M5 13h14M7 9.5h10M7 16.5h10M12 6v14"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M12 2v4M5 13h14M7 9.5h10M7 16.5h10M12 6v14"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Pista abierta</span></div>
         </div>
@@ -875,7 +839,7 @@
           <div class="tl-time-col"></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M8.5 10.5a3 3 0 1 0-4.2-4.2 3 3 0 0 0 4.2 4.2z"/><path d="M15.5 10.5a3 3 0 1 0 4.2-4.2 3 3 0 0 0-4.2 4.2z"/><path d="M9 12l3 9 3-9"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M8.5 10.5a3 3 0 1 0-4.2-4.2 3 3 0 0 0 4.2 4.2z"/><path d="M15.5 10.5a3 3 0 1 0 4.2-4.2 3 3 0 0 0-4.2 4.2z"/><path d="M9 12l3 9 3-9"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Lanzamiento del ramo</span></div>
         </div>
@@ -884,7 +848,7 @@
           <div class="tl-time-col"><span class="tl-pill">9:00 pm</span></div>
           <div class="tl-node-col"><div class="tl-dot"></div></div>
           <div class="tl-icon-col">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           </div>
           <div class="tl-text-col"><span class="tl-title">Fin del evento</span></div>
         </div>
@@ -896,7 +860,7 @@
   <section class="seccion-nosotros">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
@@ -920,17 +884,17 @@
     <div class="vestimenta-wrapper reveal">
       
       <div class="vestimenta-col-left">
-        <img src="vestimenta1.jpeg?v=4" alt="Ejemplos de Vestimenta" class="vestimenta-img">
+        <img src="vestimenta1.jpeg?v=5" alt="Ejemplos de Vestimenta" class="vestimenta-img">
       </div>
       
       <div class="vestimenta-col-right">
         <div class="glass-card" style="margin: 0; width: 100%;">
-          <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+          <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
           <h2>Código de vestimenta:</h2>
-          <p style="letter-spacing: 1px; font-weight: 600; color: var(--rose-accent); font-size: 1.35rem;">Semi formal / Casual</p>
+          <p style="font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; font-weight: 600; color: var(--dusty-rose-dark); font-size: 1.45rem;">Semi formal / Casual</p>
           <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
           <p>Te adjuntamos algunos ejemplos.</p>
-          <img src="paleta.png?v=4" alt="Paleta de Colores" class="paleta-img">
+          <img src="paleta.png?v=5" alt="Paleta de Colores" class="paleta-img">
         </div>
       </div>
 
@@ -941,12 +905,11 @@
   <section class="seccion-regalos">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
       <h2>Mesa de regalos</h2>
       <p>Contar con su compañía en nuestro día especial, será nuestro mejor regalo.</p>
       <p>Sin embargo, agradecemos que las muestras de cariño que nos quieran entregar, sean en efectivo, esto nos facilitará el inicio de nuestro viaje juntos.</p>
       <p>En la recepción encontrarás sobres y un cofre donde podrás depositarlos.</p>
-      <svg class="card-garland-bottom" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
     </div>
   </section>
 
@@ -954,7 +917,7 @@
   <section class="seccion-qr">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
+      <svg class="botanical-line" viewBox="0 0 180 24"><use href="#fine-botanical"/></svg>
       <h2>Comparte tus fotos</h2>
       <p>Escanea este código QR o toca el botón para subir todas las fotos y videos que tomes durante la celebración.</p>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="qr-link">
@@ -970,15 +933,15 @@
   <section class="seccion-final">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="card-garland" viewBox="0 0 180 36"><use href="#card-garland-art"/></svg>
-      <p style="font-size: 1.35rem; margin-bottom: 18px; font-weight: 500;">Deseamos que puedas acompañarnos.</p>
-      <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.55rem; color: var(--dark-brown); margin-top: 10px; line-height: 1.55;">
+      <div class="monogram">Y &amp; A</div>
+      <p style="font-size: 1.25rem; margin-bottom: 16px; color: var(--espresso);">Deseamos que puedas acompañarnos.</p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: var(--espresso-soft); margin-top: 8px; line-height: 1.55;">
         Con todo nuestro amor,<br>
-        <span style="font-weight: 600; color: var(--rose-deep);">Yader Betanco Valle</span><br>
-        &<br>
-        <span style="font-weight: 600; color: var(--rose-deep);">Angélica Calderón Quirós.</span>
+        <span style="font-weight: 600; font-size: 1.65rem; color: var(--dusty-rose-dark);">Yader Betanco Valle</span><br>
+        &amp;<br>
+        <span style="font-weight: 600; font-size: 1.65rem; color: var(--dusty-rose-dark);">Angélica Calderón Quirós.</span>
       </p>
-      <svg class="rings-divider" viewBox="0 0 240 58"><use href="#wedding-rings-art"/></svg>
+      <svg class="rings-line-art" viewBox="0 0 190 44"><use href="#fine-rings"/></svg>
     </div>
   </section>
 
@@ -1163,7 +1126,7 @@
       const distance = countDownDate - now;
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:var(--rose-accent);'>Llegó el gran día</p>";
+        document.getElementById("countdown").innerHTML = "<p style='font-size:1.5rem; color:var(--dusty-rose-dark);'>Llegó el gran día</p>";
         return;
       }
       document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
@@ -1185,7 +1148,7 @@
     let currentIndex = totalImages; 
     let isTransitioning = false;
     let autoPlayTimer; 
-    function getSlideWidth() { return track.children[0].offsetWidth + 15; }
+    function getSlideWidth() { return track.children[0].offsetWidth + 16; }
     function updateCarousel(animate = true) {
         track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
         track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
