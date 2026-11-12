@@ -14,11 +14,9 @@
   <style>
     :root {
       --cream-soft: #faf6f0;
-      --paper-glass: rgba(251, 248, 243, 0.88);
       --espresso: #3d2622;
-      --espresso-soft: #5c403b;
+      --espresso-soft: #593d38;
       --champagne-gold: #c29d61;
-      --gold-hairline: rgba(194, 157, 97, 0.42);
       --dusty-rose: #b5837d;
       --dusty-rose-dark: #966560;
       --eucalyptus: #7d937e;
@@ -40,10 +38,10 @@
     }
 
     /* ==============================================================
-       ESTRUCTURA DE SECCIONES Y CURVAS DE FONDO A LO LARGO DEL SITIO
+       SECCIONES CON FUNDIDO CONTINUO Y ONDAS MULTICAPA
        ============================================================== */
     section { 
-      min-height: 100vh; 
+      min-height: 105vh; 
       display: flex; 
       flex-direction: column; 
       position: relative;
@@ -53,10 +51,10 @@
       background-position: center !important;
       background-repeat: no-repeat !important;
       
-      margin-top: -18vh; 
+      margin-top: -19vh; 
       
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 13%, black 87%, transparent 100%);
     }
 
     .hero { 
@@ -81,15 +79,15 @@
     .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 10%; } 
     .seccion-final { z-index: 2; align-items: flex-end; justify-content: center; padding-right: 10%; -webkit-mask-image: linear-gradient(to top, black 88%, transparent 100%); mask-image: linear-gradient(to top, black 88%, transparent 100%); } 
 
-    /* Velo cálido nacarado */
+    /* Velo atmosférico nacarado */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(180deg, rgba(250, 246, 240, 0.22) 0%, rgba(242, 233, 222, 0.42) 100%); 
+      background: linear-gradient(180deg, rgba(250, 246, 240, 0.24) 0%, rgba(242, 233, 222, 0.44) 100%); 
       z-index: 1; 
       pointer-events: none;
     }
 
-    /* --- LISTONES DE SEDA Y CURVAS CALIGRÁFICAS EN EL FONDO --- */
+    /* --- CAPAS DE SEDA, CONSTELACIONES DORADAS Y FLORES EN EL FONDO --- */
     .bg-silk-waves {
       position: absolute;
       inset: 0;
@@ -97,130 +95,114 @@
       height: 100%;
       z-index: 2;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.92;
     }
 
-    /* Grabados botánicos sutiles de gran formato en los laterales */
     .bg-botanical-watermark {
       position: absolute;
-      width: 420px;
-      height: 520px;
+      width: 480px;
+      height: 580px;
       z-index: 3;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.72;
     }
-    .watermark-right { right: -30px; top: 12%; }
-    .watermark-left { left: -30px; top: 12%; transform: scaleX(-1); }
+    .watermark-right { right: -25px; top: 8%; }
+    .watermark-left { left: -25px; top: 8%; transform: scaleX(-1); }
+    .watermark-bottom-left { left: -35px; bottom: 6%; transform: scaleX(-1) rotate(-8deg); width: 380px; height: 440px; opacity: 0.55; }
+    .watermark-bottom-right { right: -35px; bottom: 6%; transform: rotate(-8deg); width: 380px; height: 440px; opacity: 0.55; }
 
-    /* Divisor de onda orgánica al pie de cada sección */
     .section-wave-divider {
       position: absolute;
-      bottom: 4vh;
+      bottom: 3vh;
       left: 0;
       width: 100%;
-      height: 130px;
+      height: 150px;
       z-index: 4;
       pointer-events: none;
     }
 
     /* ==============================================================
-       TARJETA EDITORIAL CON ARCO SUAVE Y FILIGRANA EN LAS ESQUINAS
+       CAJITAS DE TEXTO DIFUMINADAS (SIN BORDES MARCADOS)
        ============================================================== */
     .glass-card {
-      background: var(--paper-glass); 
-      border-radius: 140px 140px 24px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 
-        0 25px 60px rgba(61, 38, 34, 0.13),
-        0 4px 18px rgba(61, 38, 34, 0.05),
-        inset 0 0 35px rgba(255, 255, 255, 0.6); 
-      padding: 64px 44px 52px 44px; 
+      background: transparent; 
+      border: none;
+      box-shadow: none; 
+      padding: 68px 48px 60px 48px; 
       width: 100%; 
-      max-width: 475px; 
+      max-width: 500px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
-      backdrop-filter: blur(14px); 
-      -webkit-backdrop-filter: blur(14px); 
-      overflow: hidden;
     }
 
-    /* Marco interior con arco a juego */
+    /* Nube difuminada de seda marfil sin cortes ni bordes duros */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: -25px -35px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(252, 249, 244, 0.95) 0%,
+        rgba(250, 246, 240, 0.88) 46%,
+        rgba(247, 239, 230, 0.52) 72%,
+        rgba(247, 239, 230, 0) 100%
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 42%, transparent 78%);
+      mask-image: radial-gradient(ellipse at center, black 42%, transparent 78%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Halo de luz dorada interna casi imperceptible */
     .glass-card::after {
       content: '';
       position: absolute;
-      inset: 11px;
-      border: 0.9px solid var(--gold-hairline);
-      border-radius: 130px 130px 16px 16px;
+      inset: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(194, 157, 97, 0.08) 0%, transparent 70%);
+      z-index: -1;
       pointer-events: none;
     }
 
     .glass-card-wide { 
-      max-width: 650px; 
-      border-radius: 40px;
-      padding: 54px 40px;
-    }
-    .glass-card-wide::after {
-      border-radius: 30px;
+      max-width: 670px; 
+      padding: 58px 42px;
     }
 
-    /* Filigranas curvas en las esquinas inferiores de la tarjeta */
-    .card-corner-flourish {
-      position: absolute;
-      width: 68px;
-      height: 68px;
-      pointer-events: none;
-      opacity: 0.7;
-      z-index: 2;
-    }
-    .flourish-bl { bottom: 14px; left: 14px; }
-    .flourish-br { bottom: 14px; right: 14px; transform: scaleX(-1); }
-    .flourish-tl { top: 18px; left: 18px; transform: scaleY(-1); }
-    .flourish-tr { top: 18px; right: 18px; transform: scale(-1, -1); }
-
-    /* Monograma editorial */
-    .monogram {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--champagne-gold);
-      margin-bottom: 10px;
-      display: inline-block;
-      position: relative;
-      padding: 0 18px;
-    }
-    .monogram::before,
-    .monogram::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      width: 28px;
-      height: 0.8px;
-      background: var(--gold-hairline);
-    }
-    .monogram::before { left: -18px; }
-    .monogram::after { right: -18px; }
-
-    /* Ornamentos caligráficos */
-    .botanical-line {
-      width: 200px;
-      height: 32px;
-      margin: 0 auto 12px auto;
+    /* Ornamentos superiores e inferiores variados en las tarjetas */
+    .botanical-crest {
+      width: 240px;
+      height: 54px;
+      margin: 0 auto 10px auto;
       display: block;
     }
 
+    .botanical-footer {
+      width: 190px;
+      height: 36px;
+      margin: 14px auto 0 auto;
+      display: block;
+      opacity: 0.85;
+    }
+
     .rings-line-art {
-      width: 210px;
-      height: 48px;
+      width: 230px;
+      height: 54px;
       margin: 6px auto 12px auto;
       display: block;
     }
 
     /* --- TIPOGRAFÍA --- */
+    h1, h2, h3, p, .tl-title {
+      text-shadow: 0 1px 10px rgba(252, 249, 244, 0.95), 0 0 4px rgba(255, 255, 255, 0.9);
+    }
+
     h1 { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 4.5rem; 
+      font-size: 4.6rem; 
       color: var(--espresso); 
       margin: 4px 0; 
       line-height: 1.08; 
@@ -228,7 +210,7 @@
     }
     h2 { 
       font-family: 'Cormorant Garamond', serif; 
-      font-size: 2.35rem; 
+      font-size: 2.4rem; 
       color: var(--espresso); 
       margin-top: 0; 
       margin-bottom: 14px; 
@@ -252,67 +234,86 @@
     .cita-biblica {
       font-family: 'Cormorant Garamond', serif; 
       font-style: italic;
-      font-size: 1.4rem;
+      font-size: 1.45rem;
       font-weight: 600;
       color: var(--dusty-rose-dark);
       line-height: 1.45;
-      margin: 0 auto 12px auto;
+      margin: 0 auto 10px auto;
     }
 
-    /* --- CONTADOR --- */
+    /* --- CONTADOR ETÉREO SIN CAJAS RÍGIDAS --- */
     .countdown {
       display: flex;
-      gap: 10px;
+      gap: 14px;
       margin: 22px auto 18px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: rgba(255, 255, 255, 0.72);
-      border: 0.8px solid var(--gold-hairline); 
-      border-radius: 20px 20px 10px 10px;
-      padding: 10px 12px;
-      min-width: 64px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.82) 0%, rgba(250, 246, 240, 0) 85%);
+      border: none; 
+      border-radius: 50%;
+      padding: 12px 14px;
+      min-width: 68px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(61, 38, 34, 0.04);
+      position: relative;
+    }
+    /* Pequeño punto dorado separador entre números */
+    .time-box:not(:last-child)::after {
+      content: '✦';
+      position: absolute;
+      right: -12px;
+      top: 38%;
+      font-size: 0.65rem;
+      color: var(--champagne-gold);
+      opacity: 0.65;
     }
     .time-box span { 
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.95rem; 
+      font-size: 2.1rem; 
       font-weight: 600; 
       color: var(--dusty-rose-dark); 
       display: block; 
-      line-height: 1.1; 
+      line-height: 1.05; 
     }
     .time-box p { 
       font-size: 0.65rem; 
-      margin: 3px 0 0 0; 
+      margin: 4px 0 0 0; 
       text-transform: uppercase; 
       letter-spacing: 2px; 
       color: var(--espresso-soft); 
       font-weight: 500;
     }
 
-    /* --- FRASES LATERALES FLOTANTES CON CURVAS --- */
+    /* --- FRASES LATERALES FLOTANTES EN NUBE DIFUMINADA --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.45rem; 
+      font-size: 1.5rem; 
       font-weight: 600;
       color: var(--espresso); 
-      background: rgba(251, 248, 243, 0.86);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 26px 30px;
-      border-radius: 30px 8px 30px 8px;
-      border: 0.9px solid var(--gold-hairline);
-      box-shadow: 0 15px 35px rgba(61, 38, 34, 0.09);
-      max-width: 325px;
+      background: transparent;
+      padding: 34px 38px;
+      border: none;
+      box-shadow: none;
+      max-width: 350px;
       line-height: 1.45;
       z-index: 15; 
       pointer-events: none;
+    }
+
+    .floating-text::before {
+      content: '';
+      position: absolute;
+      inset: -15px -25px;
+      background: radial-gradient(ellipse at center, rgba(252, 249, 244, 0.92) 0%, rgba(250, 246, 240, 0.72) 52%, transparent 82%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 45%, transparent 80%);
+      mask-image: radial-gradient(ellipse at center, black 45%, transparent 80%);
+      z-index: -1;
     }
     
     .floating-text.reveal { transform: translateY(calc(-50% + 30px)); }
@@ -348,8 +349,8 @@
       top: 50%;
       height: 100%;
       width: 1px;
-      background: var(--dusty-rose);
-      opacity: 0.45;
+      background: linear-gradient(to bottom, var(--dusty-rose), var(--champagne-gold));
+      opacity: 0.5;
       z-index: 1;
     }
 
@@ -360,7 +361,7 @@
     }
 
     .tl-pill {
-      background: var(--dusty-rose);
+      background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--dusty-rose-dark) 100%);
       color: #fff;
       font-size: 0.72rem;
       font-weight: 500;
@@ -368,6 +369,7 @@
       border-radius: 20px;
       letter-spacing: 0.5px;
       white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(181, 131, 125, 0.25);
     }
 
     .tl-node-col {
@@ -383,7 +385,7 @@
       height: 8px;
       border-radius: 50%;
       background: var(--dusty-rose);
-      box-shadow: 0 0 0 3px var(--cream-soft);
+      box-shadow: 0 0 0 3px rgba(250, 246, 240, 0.9);
     }
 
     .tl-icon-col {
@@ -411,7 +413,7 @@
       letter-spacing: 0.2px;
     }
 
-    /* --- ESTILOS VESTIMENTA --- */
+    /* --- ESTILOS VESTIMENTA CON BORDES SUAVES --- */
     .vestimenta-wrapper {
       display: flex;
       flex-direction: row;
@@ -435,15 +437,14 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      max-width: 475px;
+      max-width: 485px;
     }
 
     .vestimenta-img {
       width: 100%;
-      border-radius: 120px 120px 20px 20px;
-      border: 6px solid rgba(250, 246, 240, 0.92);
-      outline: 1px solid var(--gold-hairline);
-      box-shadow: 0 20px 45px rgba(61, 38, 34, 0.15);
+      border-radius: 130px 130px 28px 28px;
+      border: none;
+      box-shadow: 0 20px 50px rgba(61, 38, 34, 0.16), 0 0 0 8px rgba(250, 246, 240, 0.65);
       cursor: pointer;
     }
 
@@ -451,9 +452,9 @@
       width: 100%;
       max-width: 380px;
       margin-top: 14px;
-      border-radius: 14px;
-      border: 0.8px solid var(--gold-hairline);
-      box-shadow: 0 8px 20px rgba(61, 38, 34, 0.08);
+      border-radius: 18px;
+      border: none;
+      box-shadow: 0 10px 28px rgba(61, 38, 34, 0.1);
       cursor: pointer;
     }
 
@@ -463,32 +464,35 @@
       width: 100%;
       margin-top: 15px;
       overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
 
-    .carousel-track { display: flex; padding: 15px 0; gap: 16px; }
+    .carousel-track { display: flex; padding: 15px 0; gap: 18px; }
 
     .carousel-track img { 
       width: 245px !important; 
       height: 295px !important; 
       object-fit: cover !important; 
-      border-radius: 90px 90px 14px 14px;
-      border: 4px solid rgba(255, 255, 255, 0.88); 
+      border-radius: 95px 95px 18px 18px;
+      border: none; 
       flex-shrink: 0;
-      box-shadow: 0 10px 25px rgba(61, 38, 34, 0.12); 
+      box-shadow: 0 12px 28px rgba(61, 38, 34, 0.14), 0 0 0 5px rgba(255, 255, 255, 0.65); 
       cursor: pointer;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(250, 246, 240, 0.92); color: var(--espresso); border: 0.8px solid var(--gold-hairline);
+      background: rgba(250, 246, 240, 0.88); color: var(--espresso); border: none;
       border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(61, 38, 34, 0.12);
+      box-shadow: 0 6px 18px rgba(61, 38, 34, 0.14);
+      backdrop-filter: blur(6px);
       transition: all 0.3s ease;
     }
     .carousel-btn:hover { background: var(--dusty-rose); color: white; }
-    .carousel-btn.prev { left: 8px; }
-    .carousel-btn.next { right: 8px; }
+    .carousel-btn.prev { left: 12px; }
+    .carousel-btn.next { right: 12px; }
 
     .qr-link {
       display: inline-block;
@@ -498,11 +502,11 @@
     .qr-link:hover { transform: scale(1.04); }
     .qr-link img {
       width: 145px; 
-      background: white; 
-      padding: 12px; 
-      border-radius: 16px;
-      border: 0.8px solid var(--gold-hairline);
-      box-shadow: 0 8px 20px rgba(61, 38, 34, 0.08);
+      background: rgba(255, 255, 255, 0.9); 
+      padding: 14px; 
+      border-radius: 22px;
+      border: none;
+      box-shadow: 0 12px 30px rgba(61, 38, 34, 0.1);
     }
 
     /* --- LIGHTBOX --- */
@@ -527,7 +531,7 @@
     .modal-content {
       max-width: 90%;
       max-height: 85vh;
-      border-radius: 14px;
+      border-radius: 18px;
       box-shadow: 0 20px 50px rgba(61, 38, 34, 0.18);
       transform: scale(0.9);
       transition: transform 0.3s ease;
@@ -551,7 +555,8 @@
       transform: translateY(-50%);
       background: var(--cream-soft);
       color: var(--espresso);
-      border: 0.8px solid var(--gold-hairline);
+      border: none;
+      box-shadow: 0 6px 18px rgba(61, 38, 34, 0.12);
       border-radius: 50%;
       width: 48px;
       height: 48px;
@@ -576,11 +581,11 @@
     .seccion-regalos { background-image: url('Foto3.webp'); background-position: center 40%; }
     .seccion-qr { background-image: url('Foto4.webp'); background-position: center; }
 
-    /* --- BOTONES --- */
+    /* --- BOTONES SUAVES SIN BORDE MARCADO --- */
     .btn {
       background: linear-gradient(135deg, var(--dusty-rose) 0%, var(--dusty-rose-dark) 100%); 
       color: #ffffff; 
-      padding: 14px 30px; 
+      padding: 14px 32px; 
       border-radius: 50px;
       text-decoration: none; 
       font-weight: 500;
@@ -590,12 +595,12 @@
       font-size: 12px;
       letter-spacing: 2px;
       font-family: 'Poppins', sans-serif;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 20px rgba(181, 131, 125, 0.28); 
+      border: none;
+      box-shadow: 0 10px 24px rgba(181, 131, 125, 0.32); 
       cursor: pointer; 
       transition: all 0.3s ease;
     }
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(181, 131, 125, 0.4); }
     .btn:active { transform: scale(0.97); }
 
     .reveal { 
@@ -632,30 +637,26 @@
       }
       
       section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(250, 246, 240, 0.1) 0%, rgba(250, 246, 240, 0.32) 55%, rgba(242, 233, 222, 0.72) 95%) !important;
+        background: linear-gradient(to bottom, rgba(250, 246, 240, 0.08) 0%, rgba(250, 246, 240, 0.32) 55%, rgba(242, 233, 222, 0.72) 95%) !important;
       }
 
       .bg-botanical-watermark {
-        width: 260px;
-        height: 340px;
-        opacity: 0.45;
+        width: 280px;
+        height: 360px;
+        opacity: 0.52;
+      }
+      .watermark-bottom-left, .watermark-bottom-right {
+        width: 230px;
+        height: 280px;
       }
       
       .glass-card {
-        padding: 52px 22px 42px 22px; 
+        padding: 46px 22px 42px 22px; 
         width: 100%;
-        max-width: 95%;
-        border-radius: 110px 110px 22px 22px;
+        max-width: 96%;
       }
-      .glass-card::after { 
-        inset: 9px; 
-        border-radius: 102px 102px 15px 15px;
-      }
-      .glass-card-wide {
-        border-radius: 32px;
-      }
-      .glass-card-wide::after {
-        border-radius: 24px;
+      .glass-card::before {
+        inset: -18px -18px;
       }
       
       .floating-text { 
@@ -665,10 +666,10 @@
         left: auto !important; 
         text-align: center !important; 
         max-width: 95%; 
-        margin-top: 20px; 
+        margin-top: 18px; 
         margin-bottom: 0px;
         font-size: 1.25rem;
-        padding: 18px 22px;
+        padding: 22px 24px;
       }
       .floating-text.reveal { transform: translateY(20px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
@@ -682,7 +683,7 @@
       h3 { font-size: 1.45rem; }
       p { font-size: 1rem; line-height: 1.65; margin: 8px 0; }
       
-      .time-box span { font-size: 1.65rem; }
+      .time-box span { font-size: 1.7rem; }
       .time-box { padding: 8px 10px; min-width: 58px; }
       
       .carousel-track img { width: 215px !important; height: 265px !important; } 
@@ -697,16 +698,17 @@
       position: fixed;
       bottom: 22px;
       right: 22px;
-      background: rgba(250, 246, 240, 0.92);
+      background: rgba(250, 246, 240, 0.9);
       color: var(--dusty-rose-dark);
-      border: 1px solid var(--champagne-gold);
+      border: none;
       border-radius: 50%;
       width: 48px;
       height: 48px;
       font-size: 18px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 6px 18px rgba(61, 38, 34, 0.14);
+      box-shadow: 0 6px 20px rgba(61, 38, 34, 0.16);
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -721,103 +723,222 @@
 </head>
 <body>
 
-  <!-- BIBLIOTECA DE ELEMENTOS ORGÁNICOS, ONDAS DE SEDA Y FILIGRANA CALIGRÁFICA -->
+  <!-- COLECCIÓN ARTÍSTICA VARIADA: ONDAS MULTICAPA, ROSAS EN TRAZO FINO, EUCALIPTO, MAGNOLIAS Y VIÑETAS -->
   <svg style="display: none;">
     <defs>
-      <!-- Degradados suaves de alta papelería -->
       <linearGradient id="goldSilkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#c29d61" stop-opacity="0.05"/>
-        <stop offset="50%" stop-color="#c29d61" stop-opacity="0.55"/>
+        <stop offset="50%" stop-color="#c29d61" stop-opacity="0.62"/>
         <stop offset="100%" stop-color="#b5837d" stop-opacity="0.05"/>
       </linearGradient>
 
       <linearGradient id="roseSilkFill" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#faf6f0" stop-opacity="0"/>
-        <stop offset="35%" stop-color="#e8c5c1" stop-opacity="0.28"/>
-        <stop offset="70%" stop-color="#c29d61" stop-opacity="0.18"/>
+        <stop offset="30%" stop-color="#e8c5c1" stop-opacity="0.32"/>
+        <stop offset="70%" stop-color="#c29d61" stop-opacity="0.22"/>
         <stop offset="100%" stop-color="#faf6f0" stop-opacity="0"/>
       </linearGradient>
 
       <linearGradient id="sageSilkFill" x1="0%" y1="100%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#faf6f0" stop-opacity="0"/>
-        <stop offset="50%" stop-color="#7d937e" stop-opacity="0.22"/>
+        <stop offset="50%" stop-color="#7d937e" stop-opacity="0.26"/>
         <stop offset="100%" stop-color="#faf6f0" stop-opacity="0"/>
       </linearGradient>
 
-      <!-- 1. ONDAS DE SEDA QUE RECORREN EL FONDO DE LAS SECCIONES (VARIACIÓN A) -->
+      <linearGradient id="champagneFill" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#c29d61" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#faf6f0" stop-opacity="0"/>
+      </linearGradient>
+
+      <!-- ==========================================
+           FONDOS DE ONDAS DE SEDA Y POLVO DE ORO (3 VARIANTES)
+           ========================================== -->
       <g id="silk-background-a">
-        <path d="M-100,120 C320,380 680,-60 1150,240 C1320,350 1420,180 1540,260 L1540,900 L-100,900 Z" fill="url(#roseSilkFill)"/>
-        <path d="M-80,180 C380,440 720,-40 1220,280 C1380,380 1460,240 1560,300" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.6"/>
-        <path d="M-80,220 C420,390 660,30 1180,320 C1340,410 1440,280 1560,340" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.8" stroke-dasharray="6,6"/>
-        <path d="M-100,680 C400,480 860,840 1540,560" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.3"/>
+        <path d="M-100,90 C320,390 680,-80 1150,230 C1320,340 1420,160 1540,250 L1540,900 L-100,900 Z" fill="url(#roseSilkFill)"/>
+        <path d="M-80,150 C380,450 720,-50 1220,270 C1380,370 1460,230 1560,290" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.5"/>
+        <path d="M-80,195 C420,380 660,20 1180,310 C1340,400 1440,270 1560,330" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.75" stroke-dasharray="4,8"/>
+        <path d="M-100,680 C380,430 880,860 1540,540" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.4"/>
+        <path d="M-100,720 C420,490 840,890 1540,590" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.65"/>
+        <!-- Destellos sutiles de pan de oro -->
+        <circle cx="240" cy="210" r="2" fill="#c29d61" opacity="0.45"/>
+        <circle cx="265" cy="195" r="1.2" fill="#b5837d" opacity="0.4"/>
+        <circle cx="1180" cy="260" r="2.2" fill="#c29d61" opacity="0.45"/>
+        <circle cx="1210" cy="285" r="1.3" fill="#c29d61" opacity="0.35"/>
+        <circle cx="820" cy="640" r="1.8" fill="#b5837d" opacity="0.4"/>
       </g>
 
-      <!-- 2. ONDAS DE SEDA INVERTIDAS (VARIACIÓN B PARA ALTERNAR EN EL SCROLL) -->
       <g id="silk-background-b">
-        <path d="M1540,100 C1100,360 740,-80 260,240 C100,340 -20,180 -100,260 L-100,900 L1540,900 Z" fill="url(#sageSilkFill)"/>
-        <path d="M1520,160 C1040,420 680,-50 180,280 C40,370 -40,220 -120,290" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.6"/>
-        <path d="M1520,200 C1000,370 740,20 220,320 C80,400 -20,260 -120,330" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.8"/>
-        <path d="M1540,650 C1020,460 560,820 -100,540" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.3"/>
+        <path d="M1540,80 C1100,370 740,-90 260,230 C100,330 -20,170 -100,250 L-100,900 L1540,900 Z" fill="url(#sageSilkFill)"/>
+        <path d="M1520,140 C1040,430 680,-60 180,270 C40,360 -40,210 -120,280" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.5"/>
+        <path d="M1520,185 C1000,360 740,10 220,310 C80,390 -20,250 -120,320" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.8"/>
+        <path d="M1540,660 C1020,440 560,840 -100,520" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.4"/>
+        <path d="M1540,700 C980,500 580,870 -100,560" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.7" stroke-dasharray="3,6"/>
+        <circle cx="1190" cy="190" r="2" fill="#7d937e" opacity="0.45"/>
+        <circle cx="310" cy="250" r="2.2" fill="#c29d61" opacity="0.45"/>
+        <circle cx="640" cy="610" r="1.8" fill="#c29d61" opacity="0.4"/>
       </g>
 
-      <!-- 3. DIVISOR DE ONDA ORGÁNICA ENTRE SECCIONES -->
-      <g id="section-wave">
-        <path d="M0,70 C360,140 720,0 1080,75 C1260,112 1380,65 1440,45 L1440,140 L0,140 Z" fill="#faf6f0" fill-opacity="0.32"/>
-        <path d="M0,70 C360,140 720,0 1080,75 C1260,112 1380,65 1440,45" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.4"/>
-        <path d="M0,88 C400,20 760,135 1140,65 C1300,35 1390,75 1440,85" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.75"/>
+      <g id="silk-background-c">
+        <path d="M-100,320 C260,80 680,480 1080,180 C1280,40 1420,220 1540,140 L1540,900 L-100,900 Z" fill="url(#champagneFill)"/>
+        <path d="M-100,350 C280,100 660,510 1100,200 C1290,65 1430,240 1540,165" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.5"/>
+        <path d="M-100,520 C340,760 780,340 1220,620 C1380,710 1460,590 1540,640" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.2"/>
+        <circle cx="460" cy="280" r="2" fill="#b5837d" opacity="0.45"/>
+        <circle cx="980" cy="240" r="2.2" fill="#c29d61" opacity="0.45"/>
       </g>
 
-      <!-- 4. GRABADO BOTÁNICO EN MARCA DE AGUA (TRAZO FINO EDITORIAL, NO CARICATURESCO) -->
-      <g id="botanical-watermark-art">
-        <!-- Tallo curvo principal en ese (S-curve) -->
-        <path d="M320,480 C280,370 190,290 220,170 C240,90 180,40 130,10" fill="none" stroke="#c29d61" stroke-width="1.2" opacity="0.65"/>
-        <!-- Tallo secundario entrelazado -->
-        <path d="M250,350 C160,320 110,240 120,140" fill="none" stroke="#7d937e" stroke-width="0.9" opacity="0.55"/>
-        <!-- Hojas de eucalipto translúcidas de trazo caligráfico -->
-        <path d="M212,240 C175,235 155,200 185,180 C215,195 222,225 212,240 Z" fill="#7d937e" fill-opacity="0.12" stroke="#7d937e" stroke-width="0.9"/>
-        <path d="M222,195 C255,180 275,145 245,125 C218,145 212,175 222,195 Z" fill="#7d937e" fill-opacity="0.12" stroke="#7d937e" stroke-width="0.9"/>
-        <path d="M205,130 C168,125 150,92 178,72 C205,88 212,115 205,130 Z" fill="#b5837d" fill-opacity="0.1" stroke="#b5837d" stroke-width="0.85"/>
-        <path d="M175,75 C205,58 218,28 190,12 C165,28 165,58 175,75 Z" fill="#7d937e" fill-opacity="0.12" stroke="#c29d61" stroke-width="0.85"/>
-        <path d="M122,200 C88,195 72,165 98,148 C122,160 128,185 122,200 Z" fill="#b5837d" fill-opacity="0.1" stroke="#b5837d" stroke-width="0.85"/>
-        <path d="M258,315 C295,300 312,265 282,245 C255,262 248,295 258,315 Z" fill="#7d937e" fill-opacity="0.1" stroke="#c29d61" stroke-width="0.85"/>
-        <!-- Arabesco caligráfico en la base del tallo -->
-        <path d="M260,410 C310,390 340,430 305,455 C280,470 255,440 275,420" fill="none" stroke="#c29d61" stroke-width="0.85" opacity="0.6"/>
+      <!-- ==========================================
+           DIVISORES DE ONDA ENTRE SECCIONES (2 VARIANTES)
+           ========================================== -->
+      <g id="section-wave-1">
+        <path d="M0,70 C360,145 720,-5 1080,75 C1260,115 1380,65 1440,40 L1440,150 L0,150 Z" fill="#faf6f0" fill-opacity="0.34"/>
+        <path d="M0,70 C360,145 720,-5 1080,75 C1260,115 1380,65 1440,40" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.4"/>
+        <path d="M0,92 C400,15 760,140 1140,62 C1300,32 1390,78 1440,88" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.75"/>
       </g>
 
-      <!-- 5. ESQUINERO DE FILIGRANA CALIGRÁFICA PARA LAS TARJETAS -->
-      <g id="corner-scroll-art">
-        <path d="M4,42 C4,18 18,4 42,4" fill="none" stroke="#c29d61" stroke-width="1"/>
-        <path d="M4,56 C4,24 24,4 56,4" fill="none" stroke="#c29d61" stroke-width="0.6" opacity="0.65"/>
-        <path d="M14,14 C24,14 28,22 21,27 C15,31 9,23 14,17" fill="none" stroke="#b5837d" stroke-width="0.85"/>
-        <circle cx="8" cy="8" r="1.5" fill="#c29d61"/>
+      <g id="section-wave-2">
+        <path d="M0,45 C320,125 780,10 1140,85 C1300,118 1390,70 1440,55 L1440,150 L0,150 Z" fill="#faf6f0" fill-opacity="0.34"/>
+        <path d="M0,45 C320,125 780,10 1140,85 C1300,118 1390,70 1440,55" fill="none" stroke="url(#goldSilkGrad)" stroke-width="1.4"/>
+        <path d="M0,85 C380,5 720,130 1100,55 C1280,25 1380,70 1440,82" fill="none" stroke="url(#goldSilkGrad)" stroke-width="0.7" stroke-dasharray="5,5"/>
       </g>
 
-      <!-- 6. DIVISOR CALIGRÁFICO CON VOLUTAS SUAVES -->
-      <g id="fine-botanical">
-        <!-- Curva caligráfica izquierda -->
-        <path d="M12,18 C38,6 62,26 88,16" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M32,14 C24,8 16,13 22,19 C26,23 35,19 32,14 Z" fill="none" stroke="#c29d61" stroke-width="0.65" opacity="0.75"/>
-        <!-- Curva caligráfica derecha -->
-        <path d="M188,18 C162,6 138,26 112,16" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M168,14 C176,8 184,13 178,19 C174,23 165,19 168,14 Z" fill="none" stroke="#c29d61" stroke-width="0.65" opacity="0.75"/>
-        <!-- Hojas centrales de trazo fino -->
-        <path d="M98,16 C90,8 78,9 73,15 C78,21 90,22 98,16 Z" fill="#7d937e" fill-opacity="0.18" stroke="#7d937e" stroke-width="0.85"/>
-        <path d="M102,16 C110,8 122,9 127,15 C122,21 110,22 102,16 Z" fill="#7d937e" fill-opacity="0.18" stroke="#7d937e" stroke-width="0.85"/>
-        <circle cx="100" cy="16" r="2" fill="#b5837d"/>
+      <!-- ==========================================
+           5 COMPOSICIONES BOTÁNICAS DISTINTAS PARA EL FONDO (FINE-ART)
+           ========================================== -->
+
+      <!-- 1. Eucalipto Imperial y Bayas Doradas -->
+      <g id="watermark-eucalyptus">
+        <path d="M320,520 C275,390 185,300 218,175 C240,90 180,38 125,8" fill="none" stroke="#c29d61" stroke-width="1.2" opacity="0.68"/>
+        <path d="M248,370 C155,335 105,245 118,140" fill="none" stroke="#7d937e" stroke-width="0.95" opacity="0.58"/>
+        <path d="M212,245 C172,240 150,202 182,180 C214,196 222,228 212,245 Z" fill="#7d937e" fill-opacity="0.14" stroke="#7d937e" stroke-width="0.9"/>
+        <path d="M222,198 C258,182 278,144 246,122 C216,144 210,176 222,198 Z" fill="#7d937e" fill-opacity="0.14" stroke="#7d937e" stroke-width="0.9"/>
+        <path d="M205,132 C166,126 146,90 176,68 C205,86 212,115 205,132 Z" fill="#b5837d" fill-opacity="0.11" stroke="#b5837d" stroke-width="0.85"/>
+        <path d="M175,75 C208,56 220,24 190,8 C162,26 164,56 175,75 Z" fill="#7d937e" fill-opacity="0.13" stroke="#c29d61" stroke-width="0.85"/>
+        <path d="M122,205 C85,198 68,166 96,148 C122,162 128,188 122,205 Z" fill="#b5837d" fill-opacity="0.11" stroke="#b5837d" stroke-width="0.85"/>
+        <path d="M258,320 C298,304 316,266 284,244 C254,262 248,298 258,320 Z" fill="#7d937e" fill-opacity="0.12" stroke="#c29d61" stroke-width="0.85"/>
+        <!-- Ramita de bayas finas -->
+        <path d="M218,175 C250,195 275,190 292,175" fill="none" stroke="#c29d61" stroke-width="0.8"/>
+        <circle cx="294" cy="174" r="3" fill="#c29d61" opacity="0.65"/>
+        <circle cx="282" cy="188" r="2.5" fill="#b5837d" opacity="0.6"/>
+        <circle cx="268" cy="176" r="2.2" fill="#c29d61" opacity="0.6"/>
+        <path d="M260,425 C315,400 345,442 308,468 C280,485 252,452 275,432" fill="none" stroke="#c29d61" stroke-width="0.9" opacity="0.62"/>
       </g>
 
-      <!-- 7. ALIANZAS ENTRELAZADAS CON VOLUTAS Y RAMAS FINAS -->
+      <!-- 2. Rosa de Jardín Botánica en Trazo Fino Caligráfico (Sin verse caricaturesca) -->
+      <g id="watermark-wildrose">
+        <!-- Tallo arqueado elegante -->
+        <path d="M310,510 C250,390 220,270 155,155 C120,95 85,55 45,25" fill="none" stroke="#b5837d" stroke-width="1.15" opacity="0.62"/>
+        <path d="M235,340 C285,280 295,195 255,120" fill="none" stroke="#c29d61" stroke-width="0.9" opacity="0.58"/>
+        <!-- Flor de Rosa Abierta en Line-Art fino (Pétalos orgánicos superpuestos) -->
+        <g transform="translate(155, 155)">
+          <path d="M0,-38 C24,-42 44,-18 36,8 C28,32 -4,44 -26,30 C-46,16 -42,-18 -20,-32 C-6,-40 16,-32 22,-14 C28,4 12,22 -6,18 C-22,14 -24,-6 -12,-16 C-2,-24 12,-14 8,-2 C6,6 -4,8 -8,2" fill="#e8c5c1" fill-opacity="0.16" stroke="#b5837d" stroke-width="1"/>
+          <path d="M-28,-22 C-48,-4 -44,28 -18,40 C8,52 40,36 46,8" fill="none" stroke="#c29d61" stroke-width="0.75" opacity="0.7"/>
+          <path d="M-18,-36 C4,-52 38,-38 44,-10" fill="none" stroke="#b5837d" stroke-width="0.75" opacity="0.65"/>
+          <!-- Estambres centrales sutiles -->
+          <circle cx="0" cy="-2" r="2" fill="#c29d61"/>
+          <circle cx="5" cy="2" r="1.5" fill="#c29d61"/>
+          <circle cx="-4" cy="4" r="1.5" fill="#c29d61"/>
+        </g>
+        <!-- Capullo de rosa en trazo fino -->
+        <g transform="translate(255, 120) rotate(22)">
+          <path d="M0,0 C-14,-18 -10,-42 0,-52 C10,-42 14,-18 0,0 Z" fill="#e8c5c1" fill-opacity="0.15" stroke="#b5837d" stroke-width="0.95"/>
+          <path d="M-8,-14 C-2,-28 8,-28 10,-12" fill="none" stroke="#c29d61" stroke-width="0.8"/>
+          <path d="M-12,-4 C-4,-2 4,-2 12,-4" fill="none" stroke="#7d937e" stroke-width="0.9"/>
+        </g>
+        <!-- Hojas de rosal estilizadas -->
+        <path d="M195,255 C150,265 125,235 148,208 C175,212 192,235 195,255 Z" fill="#7d937e" fill-opacity="0.13" stroke="#7d937e" stroke-width="0.9"/>
+        <path d="M115,105 C75,115 55,88 78,65 C102,70 112,88 115,105 Z" fill="#7d937e" fill-opacity="0.13" stroke="#7d937e" stroke-width="0.9"/>
+        <path d="M242,295 C282,290 302,262 278,238 C252,248 242,272 242,295 Z" fill="#7d937e" fill-opacity="0.12" stroke="#c29d61" stroke-width="0.85"/>
+      </g>
+
+      <!-- 3. Rama de Olivo Mediterráneo y Filigrana en Espiral -->
+      <g id="watermark-olive">
+        <path d="M330,490 C290,350 240,220 140,110 C95,60 50,30 15,12" fill="none" stroke="#7d937e" stroke-width="1.15" opacity="0.65"/>
+        <path d="M300,450 C230,360 175,260 95,185" fill="none" stroke="#c29d61" stroke-width="0.85" stroke-dasharray="3,4" opacity="0.6"/>
+        <!-- Hojas alargadas de olivo -->
+        <path d="M250,320 C215,305 200,275 218,262 C238,272 248,298 250,320 Z" fill="#7d937e" fill-opacity="0.14" stroke="#7d937e" stroke-width="0.85"/>
+        <path d="M258,305 C288,282 300,250 282,238 C264,252 258,280 258,305 Z" fill="#7d937e" fill-opacity="0.12" stroke="#c29d61" stroke-width="0.85"/>
+        <path d="M210,235 C175,222 158,192 176,178 C196,188 208,212 210,235 Z" fill="#7d937e" fill-opacity="0.14" stroke="#7d937e" stroke-width="0.85"/>
+        <path d="M218,220 C248,198 260,168 242,155 C224,168 218,195 218,220 Z" fill="#b5837d" fill-opacity="0.1" stroke="#b5837d" stroke-width="0.85"/>
+        <path d="M162,155 C128,145 112,118 128,104 C148,112 160,135 162,155 Z" fill="#7d937e" fill-opacity="0.14" stroke="#7d937e" stroke-width="0.85"/>
+        <path d="M170,142 C198,120 208,92 192,80 C175,92 170,118 170,142 Z" fill="#7d937e" fill-opacity="0.12" stroke="#c29d61" stroke-width="0.85"/>
+        <!-- Frutos de olivo dorados -->
+        <ellipse cx="202" cy="248" rx="4.5" ry="6.5" transform="rotate(-25 202 248)" fill="#c29d61" fill-opacity="0.35" stroke="#c29d61" stroke-width="0.8"/>
+        <ellipse cx="155" cy="168" rx="4" ry="6" transform="rotate(20 155 168)" fill="#b5837d" fill-opacity="0.3" stroke="#b5837d" stroke-width="0.8"/>
+      </g>
+
+      <!-- ==========================================
+           6 VIÑETAS Y CORONAS EXCLUSIVAS PARA LAS TARJETAS
+           ========================================== -->
+
+      <!-- Viñeta 1: Corona Imperial con Monograma (Portada) -->
+      <g id="crest-royal">
+        <path d="M20,38 C65,38 82,18 120,18 C158,18 175,38 220,38" fill="none" stroke="#c29d61" stroke-width="0.9"/>
+        <path d="M45,36 C75,34 92,24 120,24 C148,24 165,34 195,36" fill="none" stroke="#c29d61" stroke-width="0.55" opacity="0.65"/>
+        <!-- Ramitas laterales hacia el centro -->
+        <path d="M88,24 C78,14 64,16 60,24 C66,30 78,30 88,24 Z" fill="#7d937e" fill-opacity="0.2" stroke="#7d937e" stroke-width="0.8"/>
+        <path d="M152,24 C162,14 176,16 180,24 C174,30 162,30 152,24 Z" fill="#7d937e" fill-opacity="0.2" stroke="#7d937e" stroke-width="0.8"/>
+        <path d="M104,20 C96,11 85,12 82,19 C87,24 96,24 104,20 Z" fill="#b5837d" fill-opacity="0.2" stroke="#b5837d" stroke-width="0.8"/>
+        <path d="M136,20 C144,11 155,12 158,19 C153,24 144,24 136,20 Z" fill="#b5837d" fill-opacity="0.2" stroke="#b5837d" stroke-width="0.8"/>
+        <!-- Estrella central fina -->
+        <path d="M120,6 L122,14 L130,16 L122,18 L120,26 L118,18 L110,16 L118,14 Z" fill="#c29d61" opacity="0.85"/>
+      </g>
+
+      <!-- Viñeta 2: Guirnalda de Rosa Caligráfica -->
+      <g id="crest-rose">
+        <path d="M15,28 C55,12 85,38 120,26 C155,38 185,12 225,28" fill="none" stroke="#c29d61" stroke-width="0.9"/>
+        <path d="M40,24 C32,16 22,22 28,29 C34,34 44,28 40,24 Z" fill="none" stroke="#c29d61" stroke-width="0.65"/>
+        <path d="M200,24 C208,16 218,22 212,29 C206,34 196,28 200,24 Z" fill="none" stroke="#c29d61" stroke-width="0.65"/>
+        <!-- Hojas laterales -->
+        <path d="M104,26 C92,14 76,16 70,25 C78,33 92,34 104,26 Z" fill="#7d937e" fill-opacity="0.18" stroke="#7d937e" stroke-width="0.85"/>
+        <path d="M136,26 C148,14 164,16 170,25 C162,33 148,34 136,26 Z" fill="#7d937e" fill-opacity="0.18" stroke="#7d937e" stroke-width="0.85"/>
+        <!-- Capullo central en line-art -->
+        <circle cx="120" cy="26" r="9" fill="#e8c5c1" fill-opacity="0.35" stroke="#b5837d" stroke-width="0.95"/>
+        <path d="M114,24 C117,18 124,18 126,24 C127,29 120,32 116,29 C113,26 117,21 121,23" fill="none" stroke="#966560" stroke-width="0.85"/>
+      </g>
+
+      <!-- Viñeta 3: Ramas de Olivo Cruzadas -->
+      <g id="crest-olive-crossed">
+        <path d="M45,38 C85,36 125,22 165,12" fill="none" stroke="#7d937e" stroke-width="1"/>
+        <path d="M195,38 C155,36 115,22 75,12" fill="none" stroke="#7d937e" stroke-width="1"/>
+        <path d="M82,30 C72,22 78,14 88,18 C92,22 88,28 82,30 Z" fill="#7d937e" fill-opacity="0.22" stroke="#7d937e" stroke-width="0.8"/>
+        <path d="M158,30 C168,22 162,14 152,18 C148,22 152,28 158,30 Z" fill="#7d937e" fill-opacity="0.22" stroke="#7d937e" stroke-width="0.8"/>
+        <path d="M105,23 C96,14 102,8 111,12 C114,16 110,21 105,23 Z" fill="#c29d61" fill-opacity="0.22" stroke="#c29d61" stroke-width="0.8"/>
+        <path d="M135,23 C144,14 138,8 129,12 C126,16 130,21 135,23 Z" fill="#c29d61" fill-opacity="0.22" stroke="#c29d61" stroke-width="0.8"/>
+        <circle cx="120" cy="27" r="2.5" fill="#b5837d"/>
+      </g>
+
+      <!-- Viñeta 4: Lazo de Seda Caligráfico -->
+      <g id="crest-silk-bow">
+        <path d="M20,30 C60,18 90,34 120,24 C150,34 180,18 220,30" fill="none" stroke="#c29d61" stroke-width="0.9"/>
+        <path d="M120,24 C102,10 82,16 88,27 C94,35 110,30 120,24 Z" fill="#e8c5c1" fill-opacity="0.25" stroke="#b5837d" stroke-width="0.9"/>
+        <path d="M120,24 C138,10 158,16 152,27 C146,35 130,30 120,24 Z" fill="#e8c5c1" fill-opacity="0.25" stroke="#b5837d" stroke-width="0.9"/>
+        <path d="M120,24 C112,34 102,42 92,45" fill="none" stroke="#b5837d" stroke-width="0.85"/>
+        <path d="M120,24 C128,34 138,42 148,45" fill="none" stroke="#b5837d" stroke-width="0.85"/>
+        <circle cx="120" cy="24" r="2.2" fill="#c29d61"/>
+      </g>
+
+      <!-- Viñeta 5: Alianzas Entrelazadas con Arabescos -->
       <g id="fine-rings">
-        <path d="M10,26 C40,14 62,32 82,24" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M200,26 C170,14 148,32 128,24" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
-        <path d="M42,22 C36,14 45,11 51,18 C48,21 45,22 42,22 Z" fill="#7d937e" opacity="0.55"/>
-        <path d="M62,24 C56,16 65,13 71,20 C68,23 65,24 62,24 Z" fill="#7d937e" opacity="0.55"/>
-        <path d="M52,24 C46,32 55,35 61,28 C58,25 55,24 52,24 Z" fill="#7d937e" opacity="0.4"/>
-        <path d="M168,22 C174,14 165,11 159,18 C162,21 165,22 168,22 Z" fill="#7d937e" opacity="0.55"/>
-        <path d="M148,24 C154,16 145,13 139,20 C142,23 145,24 148,24 Z" fill="#7d937e" opacity="0.55"/>
-        <path d="M158,24 C164,32 155,35 149,28 C152,25 155,24 158,24 Z" fill="#7d937e" opacity="0.4"/>
-        <circle cx="99" cy="24" r="11" fill="none" stroke="#c29d61" stroke-width="1.6"/>
-        <circle cx="111" cy="24" r="11" fill="none" stroke="#b5837d" stroke-width="1.5"/>
+        <path d="M10,28 C42,12 68,36 92,26" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M220,28 C188,12 162,36 138,26" fill="none" stroke="#c29d61" stroke-width="0.9" stroke-linecap="round"/>
+        <path d="M48,23 C42,15 51,12 57,19 C54,22 51,23 48,23 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M68,25 C62,17 71,14 77,21 C74,24 71,25 68,25 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M58,25 C52,33 61,36 67,29 C64,26 61,25 58,25 Z" fill="#7d937e" opacity="0.4"/>
+        <path d="M182,23 C188,15 179,12 173,19 C176,22 179,23 182,23 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M162,25 C168,17 159,14 153,21 C156,24 159,25 162,25 Z" fill="#7d937e" opacity="0.55"/>
+        <path d="M172,25 C178,33 169,36 163,29 C166,26 169,25 172,25 Z" fill="#7d937e" opacity="0.4"/>
+        <circle cx="108" cy="26" r="11.5" fill="none" stroke="#c29d61" stroke-width="1.6"/>
+        <circle cx="122" cy="26" r="11.5" fill="none" stroke="#b5837d" stroke-width="1.5"/>
+        <path d="M108,10 L109.5,13.5 L113,15 L109.5,16.5 L108,20 L106.5,16.5 L103,15 L106.5,13.5 Z" fill="#c29d61" opacity="0.85"/>
+      </g>
+
+      <!-- Viñeta 6: Remate Caligráfico Inferior -->
+      <g id="footer-flourish">
+        <path d="M25,16 C65,26 125,26 165,16" fill="none" stroke="#c29d61" stroke-width="0.8" opacity="0.75"/>
+        <path d="M65,18 C82,28 108,28 125,18" fill="none" stroke="#b5837d" stroke-width="0.65" opacity="0.65"/>
+        <circle cx="95" cy="22" r="2" fill="#c29d61" opacity="0.8"/>
+        <circle cx="78" cy="20" r="1.2" fill="#7d937e" opacity="0.7"/>
+        <circle cx="112" cy="20" r="1.2" fill="#7d937e" opacity="0.7"/>
       </g>
     </defs>
   </svg>
@@ -833,20 +954,17 @@
   <section class="hero">
     <div class="overlay"></div>
     <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
 
     <div class="glass-card reveal active">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <div class="monogram">Y &amp; A</div>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
       <p class="cita-biblica">
         Nos elegimos hoy y siempre.
       </p>
       
       <h1>Yader &amp; Angélica</h1>
-      <svg class="rings-line-art" viewBox="0 0 210 48"><use href="#fine-rings"/></svg>
+      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
       <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.95rem; text-transform: uppercase; color: var(--espresso);">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
@@ -857,75 +975,72 @@
       </div>
 
       <button onclick="agendarFecha(event)" class="btn">Agendar Nuestra Fecha</button>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 2. INVITADO -->
   <section class="seccion-pase">
     <div class="overlay"></div>
     <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 20px 0; font-size: 2.35rem; color: var(--dusty-rose-dark); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 20px 0; font-size: 2.4rem; color: var(--dusty-rose-dark); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
       <p id="pases-invitado" style="font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--espresso); font-weight: 600; margin-top: 16px; margin-bottom: 0; letter-spacing: 1px;"></p>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
   <section class="seccion-lugar">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
+    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Ceremonia y recepción.</h2>
       <p>Hora de inicio: 3:00pm.</p>
       <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 26px; padding-top: 20px; border-top: 0.8px solid var(--gold-hairline);">
+      <div style="margin-top: 24px; padding-top: 16px;">
+        <svg class="botanical-footer" style="margin-top: 0; margin-bottom: 10px;" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
         <p style="font-size: 1rem; margin-bottom: 14px; font-weight: 400;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
         <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
-          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: transparent; color: var(--espresso-soft); border: 0.8px solid var(--dusty-rose); box-shadow: none;">No podré asistir</button>
+          <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn" style="margin-top: 0; background: rgba(255,255,255,0.65); color: var(--espresso-soft); box-shadow: 0 4px 12px rgba(61,38,34,0.08);">No podré asistir</button>
         </div>
       </div>
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 4. ITINERARIO -->
   <section class="seccion-itinerario">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
       <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.35rem; margin-bottom: 0; color: var(--espresso-soft);">Boda de</p>
       <h2 style="margin-top: -2px; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.2rem; font-weight: 400; color: var(--espresso);">Yader y Angélica</h2>
-      <svg class="rings-line-art" viewBox="0 0 210 48"><use href="#fine-rings"/></svg>
+      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
 
       <div class="timeline-container">
         <div class="tl-row">
@@ -1027,24 +1142,21 @@
           <div class="tl-text-col"><span class="tl-title">Fin del evento</span></div>
         </div>
       </div>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 5. FOTOS -->
   <section class="seccion-nosotros">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
+    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
 
     <div class="glass-card glass-card-wide reveal">
-      <svg class="card-corner-flourish flourish-tl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-tr" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
@@ -1057,74 +1169,69 @@
         </div>
         <button class="carousel-btn next" id="nextBtn">&#10095;</button>
       </div>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"El amor se compone de una sola alma, que habita en dos cuerpos." - Aristóteles.</div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
   <section class="seccion-vestimenta">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
     
     <div class="vestimenta-wrapper reveal">
       
       <div class="vestimenta-col-left">
-        <img src="vestimenta1.jpeg?v=6" alt="Ejemplos de Vestimenta" class="vestimenta-img">
+        <img src="vestimenta1.jpeg?v=7" alt="Ejemplos de Vestimenta" class="vestimenta-img">
       </div>
       
       <div class="vestimenta-col-right">
         <div class="glass-card" style="margin: 0; width: 100%;">
-          <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-          <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-          <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+          <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
           <h2>Código de vestimenta:</h2>
           <p style="font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; font-weight: 600; color: var(--dusty-rose-dark); font-size: 1.45rem;">Semi formal / Casual</p>
           <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
           <p>Te adjuntamos algunos ejemplos.</p>
-          <img src="paleta.png?v=6" alt="Paleta de Colores" class="paleta-img">
+          <img src="paleta.png?v=7" alt="Paleta de Colores" class="paleta-img">
         </div>
       </div>
 
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
   <section class="seccion-regalos">
     <div class="overlay"></div>
     <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
+    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-silk-bow"/></svg>
       <h2>Mesa de regalos</h2>
       <p>Contar con su compañía en nuestro día especial, será nuestro mejor regalo.</p>
       <p>Sin embargo, agradecemos que las muestras de cariño que nos quieran entregar, sean en efectivo, esto nos facilitará el inicio de nuestro viaje juntos.</p>
       <p>En la recepción encontrarás sobres y un cofre donde podrás depositarlos.</p>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
   <section class="seccion-qr">
     <div class="overlay"></div>
     <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <svg class="botanical-line" viewBox="0 0 200 32"><use href="#fine-botanical"/></svg>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Comparte tus fotos</h2>
       <p>Escanea este código QR o toca el botón para subir todas las fotos y videos que tomes durante la celebración.</p>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="qr-link">
@@ -1132,31 +1239,30 @@
       </a>
       <br>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="btn">Subir Fotos Directamente</a>
+      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"La fotografía extrae un instante del tiempo y altera la vida al mantenerla inmóvil." - Dorothea Lange</div>
 
-    <svg class="section-wave-divider" viewBox="0 0 1440 140" preserveAspectRatio="none"><use href="#section-wave"/></svg>
+    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
   <section class="seccion-final">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 500"><use href="#botanical-watermark-art"/></svg>
+    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
+    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
+    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
 
     <div class="glass-card reveal">
-      <svg class="card-corner-flourish flourish-bl" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-      <svg class="card-corner-flourish flourish-br" viewBox="0 0 60 60"><use href="#corner-scroll-art"/></svg>
-
-      <div class="monogram">Y &amp; A</div>
+      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
       <p style="font-size: 1.25rem; margin-bottom: 16px; color: var(--espresso);">Deseamos que puedas acompañarnos.</p>
       <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; color: var(--espresso-soft); margin-top: 8px; line-height: 1.55;">
         Con todo nuestro amor,<br>
-        <span style="font-weight: 600; font-size: 1.65rem; color: var(--dusty-rose-dark);">Yader Betanco Valle</span><br>
+        <span style="font-weight: 600; font-size: 1.7rem; color: var(--dusty-rose-dark);">Yader Betanco Valle</span><br>
         &amp;<br>
-        <span style="font-weight: 600; font-size: 1.65rem; color: var(--dusty-rose-dark);">Angélica Calderón Quirós.</span>
+        <span style="font-weight: 600; font-size: 1.7rem; color: var(--dusty-rose-dark);">Angélica Calderón Quirós.</span>
       </p>
-      <svg class="rings-line-art" viewBox="0 0 210 48"><use href="#fine-rings"/></svg>
+      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
     </div>
   </section>
 
@@ -1208,7 +1314,7 @@
                     btnDeclinar.style.background = "#95a5a6"; 
                     btnDeclinar.style.color = "#fff";
                     btnDeclinar.style.pointerEvents = "none";
-                    btnConfirmar.style.display = "none"; 
+                    btnDeclinar.style.display = "none"; 
                 }
             } else {
                 document.getElementById('nombre-invitado').innerText = "Invitación no encontrada";
@@ -1363,7 +1469,7 @@
     let currentIndex = totalImages; 
     let isTransitioning = false;
     let autoPlayTimer; 
-    function getSlideWidth() { return track.children[0].offsetWidth + 16; }
+    function getSlideWidth() { return track.children[0].offsetWidth + 18; }
     function updateCarousel(animate = true) {
         track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
         track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
