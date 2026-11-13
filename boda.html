@@ -8,9 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Precarga inmediata de la portada en WebP -->
-  <link rel="preload" as="image" href="Foto1.webp">
 
   <style>
     :root {
@@ -348,7 +345,7 @@
     }
 
     /* ==============================================================
-       CARRETE DE FOTOS FLUIDO Y RÁPIDO CON WEBP
+       CARRETE DE FOTOS FLUIDO
        ============================================================== */
     .carousel-container {
       position: relative;
@@ -464,17 +461,17 @@
     .modal-nav.next { right: 18px; }
 
     /* ==============================================================
-       FONDOS WEBP DIRECTOS Y ENCUADRES EXACTOS DE CADA SECCIÓN
+       ENCUADRES EXACTOS DE CADA SECCIÓN
        ============================================================== */
-    .hero { background-image: url('Foto1.webp'); background-position: center 22% !important; }
-    .seccion-pase { background-image: url('Foto2.webp'); background-position: center 22% !important; }
-    .seccion-lugar { background-image: url('Foto3.webp'); background-position: center 35% !important; }
-    .seccion-itinerario { background-image: url('Foto4.webp'); background-position: center 32% !important; }
-    .seccion-nosotros { background-image: url('Foto5.webp'); background-position: center 25% !important; }
-    .seccion-vestimenta { background-image: url('Foto6.webp'); background-position: center 55% !important; }
-    .seccion-regalos { background-image: url('Foto7.webp'); background-position: center 60% !important; }
-    .seccion-qr { background-image: url('Foto8.webp'); background-position: center 42% !important; }
-    .seccion-final { background-image: url('Foto9.webp'); background-position: center 20% !important; }
+    .hero { background-position: center 22% !important; }
+    .seccion-pase { background-position: center 22% !important; }
+    .seccion-lugar { background-position: center 35% !important; }
+    .seccion-itinerario { background-position: center 32% !important; }
+    .seccion-nosotros { background-position: center 25% !important; }
+    .seccion-vestimenta { background-position: center 55% !important; }
+    .seccion-regalos { background-position: center 60% !important; }
+    .seccion-qr { background-position: center 42% !important; }
+    .seccion-final { background-position: center 20% !important; }
 
     /* --- BOTONES --- */
     .btn {
@@ -630,7 +627,7 @@
   </button>
 
   <!-- 1. PORTADA -->
-  <section class="hero">
+  <section class="hero" data-slot="0">
     <div class="overlay"></div>
     <div class="glass-card reveal active">
       <p class="cita-biblica">
@@ -653,7 +650,7 @@
   </section>
 
   <!-- 2. INVITADO -->
-  <section class="seccion-pase">
+  <section class="seccion-pase" data-slot="1">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <div class="fine-divider"></div>
@@ -668,7 +665,7 @@
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
-  <section class="seccion-lugar">
+  <section class="seccion-lugar" data-slot="2">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Ceremonia y recepción.</h2>
@@ -688,7 +685,7 @@
   </section>
 
   <!-- 4. ITINERARIO -->
-  <section class="seccion-itinerario">
+  <section class="seccion-itinerario" data-slot="3">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
@@ -798,25 +795,15 @@
     </div>
   </section>
 
-  <!-- 5. FOTOS / CARRUSEL CON TODAS LAS FOTOS WEBP -->
-  <section class="seccion-nosotros">
+  <!-- 5. FOTOS / CARRUSEL -->
+  <section class="seccion-nosotros" data-slot="4">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="fine-divider"></div>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
-        <div class="carousel-track" id="carouselTrack">
-          <img src="Foto1.webp" data-idx="0" decoding="async" alt="Foto 1">
-          <img src="Foto2.webp" data-idx="1" decoding="async" alt="Foto 2">
-          <img src="Foto3.webp" data-idx="2" decoding="async" alt="Foto 3">
-          <img src="Foto4.webp" data-idx="3" decoding="async" alt="Foto 4">
-          <img src="Foto5.webp" data-idx="4" decoding="async" alt="Foto 5">
-          <img src="Foto6.webp" data-idx="5" decoding="async" alt="Foto 6">
-          <img src="Foto7.webp" data-idx="6" decoding="async" alt="Foto 7">
-          <img src="Foto8.webp" data-idx="7" decoding="async" alt="Foto 8">
-          <img src="Foto9.webp" data-idx="8" decoding="async" alt="Foto 9">
-        </div>
+        <div class="carousel-track" id="carouselTrack"></div>
         <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">&#10095;</button>
       </div>
     </div>
@@ -824,19 +811,19 @@
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
-  <section class="seccion-vestimenta">
+  <section class="seccion-vestimenta" data-slot="5">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Código de vestimenta:</h2>
       <div class="fine-divider"></div>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=18" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=19" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
-  <section class="seccion-regalos">
+  <section class="seccion-regalos" data-slot="6">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Mesa de regalos</h2>
@@ -848,7 +835,7 @@
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
-  <section class="seccion-qr">
+  <section class="seccion-qr" data-slot="7">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Comparte tus fotos</h2>
@@ -864,7 +851,7 @@
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
-  <section class="seccion-final">
+  <section class="seccion-final" data-slot="8">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 1.15rem; margin-bottom: 14px;">Deseamos que puedas acompañarnos.</p>
@@ -890,20 +877,132 @@
 
   <script>
     // ==============================================================
-    // 1. CARRUSEL INFINITO DIRECTO CON WEBP + VISOR MODAL FIJO
+    // 1. DETECTOR UNIVERSAL DE NOMBRES DE FOTO (.webp y .jpg)
+    //    Encuentra las fotos ya sea que se llamen "Sin título-1601.1.webp",
+    //    "Foto1.webp", "foto1.webp" o "Sin título-1601.1.jpg"
+    // ==============================================================
+    const PHOTO_SLOTS = [
+      { num: 1, orig: '1601.1', fallback: 'Foto10.webp' },
+      { num: 2, orig: '178',    fallback: 'Foto11.webp' },
+      { num: 3, orig: '162',    fallback: 'Foto1.webp'  },
+      { num: 4, orig: '166',    fallback: 'Foto5.webp'  },
+      { num: 5, orig: '171',    fallback: 'Foto2.webp'  },
+      { num: 6, orig: '180',    fallback: 'Foto13.webp' },
+      { num: 7, orig: '181',    fallback: 'Foto3.webp'  },
+      { num: 8, orig: '164',    fallback: 'Foto4.webp'  },
+      { num: 9, orig: '177',    fallback: 'Foto14.webp' },
+      { num: 10, orig: '161',   fallback: 'Foto1.webp'  }
+    ];
+
+    const resolvedSlotCache = {};
+    const pendingSlotPromises = {};
+
+    function getCandidatesForSlot(slotIndex) {
+      const slot = PHOTO_SLOTS[slotIndex];
+      const n = slot.num;
+      const id = slot.orig;
+      return [
+        // 1. Si las convertiste a WebP dejando el nombre original ("Sin título-...")
+        encodeURI(`Sin ti\u0301tulo-${id}.webp`),
+        encodeURI(`Sin t\u00edtulo-${id}.webp`),
+        encodeURI(`Sin titulo-${id}.webp`),
+        // 2. Si las renombraste a Foto1.webp, foto1.webp, etc.
+        `Foto${n}.webp`,
+        `foto${n}.webp`,
+        `Foto ${n}.webp`,
+        `foto ${n}.webp`,
+        // 3. Si están en .jpg con nombre original o Foto1.jpg
+        encodeURI(`Sin ti\u0301tulo-${id}.jpg`),
+        encodeURI(`Sin t\u00edtulo-${id}.jpg`),
+        `Foto${n}.jpg`,
+        `foto${n}.jpg`,
+        // 4. Respaldo final que ya exista en el repo
+        slot.fallback
+      ];
+    }
+
+    function resolveSlotUrl(slotIndex) {
+      if (resolvedSlotCache[slotIndex]) return Promise.resolve(resolvedSlotCache[slotIndex]);
+      if (pendingSlotPromises[slotIndex]) return pendingSlotPromises[slotIndex];
+
+      const list = getCandidatesForSlot(slotIndex);
+      pendingSlotPromises[slotIndex] = new Promise((resolve) => {
+        let i = 0;
+        function testNext() {
+          if (i >= list.length) {
+            const last = list[list.length - 1];
+            resolvedSlotCache[slotIndex] = last;
+            resolve(last);
+            return;
+          }
+          const candidate = list[i++];
+          const probe = new Image();
+          probe.onload = () => {
+            resolvedSlotCache[slotIndex] = candidate;
+            resolve(candidate);
+          };
+          probe.onerror = testNext;
+          probe.src = candidate;
+        }
+        testNext();
+      });
+
+      return pendingSlotPromises[slotIndex];
+    }
+
+    // Asignar fondos a cada sección
+    function applySectionBackground(sec) {
+      if (sec.dataset.bgDone) return;
+      sec.dataset.bgDone = "true";
+      const slotIndex = parseInt(sec.getAttribute('data-slot'), 10);
+      resolveSlotUrl(slotIndex).then(validUrl => {
+        sec.style.backgroundImage = `url("${validUrl}")`;
+      });
+    }
+
+    // Cargar la portada y la segunda sección de inmediato, y el resto al acercarse
+    document.querySelectorAll('section[data-slot]').forEach((sec, idx) => {
+      if (idx < 2) {
+        applySectionBackground(sec);
+      }
+    });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          applySectionBackground(entry.target);
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '500px 0px' });
+
+    document.querySelectorAll('section[data-slot]').forEach((sec, idx) => {
+      if (idx >= 2) sectionObserver.observe(sec);
+    });
+
+    // ==============================================================
+    // 2. CARRUSEL INFINITO CON LAS 10 FOTOS + VISOR MODAL FIJO
     // ==============================================================
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const originalImages = Array.from(track.querySelectorAll('img'));
-    const gallerySources = originalImages.map(img => img.getAttribute('src'));
-    const totalImages = originalImages.length;
+    const totalImages = PHOTO_SLOTS.length;
 
-    // Clonar para efecto infinito conservando el índice data-idx (0 a 8)
-    originalImages.forEach(img => track.appendChild(img.cloneNode(true)));
-    for (let i = totalImages - 1; i >= 0; i--) {
-      track.insertBefore(originalImages[i].cloneNode(true), track.firstChild);
+    function buildSlideElement(slotIndex) {
+      const img = document.createElement('img');
+      img.setAttribute('data-idx', String(slotIndex));
+      img.alt = `Foto ${slotIndex + 1}`;
+      img.decoding = 'async';
+      resolveSlotUrl(slotIndex).then(validUrl => {
+        img.src = validUrl;
+      });
+      return img;
     }
+
+    // Crear [Clones finales] + [Originales] + [Clones iniciales]
+    for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
+    for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
+    for (let i = totalImages - 1; i >= 0; i--) track.insertBefore(buildSlideElement(i), track.firstChild);
 
     let currentIndex = totalImages;
     let isTransitioning = false;
@@ -973,10 +1072,13 @@
       checkInfiniteLoop();
     });
 
-    window.addEventListener('load', () => { updateCarousel(false); startAutoPlay(); });
+    window.addEventListener('DOMContentLoaded', () => {
+      updateCarousel(false);
+      startAutoPlay();
+    });
     window.addEventListener('resize', () => updateCarousel(false));
 
-    // --- VISOR A PANTALLA COMPLETA CON FLECHAS 100% FUNCIONALES ---
+    // --- VISOR MODAL CON FLECHAS SIGUIENTE / ANTERIOR ---
     const modal = document.getElementById('imageModal');
     const expandedImg = document.getElementById('expandedImg');
     const closeModalBtn = document.getElementById('closeModal');
@@ -986,7 +1088,9 @@
 
     function showGalleryPhotoByIndex(index) {
       currentModalGalleryIndex = (index + totalImages) % totalImages;
-      expandedImg.src = gallerySources[currentModalGalleryIndex];
+      resolveSlotUrl(currentModalGalleryIndex).then(validUrl => {
+        expandedImg.src = validUrl;
+      });
     }
 
     function openGalleryModal(index) {
@@ -1059,7 +1163,7 @@
     });
 
     // ==============================================================
-    // 2. SUPABASE E INVITADOS
+    // 3. SUPABASE E INVITADOS
     // ==============================================================
     const SUPABASE_URL = 'https://xivwjycapgbmvstqmonp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ONwOEEIzAHgHKvkBWsUxBQ_ImHINPbq';
