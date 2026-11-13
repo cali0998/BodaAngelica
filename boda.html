@@ -7,8 +7,10 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes y Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Precarga inmediata de la portada en WebP -->
+  <link rel="preload" as="image" href="Foto1.webp">
 
   <style>
     :root {
@@ -34,7 +36,7 @@
     }
 
     /* ==============================================================
-       SECCIONES OPTIMIZADAS CON ACELERACIÓN GPU (CERO LAG AL BAJAR)
+       SECCIONES OPTIMIZADAS CON ACELERACIÓN GPU (CERO LAG)
        ============================================================== */
     section { 
       min-height: 100vh; 
@@ -346,7 +348,7 @@
     }
 
     /* ==============================================================
-       CARRETE DE FOTOS FLUIDO Y ESTABLE (SIN SALTOS NI FALLOS)
+       CARRETE DE FOTOS FLUIDO Y RÁPIDO CON WEBP
        ============================================================== */
     .carousel-container {
       position: relative;
@@ -400,7 +402,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
-    /* --- VISOR MODAL CORREGIDO --- */
+    /* --- VISOR MODAL CON FLECHAS --- */
     .modal {
       display: none;
       position: fixed;
@@ -462,17 +464,17 @@
     .modal-nav.next { right: 18px; }
 
     /* ==============================================================
-       ENCUADRES EXACTOS DE CADA SECCIÓN
+       FONDOS WEBP DIRECTOS Y ENCUADRES EXACTOS DE CADA SECCIÓN
        ============================================================== */
-    .hero { background-position: center 22% !important; }
-    .seccion-pase { background-position: center 22% !important; }
-    .seccion-lugar { background-position: center 35% !important; }
-    .seccion-itinerario { background-position: center 32% !important; }
-    .seccion-nosotros { background-position: center 25% !important; }
-    .seccion-vestimenta { background-position: center 55% !important; }
-    .seccion-regalos { background-position: center 60% !important; }
-    .seccion-qr { background-position: center 42% !important; }
-    .seccion-final { background-position: center 20% !important; }
+    .hero { background-image: url('Foto1.webp'); background-position: center 22% !important; }
+    .seccion-pase { background-image: url('Foto2.webp'); background-position: center 22% !important; }
+    .seccion-lugar { background-image: url('Foto3.webp'); background-position: center 35% !important; }
+    .seccion-itinerario { background-image: url('Foto4.webp'); background-position: center 32% !important; }
+    .seccion-nosotros { background-image: url('Foto5.webp'); background-position: center 25% !important; }
+    .seccion-vestimenta { background-image: url('Foto6.webp'); background-position: center 55% !important; }
+    .seccion-regalos { background-image: url('Foto7.webp'); background-position: center 60% !important; }
+    .seccion-qr { background-image: url('Foto8.webp'); background-position: center 42% !important; }
+    .seccion-final { background-image: url('Foto9.webp'); background-position: center 20% !important; }
 
     /* --- BOTONES --- */
     .btn {
@@ -628,7 +630,7 @@
   </button>
 
   <!-- 1. PORTADA -->
-  <section class="hero" data-bg="1601.1">
+  <section class="hero">
     <div class="overlay"></div>
     <div class="glass-card reveal active">
       <p class="cita-biblica">
@@ -651,7 +653,7 @@
   </section>
 
   <!-- 2. INVITADO -->
-  <section class="seccion-pase" data-bg="178">
+  <section class="seccion-pase">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <div class="fine-divider"></div>
@@ -666,7 +668,7 @@
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
-  <section class="seccion-lugar" data-bg="162">
+  <section class="seccion-lugar">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Ceremonia y recepción.</h2>
@@ -686,7 +688,7 @@
   </section>
 
   <!-- 4. ITINERARIO -->
-  <section class="seccion-itinerario" data-bg="166">
+  <section class="seccion-itinerario">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
@@ -796,15 +798,25 @@
     </div>
   </section>
 
-  <!-- 5. FOTOS / CARRUSEL CON LAS 10 FOTOS DE YADER Y ANGÉLICA -->
-  <section class="seccion-nosotros" data-bg="171">
+  <!-- 5. FOTOS / CARRUSEL CON TODAS LAS FOTOS WEBP -->
+  <section class="seccion-nosotros">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="fine-divider"></div>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
-        <div class="carousel-track" id="carouselTrack"></div>
+        <div class="carousel-track" id="carouselTrack">
+          <img src="Foto1.webp" data-idx="0" decoding="async" alt="Foto 1">
+          <img src="Foto2.webp" data-idx="1" decoding="async" alt="Foto 2">
+          <img src="Foto3.webp" data-idx="2" decoding="async" alt="Foto 3">
+          <img src="Foto4.webp" data-idx="3" decoding="async" alt="Foto 4">
+          <img src="Foto5.webp" data-idx="4" decoding="async" alt="Foto 5">
+          <img src="Foto6.webp" data-idx="5" decoding="async" alt="Foto 6">
+          <img src="Foto7.webp" data-idx="6" decoding="async" alt="Foto 7">
+          <img src="Foto8.webp" data-idx="7" decoding="async" alt="Foto 8">
+          <img src="Foto9.webp" data-idx="8" decoding="async" alt="Foto 9">
+        </div>
         <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">&#10095;</button>
       </div>
     </div>
@@ -812,19 +824,19 @@
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
-  <section class="seccion-vestimenta" data-bg="180">
+  <section class="seccion-vestimenta">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Código de vestimenta:</h2>
       <div class="fine-divider"></div>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=17" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=18" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
-  <section class="seccion-regalos" data-bg="181">
+  <section class="seccion-regalos">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Mesa de regalos</h2>
@@ -836,7 +848,7 @@
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
-  <section class="seccion-qr" data-bg="164">
+  <section class="seccion-qr">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Comparte tus fotos</h2>
@@ -852,7 +864,7 @@
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
-  <section class="seccion-final" data-bg="177">
+  <section class="seccion-final">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 1.15rem; margin-bottom: 14px;">Deseamos que puedas acompañarnos.</p>
@@ -878,117 +890,19 @@
 
   <script>
     // ==============================================================
-    // 1. RESOLUTOR INTELIGENTE DE FOTOS CON CACHÉ EN MEMORIA
-    //    Encuentra la imagen exacta en tu GitHub (NFD, NFC o WebP) una sola vez
-    // ==============================================================
-    const PHOTO_IDS = ['1601.1', '171', '166', '164', '162', '161', '181', '180', '178', '177'];
-    const resolvedUrlCache = {};
-    const pendingResolvers = {};
-
-    function getCandidateUrls(id) {
-      // Orden de prioridad:
-      // 1. Formato NFD exacto de tus fotos ("Sin ti\u0301tulo-...")
-      // 2. Formato NFC estándar ("Sin título-...")
-      // 3. Versión .webp por si luego las subes optimizadas
-      const nfdJpg = `Sin ti\u0301tulo-${id}.jpg`;
-      const nfcJpg = `Sin t\u00edtulo-${id}.jpg`;
-      const nfdWebp = `Sin ti\u0301tulo-${id}.webp`;
-      const nfcWebp = `Sin t\u00edtulo-${id}.webp`;
-      return [
-        encodeURI(nfdJpg),
-        encodeURI(nfcJpg),
-        nfdJpg,
-        nfcJpg,
-        encodeURI(nfdWebp),
-        encodeURI(nfcWebp)
-      ];
-    }
-
-    function resolvePhotoUrl(id) {
-      if (resolvedUrlCache[id]) return Promise.resolve(resolvedUrlCache[id]);
-      if (pendingResolvers[id]) return pendingResolvers[id];
-
-      const candidates = getCandidateUrls(id);
-      pendingResolvers[id] = new Promise((resolve) => {
-        let i = 0;
-        function tryNext() {
-          if (i >= candidates.length) {
-            const fallback = candidates[0];
-            resolvedUrlCache[id] = fallback;
-            resolve(fallback);
-            return;
-          }
-          const testUrl = candidates[i++];
-          const tester = new Image();
-          tester.decoding = 'async';
-          tester.onload = () => {
-            resolvedUrlCache[id] = testUrl;
-            resolve(testUrl);
-          };
-          tester.onerror = tryNext;
-          tester.src = testUrl;
-        }
-        tryNext();
-      });
-
-      return pendingResolvers[id];
-    }
-
-    // Cargar la portada de inmediato y las demás secciones progresivamente al bajar
-    function loadSectionBg(sec) {
-      if (sec.dataset.bgLoaded) return;
-      sec.dataset.bgLoaded = "true";
-      const id = sec.getAttribute('data-bg');
-      resolvePhotoUrl(id).then(url => {
-        sec.style.backgroundImage = `url("${url}")`;
-      });
-    }
-
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) loadSectionBg(heroSection);
-
-    const bgObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          loadSectionBg(entry.target);
-          bgObserver.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '350px 0px' });
-
-    document.querySelectorAll('section[data-bg]:not(.hero)').forEach(sec => bgObserver.observe(sec));
-
-    // ==============================================================
-    // 2. CARRUSEL DE LAS 10 FOTOS + VISOR MODAL FIJO Y SIN FALLOS
+    // 1. CARRUSEL INFINITO DIRECTO CON WEBP + VISOR MODAL FIJO
     // ==============================================================
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const totalImages = PHOTO_IDS.length;
+    const originalImages = Array.from(track.querySelectorAll('img'));
+    const gallerySources = originalImages.map(img => img.getAttribute('src'));
+    const totalImages = originalImages.length;
 
-    function createSlideImg(photoId, index) {
-      const img = document.createElement('img');
-      img.setAttribute('data-idx', String(index));
-      img.setAttribute('data-photo-id', photoId);
-      img.alt = `Foto ${index + 1}`;
-      img.decoding = 'async';
-      // Pone la ruta NFD directa de inmediato y la confirma con el resolutor
-      img.src = encodeURI(`Sin ti\u0301tulo-${photoId}.jpg`);
-      resolvePhotoUrl(photoId).then(validUrl => {
-        if (img.src !== validUrl) img.src = validUrl;
-      });
-      return img;
-    }
-
-    // Construir pista infinita: [Clones finales] + [10 Fotos Originales] + [Clones iniciales]
-    for (let i = 0; i < totalImages; i++) {
-      track.appendChild(createSlideImg(PHOTO_IDS[i], i));
-    }
-    for (let i = 0; i < totalImages; i++) {
-      track.appendChild(createSlideImg(PHOTO_IDS[i], i));
-    }
+    // Clonar para efecto infinito conservando el índice data-idx (0 a 8)
+    originalImages.forEach(img => track.appendChild(img.cloneNode(true)));
     for (let i = totalImages - 1; i >= 0; i--) {
-      track.insertBefore(createSlideImg(PHOTO_IDS[i], i), track.firstChild);
+      track.insertBefore(originalImages[i].cloneNode(true), track.firstChild);
     }
 
     let currentIndex = totalImages;
@@ -1005,12 +919,21 @@
       track.style.transform = `translate3d(-${currentIndex * getSlideWidth()}px, 0, 0)`;
     }
 
+    function checkInfiniteLoop() {
+      if (currentIndex >= totalImages * 2) {
+        currentIndex = totalImages;
+        updateCarousel(false);
+      } else if (currentIndex < totalImages) {
+        currentIndex = (totalImages * 2) - 1;
+        updateCarousel(false);
+      }
+    }
+
     function nextSlide() {
       if (isTransitioning) return;
       isTransitioning = true;
       currentIndex++;
       updateCarousel(true);
-      // Desbloqueo de seguridad por si la pestaña estaba inactiva y transitionend no dispara
       setTimeout(() => {
         if (isTransitioning) {
           isTransitioning = false;
@@ -1032,19 +955,9 @@
       }, 450);
     }
 
-    function checkInfiniteLoop() {
-      if (currentIndex >= totalImages * 2) {
-        currentIndex = totalImages;
-        updateCarousel(false);
-      } else if (currentIndex < totalImages) {
-        currentIndex = (totalImages * 2) - 1;
-        updateCarousel(false);
-      }
-    }
-
     function startAutoPlay() {
       clearInterval(autoPlayTimer);
-      autoPlayTimer = setInterval(nextSlide, 3200);
+      autoPlayTimer = setInterval(nextSlide, 3000);
     }
 
     function resetAutoPlay() {
@@ -1060,13 +973,10 @@
       checkInfiniteLoop();
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      updateCarousel(false);
-      startAutoPlay();
-    });
+    window.addEventListener('load', () => { updateCarousel(false); startAutoPlay(); });
     window.addEventListener('resize', () => updateCarousel(false));
 
-    // --- VISOR A PANTALLA COMPLETA CON FLECHAS FUNCIONALES ---
+    // --- VISOR A PANTALLA COMPLETA CON FLECHAS 100% FUNCIONALES ---
     const modal = document.getElementById('imageModal');
     const expandedImg = document.getElementById('expandedImg');
     const closeModalBtn = document.getElementById('closeModal');
@@ -1076,15 +986,7 @@
 
     function showGalleryPhotoByIndex(index) {
       currentModalGalleryIndex = (index + totalImages) % totalImages;
-      const photoId = PHOTO_IDS[currentModalGalleryIndex];
-      if (resolvedUrlCache[photoId]) {
-        expandedImg.src = resolvedUrlCache[photoId];
-      } else {
-        expandedImg.src = encodeURI(`Sin ti\u0301tulo-${photoId}.jpg`);
-        resolvePhotoUrl(photoId).then(validUrl => {
-          expandedImg.src = validUrl;
-        });
-      }
+      expandedImg.src = gallerySources[currentModalGalleryIndex];
     }
 
     function openGalleryModal(index) {
@@ -1157,7 +1059,7 @@
     });
 
     // ==============================================================
-    // 3. SUPABASE E INVITADOS
+    // 2. SUPABASE E INVITADOS
     // ==============================================================
     const SUPABASE_URL = 'https://xivwjycapgbmvstqmonp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ONwOEEIzAHgHKvkBWsUxBQ_ImHINPbq';
