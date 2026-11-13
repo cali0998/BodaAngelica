@@ -12,12 +12,18 @@
   
   <style>
     :root {
-      --white-ivory: #fdfbf9;
-      --rose-pale: #f2c6c2;
-      --rose-button: #c47d82;
-      --rose-dark: #9e585e;
-      --eucalyptus: #5b7e68;
-      --eucalyptus-dark: #1b3022;
+      /* --- PALETA DE COLORES DE LA BODA (BLANCO MARFIL, VERDE EUCALIPTO Y ROSA PALO) --- */
+      --pure-white: #ffffff;
+      --ivory-soft: #fdfbf9;
+      --forest-green: #23442e;
+      --eucalyptus-mid: #5b7e68;
+      --eucalyptus-mint: #89a894;
+      --eucalyptus-pale: #dce8df;
+      --blush-peach: #eb9f96;
+      --mauve-rose: #c47d87;
+      --rose-pale: #f5d7d4;
+      --berry-wine: #6b353e;
+      --charcoal-ink: #1e2420;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -26,12 +32,16 @@
       margin: 0; 
       font-family: 'Poppins', sans-serif;
       font-weight: 300;
-      background-color: #142218;
-      background-size: cover !important;
-      background-position: center 38% !important;
-      background-repeat: no-repeat !important;
+      /* Lienzo artístico multicapa en Verde Eucalipto, Rosa Palo y Blanco Marfil (CERO FOTOS) */
+      background-color: var(--ivory-soft);
+      background-image: 
+        radial-gradient(circle at 12% 18%, rgba(245, 215, 212, 0.85) 0%, transparent 48%),
+        radial-gradient(circle at 88% 15%, rgba(220, 232, 223, 0.9) 0%, transparent 50%),
+        radial-gradient(circle at 18% 85%, rgba(137, 168, 148, 0.45) 0%, transparent 52%),
+        radial-gradient(circle at 85% 84%, rgba(235, 159, 150, 0.55) 0%, transparent 50%),
+        linear-gradient(135deg, #fdfbf9 0%, #e4efe7 48%, #fae3e0 100%);
       background-attachment: fixed;
-      color: var(--white-ivory);
+      color: var(--charcoal-ink);
       min-height: 100svh; 
       display: flex; 
       justify-content: center; 
@@ -42,79 +52,94 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Velo atmosférico idéntico al de boda.html */
-    .overlay {
-      position: fixed; 
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(18, 30, 22, 0.22) 0%, rgba(18, 30, 22, 0.45) 50%, rgba(18, 30, 22, 0.78) 100%);
+    /* Ondas de seda decorativas en el fondo */
+    .bg-silk-waves {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       z-index: 1;
       pointer-events: none;
     }
 
+    /* Ramilletes botánicos en las esquinas */
+    .bg-botanical {
+      position: fixed;
+      width: 360px;
+      height: 440px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+    .botanical-tl { top: -25px; left: -25px; transform: scaleX(-1); }
+    .botanical-br { bottom: -25px; right: -25px; }
+
     /* ==============================================================
-       TARJETA DIFUMINADA ULTRALIGERA (SIN BORDES MARCADOS NI LAG)
+       TARJETA DE PAPELERÍA FINA CON MARCO DOBLE DELICADO
        ============================================================== */
-    .glass-card {
-      background: transparent;
-      border: none;
-      padding: 52px 32px 46px 32px; 
+    .stationery-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 28px;
+      padding: 46px 30px 42px 30px; 
       text-align: center; 
-      max-width: 440px; 
+      max-width: 420px; 
       width: 100%;
       position: relative;
       z-index: 10;
+      box-shadow: 
+        0 20px 50px rgba(35, 68, 46, 0.12),
+        0 4px 15px rgba(196, 125, 135, 0.1);
+      border: 1.5px solid rgba(235, 159, 150, 0.55);
     }
 
-    .glass-card::before {
+    /* Marco interior fino estilo invitación impresa */
+    .stationery-card::after {
       content: "";
       position: absolute;
-      inset: -25px -20px;
-      background: radial-gradient(
-        ellipse at center, 
-        rgba(22, 38, 28, 0.88) 0%, 
-        rgba(22, 38, 28, 0.72) 52%, 
-        rgba(22, 38, 28, 0) 80%
-      );
-      z-index: -1;
+      inset: 9px;
+      border-radius: 21px;
+      border: 1px solid rgba(137, 168, 148, 0.45);
       pointer-events: none;
     }
 
-    /* Sombras de texto para máxima legibilidad sobre la foto */
-    h1, .date-badge, .welcome-text, #statusText {
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0px 0px 5px rgba(0, 0, 0, 0.7);
+    .botanical-crest {
+      width: 220px;
+      height: 48px;
+      margin: 0 auto 6px auto;
+      display: block;
     }
 
     .date-badge { 
       font-size: 11px; 
       letter-spacing: 3.5px; 
       text-transform: uppercase; 
-      color: var(--white-ivory); 
-      font-weight: 500;
-      margin-bottom: 6px; 
+      color: var(--eucalyptus-mid); 
+      font-weight: 600;
+      margin-bottom: 4px; 
       display: block; 
     }
 
     h1 { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 3.9rem; 
-      color: var(--rose-pale); 
+      font-size: 4rem; 
+      color: var(--forest-green); 
       margin: 2px 0; 
       font-weight: 400; 
       line-height: 1.08; 
     }
 
     .rings-icon {
-      width: 145px;
-      height: 34px;
-      margin: 4px auto 8px auto;
+      width: 195px;
+      height: 42px;
+      margin: 2px auto 6px auto;
       display: block;
     }
 
     .fine-divider {
-      width: 120px;
+      width: 130px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--rose-pale), transparent);
-      margin: 10px auto 16px auto;
+      background: linear-gradient(90deg, transparent, var(--blush-peach), transparent);
+      margin: 8px auto 14px auto;
       position: relative;
     }
     .fine-divider::after {
@@ -123,7 +148,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: var(--rose-pale);
+      color: var(--mauve-rose);
+      background: #ffffff;
       font-size: 11px;
       padding: 0 6px;
     }
@@ -131,123 +157,203 @@
     .welcome-text { 
       font-family: 'Poppins', sans-serif;
       font-style: italic;
-      font-size: 0.98rem; 
-      font-weight: 300; 
+      font-size: 0.95rem; 
+      font-weight: 400; 
       line-height: 1.6; 
-      color: var(--white-ivory); 
-      margin-bottom: 26px; 
+      color: var(--berry-wine); 
+      margin-bottom: 24px; 
       padding: 0 8px; 
       transition: opacity 0.3s ease;
     }
     
-    .state-container { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+    .state-container { display: flex; flex-direction: column; gap: 13px; width: 100%; position: relative; z-index: 2; }
     .hidden { display: none !important; }
 
     /* ==============================================================
-       BOTONES EN VERDE EUCALIPTO Y ROSA PALO (IGUALES A BODA.HTML)
+       BOTONES CON LA PALETA DE LA BODA (VERDE EUCALIPTO, ROSA PALO Y MARFIL)
        ============================================================== */
     .btn-action {
       display: flex; align-items: center; justify-content: center; gap: 12px;
-      height: 56px; border-radius: 30px; font-weight: 500; text-transform: uppercase;
-      cursor: pointer; transition: transform 0.2s ease, background 0.3s ease;
+      height: 56px; border-radius: 50px; font-weight: 500; text-transform: uppercase;
+      cursor: pointer; transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
       font-size: 12px; letter-spacing: 1.8px; width: 100%;
       font-family: 'Poppins', sans-serif;
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.38);
     }
     .btn-action:active { transform: scale(0.96); }
 
-    /* Botón Principal: Verde Eucalipto */
+    /* Botón 1: Verde Eucalipto a Verde Bosque */
     .btn-primary { 
-      background: var(--eucalyptus); 
-      border: 1px solid rgba(255, 255, 255, 0.55);
+      background: linear-gradient(135deg, var(--eucalyptus-mid) 0%, var(--forest-green) 100%); 
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 22px rgba(35, 68, 46, 0.25);
     }
-    .btn-primary:hover { background: #496955; }
+    .btn-primary:hover { box-shadow: 0 12px 26px rgba(35, 68, 46, 0.35); }
 
-    /* Botón Secundario: Rosa Palo Profundo */
+    /* Botón 2: Rosa Palo a Malva */
     .btn-secondary { 
-      background: var(--rose-button); 
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: linear-gradient(135deg, var(--blush-peach) 0%, var(--mauve-rose) 55%, var(--berry-wine) 100%); 
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 22px rgba(196, 125, 135, 0.3);
     }
-    .btn-secondary:hover { background: var(--rose-dark); }
+    .btn-secondary:hover { box-shadow: 0 12px 26px rgba(196, 125, 135, 0.4); }
 
-    /* Botón Galería: Cápsula translúcida con borde Rosa Palo */
+    /* Botón 3: Blanco Marfil con Borde Rosa Palo y Letra Verde Eucalipto */
     .btn-ghost { 
-      background: rgba(22, 38, 28, 0.65);
-      color: var(--rose-pale); 
+      background: var(--ivory-soft);
+      color: var(--forest-green); 
       font-size: 11px; 
+      font-weight: 600;
       height: 50px; 
-      border: 1px solid rgba(242, 198, 194, 0.45);
+      border: 1.5px solid var(--blush-peach);
+      box-shadow: 0 4px 12px rgba(35, 68, 46, 0.06);
     }
-    .btn-ghost:hover { background: rgba(91, 126, 104, 0.45); color: #ffffff; }
+    .btn-ghost:hover { background: var(--rose-pale); }
+
+    .botanical-footer {
+      width: 170px;
+      height: 32px;
+      margin: 18px auto 0 auto;
+      display: block;
+    }
 
     svg { flex-shrink: 0; }
 
     input[type="file"] { display: none !important; }
 
-    /* Cuadrícula de vista previa antes de enviar */
+    /* Cuadrícula de vista previa */
     #preview-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 10px; margin-bottom: 18px; max-height: 240px; overflow-y: auto;
-      padding: 12px; background: rgba(15, 26, 19, 0.65); 
-      border: 1px solid rgba(242, 198, 194, 0.3);
-      border-radius: 16px;
+      padding: 12px; background: var(--ivory-soft); 
+      border: 1px solid var(--blush-peach);
+      border-radius: 18px;
     }
 
     .preview-media { 
       width: 100%; aspect-ratio: 1/1; object-fit: cover; 
-      border-radius: 10px; 
-      border: 1px solid rgba(242, 198, 194, 0.4);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
+      border-radius: 12px; 
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(35, 68, 46, 0.14); 
     }
 
     /* --- BARRA DE PROGRESO --- */
-    #status { margin-top: 20px; width: 100%; }
+    #status { margin-top: 20px; width: 100%; position: relative; z-index: 2; }
     .progress-bar-bg { 
-      width: 100%; height: 4px; background: rgba(255, 255, 255, 0.18); 
+      width: 100%; height: 5px; background: rgba(137, 168, 148, 0.25); 
       margin-top: 14px; border-radius: 10px; overflow: hidden; 
     }
     .progress-bar-fill { 
       height: 100%; 
-      background: linear-gradient(90deg, var(--eucalyptus), var(--rose-pale)); 
+      background: linear-gradient(90deg, var(--eucalyptus-mid), var(--mauve-rose)); 
       width: 0%; transition: width 0.4s ease; 
     }
 
     #statusText { 
       font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; 
-      color: var(--rose-pale); font-weight: 500;
+      color: var(--berry-wine); font-weight: 600;
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 3.5rem; }
-      .glass-card { padding: 42px 20px 38px 20px; }
+      .stationery-card { padding: 38px 20px 34px 20px; }
+      .bg-botanical { width: 250px; height: 310px; opacity: 0.85; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ICONO VECTORIAL LIGERO DE ANILLOS Y RAMAS DE EUCALIPTO (IDÉNTICO A BODA.HTML) -->
+  <!-- ILUSTRACIONES VECTORIALES DE LA PALETA (ONDAS DE SEDA, ROSAS DURAZNO, MALVA Y EUCALIPTO) -->
   <svg style="display: none;">
     <defs>
-      <g id="rings-minimal">
-        <path d="M12,18 Q42,10 68,18" fill="none" stroke="#89a894" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M138,18 Q108,10 82,18" fill="none" stroke="#89a894" stroke-width="1.3" stroke-linecap="round"/>
-        <path d="M35,15 C30,9 38,6 43,12 C40,15 37,15 35,15 Z" fill="#89a894"/>
-        <path d="M52,16 C47,10 55,7 60,13 C57,16 54,16 52,16 Z" fill="#89a894"/>
-        <path d="M115,15 C120,9 112,6 107,12 C110,15 113,15 115,15 Z" fill="#89a894"/>
-        <path d="M98,16 C103,10 95,7 90,13 C93,16 96,16 98,16 Z" fill="#89a894"/>
-        <circle cx="71" cy="18" r="8.5" fill="none" stroke="#f2c6c2" stroke-width="1.6"/>
-        <circle cx="81" cy="18" r="8.5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+      <linearGradient id="eucalyptusRoseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#5b7e68" stop-opacity="0.35"/>
+        <stop offset="50%" stop-color="#89a894" stop-opacity="0.65"/>
+        <stop offset="100%" stop-color="#eb9f96" stop-opacity="0.55"/>
+      </linearGradient>
+
+      <linearGradient id="roseSilkFill" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+        <stop offset="30%" stop-color="#f5d7d4" stop-opacity="0.65"/>
+        <stop offset="70%" stop-color="#dce8df" stop-opacity="0.65"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+      </linearGradient>
+
+      <g id="silk-waves">
+        <path d="M-100,110 C320,390 680,-60 1150,240 C1320,350 1420,170 1540,260 L1540,900 L-100,900 Z" fill="url(#roseSilkFill)"/>
+        <path d="M-80,170 C380,460 720,-30 1220,280 C1380,380 1460,240 1560,300" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.8"/>
+        <path d="M-80,215 C420,390 660,30 1180,320 C1340,410 1440,280 1560,340" fill="none" stroke="#c47d87" stroke-width="1" stroke-dasharray="5,7" opacity="0.6"/>
+        <path d="M-100,720 C380,470 880,880 1540,580" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.6"/>
+      </g>
+
+      <g id="bouquet-corner">
+        <path d="M290,410 C240,310 190,210 130,115 C95,65 60,30 25,10" fill="none" stroke="#23442e" stroke-width="1.5" opacity="0.82"/>
+        <path d="M210,280 C255,230 265,160 230,95" fill="none" stroke="#5b7e68" stroke-width="1.3" opacity="0.82"/>
+        <!-- Hojas redondas de Eucalipto Menta -->
+        <circle cx="230" cy="95" r="19" fill="#89a894" fill-opacity="0.75" stroke="#5b7e68" stroke-width="1"/>
+        <circle cx="105" cy="180" r="21" fill="#a3c1ad" fill-opacity="0.75" stroke="#5b7e68" stroke-width="1"/>
+        <!-- Hojas Verde Bosque -->
+        <path d="M95,85 C60,95 42,70 62,48 C85,52 92,70 95,85 Z" fill="#23442e" fill-opacity="0.8"/>
+        <path d="M235,260 C270,248 285,218 258,198 C232,212 228,240 235,260 Z" fill="#23442e" fill-opacity="0.78"/>
+        <!-- Rosa Durazno / Salmón -->
+        <g transform="translate(135, 125)">
+          <circle cx="0" cy="0" r="36" fill="#f7d5cf" fill-opacity="0.9"/>
+          <path d="M0,-32 C20,-36 38,-14 30,8 C22,28 -4,38 -22,26 C-38,14 -36,-14 -16,-26 C-4,-34 14,-26 18,-10 C22,4 10,18 -4,14 C-18,10 -18,-6 -8,-12" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="1.1"/>
+          <circle cx="0" cy="-2" r="5" fill="#c97267"/>
+        </g>
+        <!-- Rosa Malva -->
+        <g transform="translate(205, 195) scale(0.75)">
+          <circle cx="0" cy="0" r="34" fill="#dfadb4" fill-opacity="0.9"/>
+          <path d="M0,-30 C18,-34 34,-12 28,8 C20,26 -4,34 -20,24 C-34,12 -32,-12 -14,-24 C-4,-30 12,-24 16,-8" fill="#c47d87" stroke="#7a3e48" stroke-width="1.1"/>
+          <circle cx="0" cy="0" r="5" fill="#6b353e"/>
+        </g>
+        <!-- Bayas Vino -->
+        <path d="M165,165 C195,145 215,128 232,108" fill="none" stroke="#5e2b32" stroke-width="1.1"/>
+        <circle cx="232" cy="108" r="3.8" fill="#5e2b32"/>
+        <circle cx="220" cy="118" r="3.4" fill="#7a3e48"/>
+        <circle cx="212" cy="128" r="3.2" fill="#5e2b32"/>
+      </g>
+
+      <g id="crest-royal">
+        <path d="M20,38 C65,38 82,18 120,18 C158,18 175,38 220,38" fill="none" stroke="#c98a88" stroke-width="1.35"/>
+        <path d="M88,24 C78,14 64,16 60,24 C66,30 78,30 88,24 Z" fill="#23442e" fill-opacity="0.85"/>
+        <path d="M152,24 C162,14 176,16 180,24 C174,30 162,30 152,24 Z" fill="#23442e" fill-opacity="0.85"/>
+        <circle cx="100" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
+        <circle cx="140" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
+        <circle cx="120" cy="18" r="9" fill="#c47d87"/>
+        <circle cx="120" cy="18" r="3" fill="#ffffff"/>
+      </g>
+
+      <g id="fine-rings">
+        <path d="M10,28 C42,12 68,36 92,26" fill="none" stroke="#c98a88" stroke-width="1.35" stroke-linecap="round"/>
+        <path d="M220,28 C188,12 162,36 138,26" fill="none" stroke="#c98a88" stroke-width="1.35" stroke-linecap="round"/>
+        <path d="M48,23 C42,15 51,12 57,19 C54,22 51,23 48,23 Z" fill="#23442e" opacity="0.85"/>
+        <path d="M68,25 C62,17 71,14 77,21 C74,24 71,25 68,25 Z" fill="#89a894" opacity="0.9"/>
+        <path d="M182,23 C188,15 179,12 173,19 C176,22 179,23 182,23 Z" fill="#23442e" opacity="0.85"/>
+        <path d="M162,25 C168,17 159,14 153,21 C156,24 159,25 162,25 Z" fill="#89a894" opacity="0.9"/>
+        <circle cx="108" cy="26" r="11" fill="none" stroke="#23442e" stroke-width="1.8"/>
+        <circle cx="122" cy="26" r="11" fill="none" stroke="#c47d87" stroke-width="1.8"/>
+      </g>
+
+      <g id="footer-flourish">
+        <path d="M25,16 C65,26 125,26 165,16" fill="none" stroke="#c98a88" stroke-width="1.2" opacity="0.9"/>
+        <path d="M65,18 C82,28 108,28 125,18" fill="none" stroke="#89a894" stroke-width="1.1" opacity="0.9"/>
+        <circle cx="95" cy="22" r="3" fill="#6b353e"/>
+        <circle cx="78" cy="20" r="2.5" fill="#eb9f96"/>
+        <circle cx="112" cy="20" r="2.5" fill="#eb9f96"/>
       </g>
     </defs>
   </svg>
 
-  <div class="overlay"></div>
+  <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-waves"/></svg>
+  <svg class="bg-botanical botanical-tl" viewBox="0 0 320 420"><use href="#bouquet-corner"/></svg>
+  <svg class="bg-botanical botanical-br" viewBox="0 0 320 420"><use href="#bouquet-corner"/></svg>
 
-  <div class="glass-card">
+  <div class="stationery-card">
+    <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
     <span class="date-badge">14 • Marzo • 2027</span>
     <h1>Yader &amp; Angélica</h1>
-    <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
+    <svg class="rings-icon" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
     <div class="fine-divider"></div>
     <p class="welcome-text" id="mainText">
       Ayúdanos a capturar cada momento de nuestra historia.
@@ -286,35 +392,11 @@
       <div id="statusText">Enviando...</div>
       <div class="progress-bar-bg"><div id="progress-fill" class="progress-bar-fill"></div></div>
     </div>
+
+    <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
   </div>
 
 <script>
-  // --- DETECTOR INTELIGENTE DE FOTO DE FONDO (Carga WebP o JPG automáticamente) ---
-  (function loadBackgroundPhoto() {
-    const candidates = [
-      encodeURI('Sin ti\u0301tulo-164.webp'),
-      encodeURI('Sin t\u00edtulo-164.webp'),
-      'Foto8.webp',
-      'foto8.webp',
-      encodeURI('Sin ti\u0301tulo-1601.1.webp'),
-      encodeURI('Sin t\u00edtulo-1601.1.webp'),
-      'Foto1.webp',
-      encodeURI('Sin ti\u0301tulo-164.jpg'),
-      encodeURI('Sin t\u00edtulo-164.jpg'),
-      'Foto4.webp'
-    ];
-    let i = 0;
-    function tryNext() {
-      if (i >= candidates.length) return;
-      const url = candidates[i++];
-      const img = new Image();
-      img.onload = () => { document.body.style.backgroundImage = `url("${url}")`; };
-      img.onerror = tryNext;
-      img.src = url;
-    }
-    tryNext();
-  })();
-
   // --- CONFIGURACIÓN DE CLOUDINARY (YADER Y ANGÉLICA) ---
   const cloudName = "dhruy6ftj";
   const uploadPreset = "boda_yader_y_angelica";
