@@ -7,6 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
   <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes (Cursiva para nombres) y Poppins (Limpia para todo el resto) -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 
@@ -66,7 +67,7 @@
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC (ACOMODADA SEGÚN LA POSICIÓN DE LOS NOVIOS EN CADA FOTO) --- */
+    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC --- */
     .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 8%; } 
     .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 8%; } 
     .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 8%; }
@@ -83,7 +84,6 @@
       mask-image: linear-gradient(to top, black 85%, transparent 100%); 
     } 
 
-    /* Velo súper limpio (igual que en tu invitación original) para no lavar ni tapar las fotos */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(18, 30, 22, 0.22); 
@@ -92,8 +92,7 @@
     }
 
     /* ==============================================================
-       TARJETA CON EL DIFUMINADO EXACTO DE TU INVITACIÓN ORIGINAL
-       (Cero manchas blancas y cero blur pesado para que no dé lag)
+       TARJETA CON DIFUMINADO SUAVE Y LIGERO (CERO LAG)
        ============================================================== */
     .glass-card {
       background: transparent; 
@@ -113,7 +112,6 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      /* Sombra suave en verde eucalipto oscuro que deja ver la foto a través y resalta el texto blanco */
       background: radial-gradient(circle, rgba(22, 38, 28, 0.76) 0%, rgba(22, 38, 28, 0.62) 60%, transparent 100%); 
       -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
       mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
@@ -127,7 +125,6 @@
       mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
     }
 
-    /* Divisor fino y minimalista sin saturación */
     .fine-divider {
       width: 120px;
       height: 1px;
@@ -206,7 +203,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* --- CONTADOR LIMPIO ESTILO ORIGINAL --- */
+    /* --- CONTADOR LIMPIO --- */
     .countdown {
       display: flex;
       gap: 12px;
@@ -239,7 +236,7 @@
       font-weight: 500;
     }
 
-    /* --- FRASES LATERALES FLOTANTES (SIN CAJA QUE TAPE LA FOTO) --- */
+    /* --- FRASES LATERALES FLOTANTES --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
@@ -360,7 +357,7 @@
       cursor: pointer;
     }
 
-    /* --- CARRETE INFINITO --- */
+    /* --- CARRETE INFINITO CON LAS 10 FOTOS --- */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -378,6 +375,7 @@
       flex-shrink: 0;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
       cursor: pointer;
+      background: rgba(255,255,255,0.08);
     }
 
     .carousel-btn {
@@ -405,7 +403,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
-    /* --- LIGHTBOX --- */
+    /* --- LIGHTBOX / MODAL CORREGIDO --- */
     .modal {
       display: none;
       position: fixed;
@@ -428,16 +426,19 @@
       border-radius: 12px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       object-fit: contain;
+      user-select: none;
     }
     .close-modal {
       position: absolute;
       top: 20px;
       right: 30px;
       color: #ffffff;
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 300;
       cursor: pointer;
-      z-index: 10000;
+      z-index: 10002;
+      line-height: 1;
+      padding: 5px 12px;
     }
     
     .modal-nav {
@@ -446,71 +447,38 @@
       transform: translateY(-50%);
       background: var(--eucalyptus);
       color: #ffffff;
-      border: none;
+      border: 1.5px solid rgba(255,255,255,0.65);
       border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 1.4rem;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
       cursor: pointer;
-      z-index: 10001;
+      z-index: 10002;
       display: none;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: background 0.2s ease, transform 0.2s ease;
     }
-    .modal-nav.prev { left: 20px; }
-    .modal-nav.next { right: 20px; }
+    .modal-nav:hover { background: var(--rose-button); }
+    .modal-nav:active { transform: translateY(-50%) scale(0.92); }
+    .modal-nav.prev { left: 18px; }
+    .modal-nav.next { right: 18px; }
 
     /* ==============================================================
        ENCUADRES EXACTOS PARA CADA FOTO DE YADER Y ANGÉLICA
-       (Acomodados donde están los rostros y las manos para que tengan sentido)
        ============================================================== */
-    /* 1. Portada: Abrazados mirando hacia adelante junto al río */
-    .hero { 
-      background-image: url("Sin título-1601.1.jpg"); 
-      background-position: center 22% !important; 
-    }
-    /* 2. Invitado: De pie junto al tronco del árbol mirando el río */
-    .seccion-pase { 
-      background-image: url("Sin título-178.jpg"); 
-      background-position: center 22% !important; 
-    }
-    /* 3. Ceremonia y Recepción: Sentados mirándose de frente bajo los helechos */
-    .seccion-lugar { 
-      background-image: url("Sin título-162.jpg"); 
-      background-position: center 35% !important; 
-    }
-    /* 4. Itinerario: Bailando / dando vuelta en el sendero de piedra */
-    .seccion-itinerario { 
-      background-image: url("Sin título-166.jpg"); 
-      background-position: center 32% !important; 
-    }
-    /* 5. Historia de amor (Carrusel): Mirándose de cerca con fondo verde oscuro */
-    .seccion-nosotros { 
-      background-image: url("Sin título-171.jpg"); 
-      background-position: center 25% !important; 
-    }
-    /* 6. Código de vestimenta: Manos entrelazadas mostrando el anillo con bokeh */
-    .seccion-vestimenta { 
-      background-image: url("Sin título-180.jpg"); 
-      background-position: center 55% !important; 
-    }
-    /* 7. Mesa de regalos: Tomados de la mano con frentes juntas */
-    .seccion-regalos { 
-      background-image: url("Sin título-181.jpg"); 
-      background-position: center 60% !important; 
-    }
-    /* 8. Comparte tus fotos (QR): Mostrando el anillo en primer plano */
-    .seccion-qr { 
-      background-image: url("Sin título-164.jpg"); 
-      background-position: center 42% !important; 
-    }
-    /* 9. Sección final: Acariciando la mejilla junto al río */
-    .seccion-final { 
-      background-image: url("Sin título-177.jpg"); 
-      background-position: center 20% !important; 
-    }
+    .hero { background-position: center 22% !important; }
+    .seccion-pase { background-position: center 22% !important; }
+    .seccion-lugar { background-position: center 35% !important; }
+    .seccion-itinerario { background-position: center 32% !important; }
+    .seccion-nosotros { background-position: center 25% !important; }
+    .seccion-vestimenta { background-position: center 55% !important; }
+    .seccion-regalos { background-position: center 60% !important; }
+    .seccion-qr { background-position: center 42% !important; }
+    .seccion-final { background-position: center 20% !important; }
 
-    /* --- BOTONES EN VERDE EUCALIPTO Y ROSA PALO --- */
+    /* --- BOTONES --- */
     .btn {
       background: var(--eucalyptus); 
       color: #ffffff; 
@@ -539,7 +507,6 @@
     }
     .btn-decline:hover { background: #824449; }
 
-    /* Animaciones suaves y ligeras para evitar lag */
     .reveal { 
       opacity: 0; 
       transform: translateY(25px); 
@@ -550,7 +517,7 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES (COMO EN TU INVITACIÓN ORIGINAL)
+       AJUSTES PARA MÓVILES
        ============================================================== */
     @media (max-width: 600px) {
       section {
@@ -565,7 +532,6 @@
         padding-bottom: 10vh !important; 
       }
       
-      /* Degradado inferior suave para que las fotos se vean limpias arriba y el texto se lea abajo */
       section:not(.hero) .overlay {
         background: linear-gradient(to bottom, rgba(18,30,22,0.05) 0%, rgba(18,30,22,0.25) 45%, rgba(18,30,22,0.82) 95%) !important;
       }
@@ -604,6 +570,10 @@
       
       .carousel-track img { width: 215px !important; height: 270px !important; } 
       
+      .modal-nav { width: 42px; height: 42px; font-size: 1.2rem; }
+      .modal-nav.prev { left: 10px; }
+      .modal-nav.next { right: 10px; }
+
       .tl-row { grid-template-columns: 76px 22px 30px 1fr; }
       .tl-row:not(:last-child)::after { left: 86.5px; }
       .tl-title { font-size: 0.94rem; }
@@ -654,8 +624,8 @@
     </defs>
   </svg>
 
-  <!-- REPRODUCTOR CON DOBLE RUTA DE RESPALDO -->
-  <audio id="bg-music" loop preload="auto">
+  <!-- REPRODUCTOR CON PRELOAD="NONE" PARA NO FRENAR LA CARGA DE LAS IMÁGENES -->
+  <audio id="bg-music" loop preload="none">
     <source src="musica.mp3" type="audio/mpeg">
     <source src="musica.mp3.mp3" type="audio/mpeg">
   </audio>
@@ -832,27 +802,27 @@
     </div>
   </section>
 
-  <!-- 5. FOTOS / CARRUSEL CON CARGA OPTIMIZADA -->
+  <!-- 5. FOTOS / CARRUSEL CON LAS 10 FOTOS DE ELLOS Y MINIATURAS WEBP -->
   <section class="seccion-nosotros" data-bg="Sin título-171.jpg">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="fine-divider"></div>
       <div class="carousel-container">
-        <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+        <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
-          <img src="Sin título-1601.1.jpg" data-alt-src="Sin ti&#769;tulo-1601.1.jpg" loading="lazy" decoding="async" alt="1">
-          <img src="Sin título-171.jpg" data-alt-src="Sin ti&#769;tulo-171.jpg" loading="lazy" decoding="async" alt="2">
-          <img src="Sin título-166.jpg" data-alt-src="Sin ti&#769;tulo-166.jpg" loading="lazy" decoding="async" alt="3">
-          <img src="Sin título-164.jpg" data-alt-src="Sin ti&#769;tulo-164.jpg" loading="lazy" decoding="async" alt="4">
-          <img src="Sin título-162.jpg" data-alt-src="Sin ti&#769;tulo-162.jpg" loading="lazy" decoding="async" alt="5">
-          <img src="Sin título-161.jpg" data-alt-src="Sin ti&#769;tulo-161.jpg" loading="lazy" decoding="async" alt="6">
-          <img src="Sin título-181.jpg" data-alt-src="Sin ti&#769;tulo-181.jpg" loading="lazy" decoding="async" alt="7">
-          <img src="Sin título-180.jpg" data-alt-src="Sin ti&#769;tulo-180.jpg" loading="lazy" decoding="async" alt="8">
-          <img src="Sin título-178.jpg" data-alt-src="Sin ti&#769;tulo-178.jpg" loading="lazy" decoding="async" alt="9">
-          <img src="Sin título-177.jpg" data-alt-src="Sin ti&#769;tulo-177.jpg" loading="lazy" decoding="async" alt="10">
+          <img data-file="Sin título-1601.1.jpg" data-idx="0" loading="lazy" decoding="async" alt="Foto 1">
+          <img data-file="Sin título-171.jpg" data-idx="1" loading="lazy" decoding="async" alt="Foto 2">
+          <img data-file="Sin título-166.jpg" data-idx="2" loading="lazy" decoding="async" alt="Foto 3">
+          <img data-file="Sin título-164.jpg" data-idx="3" loading="lazy" decoding="async" alt="Foto 4">
+          <img data-file="Sin título-162.jpg" data-idx="4" loading="lazy" decoding="async" alt="Foto 5">
+          <img data-file="Sin título-161.jpg" data-idx="5" loading="lazy" decoding="async" alt="Foto 6">
+          <img data-file="Sin título-181.jpg" data-idx="6" loading="lazy" decoding="async" alt="Foto 7">
+          <img data-file="Sin título-180.jpg" data-idx="7" loading="lazy" decoding="async" alt="Foto 8">
+          <img data-file="Sin título-178.jpg" data-idx="8" loading="lazy" decoding="async" alt="Foto 9">
+          <img data-file="Sin título-177.jpg" data-idx="9" loading="lazy" decoding="async" alt="Foto 10">
         </div>
-        <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+        <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">&#10095;</button>
       </div>
     </div>
     <div class="floating-text reveal">"El amor se compone de una sola alma, que habita en dos cuerpos." - Aristóteles.</div>
@@ -866,7 +836,7 @@
       <div class="fine-divider"></div>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=15" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=16" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
@@ -917,33 +887,242 @@
   </section>
 
   <div id="imageModal" class="modal">
-    <span class="close-modal" id="closeModal">&times;</span>
-    <button class="modal-nav prev" id="modalPrev">&#10094;</button>
-    <img class="modal-content" id="expandedImg">
-    <button class="modal-nav next" id="modalNext">&#10095;</button>
+    <span class="close-modal" id="closeModal" aria-label="Cerrar">&times;</span>
+    <button class="modal-nav prev" id="modalPrev" aria-label="Foto anterior">&#10094;</button>
+    <img class="modal-content" id="expandedImg" alt="Foto ampliada">
+    <button class="modal-nav next" id="modalNext" aria-label="Foto siguiente">&#10095;</button>
   </div>
 
   <script>
-    // Detector ligero para asegurar que las fotos de fondo carguen sin importar cómo guardó GitHub la tilde
-    document.querySelectorAll('section[data-bg]').forEach(sec => {
+    // ==============================================================
+    // 1. OPTIMIZADOR AUTOMÁTICO DE IMÁGENES AL VUELO (WebP + Lazy Load)
+    // ==============================================================
+    const REPO_BASE = 'https://cali0998.github.io/BodaAngelica/';
+
+    function getOptimizedUrl(filename, width, quality = 78) {
+      // Usa wsrv.nl para comprimir las fotos de GitHub a WebP ligero automáticamente
+      const rawUrl = REPO_BASE + encodeURIComponent(filename);
+      return `https://wsrv.nl/?url=${encodeURIComponent(rawUrl)}&w=${width}&q=${quality}&output=webp`;
+    }
+
+    function loadSectionBg(sec) {
+      if (sec.dataset.bgLoaded) return;
+      sec.dataset.bgLoaded = "true";
       const fileNFC = sec.getAttribute('data-bg');
       const fileNFD = fileNFC.normalize('NFD');
-      const testImg = new Image();
-      testImg.onload = () => { sec.style.backgroundImage = `url("${fileNFC}")`; };
-      testImg.onerror = () => { sec.style.backgroundImage = `url("${fileNFD}")`; };
-      testImg.src = fileNFC;
-    });
+      const targetWidth = window.innerWidth <= 600 ? 850 : 1350;
 
-    document.querySelectorAll('#carouselTrack img').forEach(img => {
-      img.addEventListener('error', function() {
-        const altSrc = this.getAttribute('data-alt-src');
-        if (altSrc && this.src.indexOf(altSrc) === -1) {
-          this.src = altSrc;
+      // Intenta primero la versión WebP comprimida; si falla, usa el archivo directo NFC o NFD
+      const optNFC = getOptimizedUrl(fileNFC, targetWidth, 78);
+      const optNFD = getOptimizedUrl(fileNFD, targetWidth, 78);
+
+      const img = new Image();
+      img.onload = () => { sec.style.backgroundImage = `url("${optNFC}")`; };
+      img.onerror = () => {
+        const img2 = new Image();
+        img2.onload = () => { sec.style.backgroundImage = `url("${optNFD}")`; };
+        img2.onerror = () => {
+          const img3 = new Image();
+          img3.onload = () => { sec.style.backgroundImage = `url("${fileNFC}")`; };
+          img3.onerror = () => { sec.style.backgroundImage = `url("${fileNFD}")`; };
+          img3.src = fileNFC;
+        };
+        img2.src = optNFD;
+      };
+      img.src = optNFC;
+    }
+
+    // Cargar la portada de inmediato y las demás secciones progresivamente antes de llegar a ellas
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) loadSectionBg(heroSection);
+
+    const bgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          loadSectionBg(entry.target);
+          bgObserver.unobserve(entry.target);
         }
-      }, { once: true });
+      });
+    }, { rootMargin: '600px 0px' });
+
+    document.querySelectorAll('section[data-bg]:not(.hero)').forEach(sec => bgObserver.observe(sec));
+
+    // ==============================================================
+    // 2. CARRUSEL CON LAS 10 FOTOS + VISOR MODAL CON NAVEGACIÓN FIJA
+    // ==============================================================
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const originalImages = Array.from(track.querySelectorAll('img'));
+    const totalImages = originalImages.length;
+
+    // Lista de las 10 fotos para el modal a pantalla completa
+    const galleryFiles = originalImages.map(img => img.getAttribute('data-file'));
+
+    function attachSmartImageSrc(imgEl, filename, thumbWidth) {
+      const fileNFC = filename;
+      const fileNFD = filename.normalize('NFD');
+      const optNFC = getOptimizedUrl(fileNFC, thumbWidth, 75);
+      const optNFD = getOptimizedUrl(fileNFD, thumbWidth, 75);
+
+      imgEl.src = optNFC;
+      let step = 0;
+      imgEl.onerror = function() {
+        step++;
+        if (step === 1) this.src = optNFD;
+        else if (step === 2) this.src = fileNFC;
+        else if (step === 3) this.src = fileNFD;
+        else this.onerror = null;
+      };
+    }
+
+    // Asignar miniaturas ligeras (420px WebP) a las 10 imágenes originales
+    originalImages.forEach(img => {
+      attachSmartImageSrc(img, img.getAttribute('data-file'), 420);
     });
 
-    // --- VARIABLES DE SUPABASE ---
+    // Clonar para efecto infinito conservando el data-idx (0 a 9) para el modal
+    originalImages.forEach(img => {
+      const clone = img.cloneNode(true);
+      attachSmartImageSrc(clone, clone.getAttribute('data-file'), 420);
+      track.appendChild(clone);
+    });
+    for (let i = totalImages - 1; i >= 0; i--) {
+      const clone = originalImages[i].cloneNode(true);
+      attachSmartImageSrc(clone, clone.getAttribute('data-file'), 420);
+      track.insertBefore(clone, track.firstChild);
+    }
+
+    let currentIndex = totalImages; 
+    let isTransitioning = false;
+    let autoPlayTimer; 
+
+    function getSlideWidth() { return track.children[0].offsetWidth + 15; }
+    function updateCarousel(animate = true) {
+      track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
+      track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
+    }
+    function startAutoPlay() { autoPlayTimer = setInterval(() => { nextBtn.click(); }, 3000); }
+    function resetAutoPlay() { clearInterval(autoPlayTimer); startAutoPlay(); }
+
+    window.addEventListener('load', () => { updateCarousel(false); startAutoPlay(); });
+    window.addEventListener('resize', () => updateCarousel(false));
+
+    nextBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex++;
+      updateCarousel(true);
+      resetAutoPlay();
+    });
+    prevBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      currentIndex--;
+      updateCarousel(true);
+      resetAutoPlay();
+    });
+
+    track.addEventListener('transitionend', () => {
+      isTransitioning = false;
+      if (currentIndex >= totalImages * 2) {
+        track.style.transition = 'none';
+        currentIndex = totalImages;
+        track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`;
+      }
+      if (currentIndex <= totalImages - 1) {
+        track.style.transition = 'none';
+        currentIndex = (totalImages * 2) - 1;
+        track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`;
+      }
+    });
+
+    // --- VISOR MODAL CORREGIDO CON ÍNDICE DIRECTO (0 a 9) ---
+    const modal = document.getElementById('imageModal');
+    const expandedImg = document.getElementById('expandedImg');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalPrevBtn = document.getElementById('modalPrev');
+    const modalNextBtn = document.getElementById('modalNext');
+    let currentModalGalleryIndex = -1;
+
+    function showGalleryPhotoByIndex(index) {
+      currentModalGalleryIndex = (index + galleryFiles.length) % galleryFiles.length;
+      const filename = galleryFiles[currentModalGalleryIndex];
+      // Carga la versión en alta resolución optimizada (1200px WebP) con respaldo automático
+      attachSmartImageSrc(expandedImg, filename, 1200);
+    }
+
+    function openGalleryModal(index) {
+      showGalleryPhotoByIndex(index);
+      modalPrevBtn.style.display = 'flex';
+      modalNextBtn.style.display = 'flex';
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    function openSingleImageModal(src) {
+      currentModalGalleryIndex = -1;
+      expandedImg.onerror = null;
+      expandedImg.src = src;
+      modalPrevBtn.style.display = 'none';
+      modalNextBtn.style.display = 'none';
+      modal.style.display = 'flex';
+      setTimeout(() => modal.classList.add('show'), 10);
+    }
+
+    function hideModal() {
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.style.display = 'none';
+        expandedImg.src = '';
+      }, 250);
+    }
+
+    modalPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentModalGalleryIndex > -1) {
+        showGalleryPhotoByIndex(currentModalGalleryIndex - 1);
+      }
+    });
+
+    modalNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (currentModalGalleryIndex > -1) {
+        showGalleryPhotoByIndex(currentModalGalleryIndex + 1);
+      }
+    });
+
+    // Soporte de teclado (flechas izquierda/derecha y Escape) cuando el modal está abierto
+    document.addEventListener('keydown', (e) => {
+      if (modal.style.display === 'flex') {
+        if (e.key === 'ArrowLeft' && currentModalGalleryIndex > -1) showGalleryPhotoByIndex(currentModalGalleryIndex - 1);
+        if (e.key === 'ArrowRight' && currentModalGalleryIndex > -1) showGalleryPhotoByIndex(currentModalGalleryIndex + 1);
+        if (e.key === 'Escape') hideModal();
+      }
+    });
+
+    track.addEventListener('click', function(e) {
+      const clickedImg = e.target.closest('img');
+      if (clickedImg && clickedImg.hasAttribute('data-idx')) {
+        const idx = parseInt(clickedImg.getAttribute('data-idx'), 10);
+        openGalleryModal(idx);
+      }
+    });
+
+    document.querySelectorAll('.paleta-img').forEach(img => {
+      img.addEventListener('click', function() {
+        openSingleImageModal(this.src);
+      });
+    });
+
+    closeModalBtn.addEventListener('click', hideModal);
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) hideModal();
+    });
+
+    // ==============================================================
+    // 3. SUPABASE E INVITADOS
+    // ==============================================================
     const SUPABASE_URL = 'https://xivwjycapgbmvstqmonp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ONwOEEIzAHgHKvkBWsUxBQ_ImHINPbq';
 
@@ -1124,106 +1303,6 @@
       document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
       document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
     }, 1000);
-
-    const track = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const images = Array.from(track.querySelectorAll('img'));
-    
-    const gallerySources = images.map(img => img.src);
-    
-    const totalImages = images.length; 
-    images.forEach(img => track.appendChild(img.cloneNode(true)));
-    for (let i = totalImages - 1; i >= 0; i--) track.insertBefore(images[i].cloneNode(true), track.firstChild);
-    let currentIndex = totalImages; 
-    let isTransitioning = false;
-    let autoPlayTimer; 
-    function getSlideWidth() { return track.children[0].offsetWidth + 15; }
-    function updateCarousel(animate = true) {
-        track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
-        track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
-    }
-    function startAutoPlay() { autoPlayTimer = setInterval(() => { nextBtn.click(); }, 3000); }
-    function resetAutoPlay() { clearInterval(autoPlayTimer); startAutoPlay(); }
-    window.addEventListener('load', () => { updateCarousel(false); startAutoPlay(); });
-    window.addEventListener('resize', () => updateCarousel(false));
-    nextBtn.addEventListener('click', () => { if (isTransitioning) return; isTransitioning = true; currentIndex++; updateCarousel(true); resetAutoPlay(); });
-    prevBtn.addEventListener('click', () => { if (isTransitioning) return; isTransitioning = true; currentIndex--; updateCarousel(true); resetAutoPlay(); });
-    track.addEventListener('transitionend', () => {
-        isTransitioning = false;
-        if (currentIndex >= totalImages * 2) { track.style.transition = 'none'; currentIndex = totalImages; track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`; }
-        if (currentIndex <= totalImages - 1) { track.style.transition = 'none'; currentIndex = (totalImages * 2) - 1; track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`; }
-    });
-
-    const modal = document.getElementById('imageModal');
-    const expandedImg = document.getElementById('expandedImg');
-    const closeModalBtn = document.getElementById('closeModal');
-    const modalPrevBtn = document.getElementById('modalPrev');
-    const modalNextBtn = document.getElementById('modalNext');
-    let currentModalGalleryIndex = -1;
-
-    function openModal(src, isGallery) {
-      expandedImg.src = src;
-      modal.style.display = 'flex';
-      
-      if (isGallery) {
-        currentModalGalleryIndex = gallerySources.findIndex(url => url === src || url.endsWith(src.substring(src.lastIndexOf('/'))));
-        modalPrevBtn.style.display = 'flex';
-        modalNextBtn.style.display = 'flex';
-      } else {
-        currentModalGalleryIndex = -1;
-        modalPrevBtn.style.display = 'none';
-        modalNextBtn.style.display = 'none';
-      }
-
-      setTimeout(() => {
-        modal.classList.add('show');
-      }, 10);
-    }
-
-    function hideModal() {
-      modal.classList.remove('show');
-      setTimeout(() => {
-        modal.style.display = 'none';
-        expandedImg.src = '';
-      }, 300);
-    }
-
-    modalPrevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentModalGalleryIndex > -1) {
-        currentModalGalleryIndex = (currentModalGalleryIndex - 1 + gallerySources.length) % gallerySources.length;
-        expandedImg.src = gallerySources[currentModalGalleryIndex];
-      }
-    });
-
-    modalNextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (currentModalGalleryIndex > -1) {
-        currentModalGalleryIndex = (currentModalGalleryIndex + 1) % gallerySources.length;
-        expandedImg.src = gallerySources[currentModalGalleryIndex];
-      }
-    });
-
-    document.querySelectorAll('.paleta-img').forEach(img => {
-      img.addEventListener('click', function() {
-        openModal(this.src, false);
-      });
-    });
-
-    document.getElementById('carouselTrack').addEventListener('click', function(e) {
-      if(e.target.tagName === 'IMG') {
-        openModal(e.target.src, true);
-      }
-    });
-
-    closeModalBtn.addEventListener('click', hideModal);
-
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        hideModal();
-      }
-    });
 
     // --- CONTROL DE MÚSICA BLINDADO ---
     const bgMusic = document.getElementById('bg-music');
