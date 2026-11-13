@@ -12,15 +12,13 @@
 
   <style>
     :root {
-      /* --- PALETA DE LOS BOUQUETS DE REFERENCIA --- */
-      --pure-white: #ffffff;
-      --forest-green: #23442e;       /* Verde bosque profundo */
-      --eucalyptus-mid: #4e735c;     /* Verde eucalipto medio */
-      --eucalyptus-mint: #89a894;    /* Eucalipto salvia/menta */
-      --blush-peach: #eb9f96;        /* Rosa durazno cálido */
-      --mauve-rose: #c47d87;         /* Rosa palo/malva */
-      --berry-wine: #6b353e;         /* Vino/baya profundo */
-      --charcoal-ink: #1b221e;       /* Negro carbón nítido para textos */
+      /* --- PALETA DE LA DECORACIÓN: VERDE EUCALIPTO, ROSA PALO Y BLANCO MARFIL --- */
+      --white-ivory: #fdfbf9;
+      --rose-pale: #f2c6c2;          /* Rosa palo luminoso para títulos sobre foto */
+      --rose-button: #c47d82;        /* Rosa palo definido para botones y acentos */
+      --rose-dark: #9e585e;          /* Rosa profundo para botón de declinar */
+      --eucalyptus: #5b7e68;         /* Verde eucalipto */
+      --eucalyptus-dark: #1b3022;    /* Verde bosque profundo para contraste limpio */
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -29,47 +27,46 @@
       margin: 0; 
       font-family: 'Poppins', sans-serif; 
       font-weight: 300;
-      /* Fondo oscuro elegante de respaldo para que las uniones entre fotos nunca se vean planas ni blancas */
-      background-color: #1b2620; 
-      color: var(--charcoal-ink); 
+      background-color: #142218; 
+      color: var(--white-ivory); 
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
       overscroll-behavior-y: none;
     }
 
     /* ==============================================================
-       UNIÓN INFINITA DE FOTOS DE FONDO (COMO EN TU INVITACIÓN ORIGINAL)
+       ESTRUCTURA ORIGINAL DE UNIÓN INFINITA (SEAMLESS Y SIN LAG)
        ============================================================== */
     section { 
-      min-height: 105vh; 
+      min-height: 100vh; 
       display: flex; 
       flex-direction: column; 
       position: relative;
-      padding: 110px 24px;
+      padding: 100px 20px;
       
       background-size: cover !important; 
       background-repeat: no-repeat !important;
       
       margin-top: -21vh; 
       
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
     }
 
-    /* --- PORTADA CENTRADA --- */
+    /* --- 1. PORTADA CENTRADA --- */
     .hero { 
       margin-top: 0; 
       z-index: 10; 
       align-items: center; 
       justify-content: center; 
       text-align: center;
-      -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
     }
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC (DEJA LIBRE EL LADO DONDE SALEN LOS NOVIOS) --- */
+    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC (ACOMODADA SEGÚN LA POSICIÓN DE LOS NOVIOS EN CADA FOTO) --- */
     .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 8%; } 
     .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 8%; } 
     .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 8%; }
@@ -79,244 +76,182 @@
     .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 8%; } 
     .seccion-final { 
       z-index: 2; 
-      align-items: flex-end; 
+      align-items: flex-start; 
       justify-content: center; 
-      padding-right: 8%; 
+      padding-left: 8%; 
       -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); 
       mask-image: linear-gradient(to top, black 85%, transparent 100%); 
     } 
 
-    /* Velo sumamente ligero para que las fotos de fondo se vean claras, vivas y nítidas */
+    /* Velo súper limpio (igual que en tu invitación original) para no lavar ni tapar las fotos */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(180deg, rgba(25, 38, 30, 0.08) 0%, rgba(25, 38, 30, 0.18) 100%); 
+      background: rgba(18, 30, 22, 0.22); 
       z-index: 1; 
       pointer-events: none;
     }
 
     /* ==============================================================
-       NUBE DIFUMINADA MULTICAPA SOBRE LAS FOTOS (ESTILO BOUQUET)
+       TARJETA CON EL DIFUMINADO EXACTO DE TU INVITACIÓN ORIGINAL
+       (Cero manchas blancas y cero blur pesado para que no dé lag)
        ============================================================== */
     .glass-card {
       background: transparent; 
       border: none;
       box-shadow: none; 
-      padding: 62px 46px 56px 46px; 
+      padding: 55px 38px; 
       width: 100%; 
-      max-width: 495px; 
+      max-width: 480px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
+      backdrop-filter: none !important; 
+      -webkit-backdrop-filter: none !important;
     }
 
-    /* Nube blanca/marfil en el centro que se funde con rubor rosa durazno hacia la foto */
     .glass-card::before {
       content: '';
       position: absolute;
-      inset: -48px -58px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(255, 255, 255, 0.96) 0%,
-        rgba(255, 252, 250, 0.92) 32%,
-        rgba(252, 230, 226, 0.78) 54%,
-        rgba(235, 159, 150, 0.38) 72%,
-        rgba(235, 159, 150, 0) 96%
-      );
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      -webkit-mask-image: radial-gradient(
-        ellipse at center,
-        black 0%,
-        black 32%,
-        rgba(0, 0, 0, 0.78) 52%,
-        rgba(0, 0, 0, 0.35) 70%,
-        transparent 92%
-      );
-      mask-image: radial-gradient(
-        ellipse at center,
-        black 0%,
-        black 32%,
-        rgba(0, 0, 0, 0.78) 52%,
-        rgba(0, 0, 0, 0.35) 70%,
-        transparent 92%
-      );
-      z-index: -1;
+      top: 0; left: 0; right: 0; bottom: 0;
+      /* Sombra suave en verde eucalipto oscuro que deja ver la foto a través y resalta el texto blanco */
+      background: radial-gradient(circle, rgba(22, 38, 28, 0.76) 0%, rgba(22, 38, 28, 0.62) 60%, transparent 100%); 
+      -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
+      mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
+      z-index: -1; 
       pointer-events: none;
     }
 
-    /* Alternancia con halo en Verde Eucalipto Menta en secciones pares */
-    .seccion-pase .glass-card::before,
-    .seccion-itinerario .glass-card::before,
-    .seccion-vestimenta .glass-card::before,
-    .seccion-qr .glass-card::before {
-      background: radial-gradient(
-        ellipse at center,
-        rgba(255, 255, 255, 0.96) 0%,
-        rgba(248, 252, 249, 0.92) 32%,
-        rgba(214, 230, 219, 0.78) 54%,
-        rgba(137, 168, 148, 0.42) 72%,
-        rgba(137, 168, 148, 0) 96%
-      );
+    .glass-card-wide { max-width: 650px; }
+    .glass-card-wide::before {
+      -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+      mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
     }
 
-    .glass-card-wide { 
-      max-width: 660px; 
-      padding: 56px 42px;
+    /* Divisor fino y minimalista sin saturación */
+    .fine-divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--rose-pale), transparent);
+      margin: 12px auto 18px auto;
+      position: relative;
+    }
+    .fine-divider::after {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--rose-pale);
+      font-size: 11px;
+      background: transparent;
+      padding: 0 6px;
     }
 
-    /* Ramilletes florales sutiles dentro de las tarjetas */
-    .botanical-crest {
-      width: 240px;
-      height: 54px;
-      margin: 0 auto 10px auto;
-      display: block;
-    }
-
-    .botanical-footer {
-      width: 190px;
+    .rings-icon {
+      width: 150px;
       height: 36px;
-      margin: 14px auto 0 auto;
-      display: block;
-    }
-
-    .rings-line-art {
-      width: 220px;
-      height: 50px;
-      margin: 4px auto 10px auto;
+      margin: 6px auto 10px auto;
       display: block;
     }
 
     /* ==============================================================
-       TIPOGRAFÍA UNIFICADA (GREAT VIBES + POPPINS)
+       TIPOGRAFÍA UNIFICADA Y LEGIBLE (GREAT VIBES + POPPINS)
        ============================================================== */
+    h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0px 0px 5px rgba(0, 0, 0, 0.7);
+    }
+
     h1 { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 4.6rem; 
-      color: var(--charcoal-ink); 
+      font-size: 4.8rem; 
+      color: var(--rose-pale); 
       margin: 4px 0; 
       line-height: 1.08; 
       font-weight: 400; 
     }
     h2 { 
       font-family: 'Poppins', sans-serif; 
-      font-size: 1.48rem; 
-      color: var(--forest-green); 
+      font-size: 1.55rem; 
+      color: var(--rose-pale); 
       margin-top: 0; 
-      margin-bottom: 12px; 
-      font-weight: 600; 
+      margin-bottom: 14px; 
+      font-weight: 500; 
       letter-spacing: 2px;
       text-transform: uppercase;
     }
     h3 { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.35rem; 
-      color: var(--charcoal-ink); 
+      font-size: 1.4rem; 
+      color: var(--white-ivory); 
       margin: 0; 
       font-weight: 500; 
     } 
     p { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.02rem; 
+      font-size: 1.06rem; 
       line-height: 1.72; 
       margin: 10px 0; 
-      color: var(--charcoal-ink); 
-      font-weight: 400;
+      color: var(--white-ivory); 
+      font-weight: 300;
     }
 
     .cita-biblica {
       font-family: 'Poppins', sans-serif; 
       font-style: italic;
-      font-size: 1.08rem;
-      font-weight: 500;
-      color: var(--berry-wine);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--white-ivory);
       line-height: 1.5;
-      margin: 0 auto 8px auto;
+      margin: 0 auto 12px auto;
+      letter-spacing: 0.5px;
     }
 
-    /* --- CONTADOR --- */
+    /* --- CONTADOR LIMPIO ESTILO ORIGINAL --- */
     .countdown {
       display: flex;
       gap: 12px;
-      margin: 20px auto 16px auto;
+      margin: 20px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: radial-gradient(circle, rgba(247, 213, 207, 0.85) 0%, rgba(137, 168, 148, 0.25) 65%, transparent 90%);
-      border-radius: 50%;
-      padding: 10px 13px;
-      min-width: 66px;
+      background: rgba(22, 38, 28, 0.55);
+      border: 1px solid rgba(242, 198, 194, 0.4); 
+      border-radius: 12px;
+      padding: 10px 14px;
+      min-width: 68px;
       text-align: center;
-      position: relative;
-    }
-    .time-box:not(:last-child)::after {
-      content: '•';
-      position: absolute;
-      right: -10px;
-      top: 35%;
-      font-size: 1rem;
-      color: var(--mauve-rose);
     }
     .time-box span { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.7rem; 
+      font-size: 1.8rem; 
       font-weight: 600; 
-      color: var(--forest-green); 
+      color: var(--rose-pale); 
       display: block; 
-      line-height: 1.1; 
+      line-height: 1.15; 
     }
     .time-box p { 
-      font-size: 0.65rem; 
+      font-size: 0.7rem; 
       margin: 3px 0 0 0; 
       text-transform: uppercase; 
       letter-spacing: 2px; 
-      color: var(--berry-wine); 
-      font-weight: 600;
+      color: var(--white-ivory); 
+      font-weight: 500;
     }
 
-    /* --- FRASES LATERALES FLOTANTES SOBRE LAS FOTOS --- */
+    /* --- FRASES LATERALES FLOTANTES (SIN CAJA QUE TAPE LA FOTO) --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
       font-family: 'Poppins', sans-serif;
       font-style: italic;
-      font-size: 1.05rem; 
+      font-size: 1.15rem; 
       font-weight: 400;
-      color: var(--charcoal-ink); 
-      background: transparent;
-      padding: 34px 38px;
-      max-width: 340px;
-      line-height: 1.65;
+      color: var(--white-ivory); 
+      max-width: 320px;
+      line-height: 1.55;
       z-index: 15; 
       pointer-events: none;
-    }
-
-    .floating-text::before {
-      content: '';
-      position: absolute;
-      inset: -28px -38px;
-      background: radial-gradient(
-        ellipse at center, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(252, 230, 226, 0.82) 45%, 
-        rgba(235, 159, 150, 0.35) 70%, 
-        transparent 95%
-      );
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      -webkit-mask-image: radial-gradient(
-        ellipse at center, 
-        black 28%, 
-        rgba(0,0,0,0.65) 54%, 
-        transparent 94%
-      );
-      mask-image: radial-gradient(
-        ellipse at center, 
-        black 28%, 
-        rgba(0,0,0,0.65) 54%, 
-        transparent 94%
-      );
-      z-index: -1;
     }
     
     .floating-text.reveal { transform: translateY(calc(-50% + 30px)); }
@@ -330,7 +265,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin: 10px auto 0 auto;
+      margin: 12px auto 0 auto;
       width: 100%;
       max-width: 370px;
       position: relative;
@@ -341,7 +276,7 @@
       grid-template-columns: 82px 26px 34px 1fr;
       align-items: center;
       width: 100%;
-      padding: 7px 0;
+      padding: 7.5px 0;
       position: relative;
     }
 
@@ -352,8 +287,7 @@
       top: 50%;
       height: 100%;
       width: 1.5px;
-      background: linear-gradient(to bottom, var(--eucalyptus-mid), var(--mauve-rose));
-      opacity: 0.8;
+      background: rgba(242, 198, 194, 0.5);
       z-index: 1;
     }
 
@@ -364,7 +298,7 @@
     }
 
     .tl-pill {
-      background: linear-gradient(135deg, var(--mauve-rose) 0%, var(--berry-wine) 100%);
+      background: var(--rose-button);
       color: #fff;
       font-size: 0.72rem;
       font-weight: 500;
@@ -372,7 +306,7 @@
       border-radius: 20px;
       letter-spacing: 0.5px;
       white-space: nowrap;
-      box-shadow: 0 3px 10px rgba(107, 53, 62, 0.25);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     }
 
     .tl-node-col {
@@ -384,11 +318,11 @@
     }
 
     .tl-dot {
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background: var(--forest-green);
-      box-shadow: 0 0 0 3px #ffffff;
+      background: var(--eucalyptus);
+      border: 2px solid var(--rose-pale);
     }
 
     .tl-icon-col {
@@ -400,7 +334,8 @@
     .tl-icon-col svg {
       width: 20px;
       height: 20px;
-      stroke: var(--forest-green);
+      stroke: var(--rose-pale);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
     }
 
     .tl-text-col {
@@ -410,18 +345,18 @@
 
     .tl-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.96rem;
-      color: var(--charcoal-ink);
-      font-weight: 500;
+      font-size: 0.98rem;
+      color: var(--white-ivory);
+      font-weight: 400;
     }
 
     /* --- PALETA DE VESTIMENTA --- */
     .paleta-img {
       width: 100%;
-      max-width: 390px;
-      margin-top: 14px;
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.18);
+      max-width: 380px;
+      margin-top: 16px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
       cursor: pointer;
     }
 
@@ -431,46 +366,43 @@
       width: 100%;
       margin-top: 15px;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
 
-    .carousel-track { display: flex; padding: 15px 0; gap: 18px; }
+    .carousel-track { display: flex; padding: 15px 0; gap: 15px; }
 
     .carousel-track img { 
-      width: 245px !important; 
+      width: 240px !important; 
       height: 295px !important; 
       object-fit: cover !important; 
-      border-radius: 95px 95px 18px 18px;
+      border-radius: 12px;
       flex-shrink: 0;
-      box-shadow: 0 12px 28px rgba(35, 68, 46, 0.22), 0 0 0 4px #ffffff; 
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
       cursor: pointer;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: var(--forest-green); color: #ffffff; border: none;
-      border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem;
+      background: rgba(91, 126, 104, 0.9); color: #ffffff; border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50%; width: 46px; height: 46px; font-size: 1.3rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(35, 68, 46, 0.3);
-      transition: all 0.3s ease;
+      transition: background 0.3s ease;
     }
-    .carousel-btn:hover { background: var(--berry-wine); color: white; }
-    .carousel-btn.prev { left: 12px; }
-    .carousel-btn.next { right: 12px; }
+    .carousel-btn:hover { background: var(--rose-button); }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
 
     .qr-link {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 12px;
       transition: transform 0.3s ease; 
     }
     .qr-link:hover { transform: scale(1.04); }
     .qr-link img {
       width: 145px; 
       background: #ffffff; 
-      padding: 14px; 
-      border-radius: 22px;
-      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.16);
+      padding: 12px; 
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
     /* --- LIGHTBOX --- */
@@ -482,11 +414,9 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(25, 34, 28, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background-color: rgba(15, 24, 18, 0.95);
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.25s ease;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -495,19 +425,16 @@
     .modal-content {
       max-width: 90%;
       max-height: 85vh;
-      border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       object-fit: contain;
     }
-    .modal.show .modal-content { transform: scale(1); }
     .close-modal {
       position: absolute;
-      top: 25px;
-      right: 35px;
+      top: 20px;
+      right: 30px;
       color: #ffffff;
-      font-size: 38px;
+      font-size: 40px;
       font-weight: 300;
       cursor: pointer;
       z-index: 10000;
@@ -517,9 +444,9 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: var(--forest-green);
+      background: var(--eucalyptus);
       color: #ffffff;
-      border: 1.5px solid rgba(255,255,255,0.6);
+      border: none;
       border-radius: 50%;
       width: 48px;
       height: 48px;
@@ -534,120 +461,119 @@
     .modal-nav.next { right: 20px; }
 
     /* ==============================================================
-       FONDOS Y ENCUADRES ACOMODADOS CON LAS 10 FOTOS DE YADER Y ANGÉLICA
-       (Incluye soporte doble de nombre por si el sistema usa tilde NFC o NFD)
+       ENCUADRES EXACTOS PARA CADA FOTO DE YADER Y ANGÉLICA
+       (Acomodados donde están los rostros y las manos para que tengan sentido)
        ============================================================== */
     /* 1. Portada: Abrazados mirando hacia adelante junto al río */
     .hero { 
-      background-image: url('Sin ti\0301tulo-1601.1.jpg'), url('Sin título-1601.1.jpg'), url('Foto10.webp'); 
-      background-position: center 28% !important; 
+      background-image: url("Sin título-1601.1.jpg"); 
+      background-position: center 22% !important; 
     }
-    /* 2. Invitado (Tarjeta a la izquierda -> Novios a la derecha junto al árbol) */
+    /* 2. Invitado: De pie junto al tronco del árbol mirando el río */
     .seccion-pase { 
-      background-image: url('Sin ti\0301tulo-178.jpg'), url('Sin título-178.jpg'), url('Foto11.webp'); 
-      background-position: center 30% !important; 
+      background-image: url("Sin título-178.jpg"); 
+      background-position: center 22% !important; 
     }
-    /* 3. Ceremonia y Recepción (Tarjeta a la derecha -> Novios de perfil en el bosque) */
+    /* 3. Ceremonia y Recepción: Sentados mirándose de frente bajo los helechos */
     .seccion-lugar { 
-      background-image: url('Sin ti\0301tulo-162.jpg'), url('Sin título-162.jpg'), url('Foto1.webp'); 
+      background-image: url("Sin título-162.jpg"); 
       background-position: center 35% !important; 
     }
-    /* 4. Itinerario (Tarjeta a la izquierda -> Caminando bajo las palmas) */
+    /* 4. Itinerario: Bailando / dando vuelta en el sendero de piedra */
     .seccion-itinerario { 
-      background-image: url('Sin ti\0301tulo-166.jpg'), url('Sin título-166.jpg'), url('Foto5.webp'); 
-      background-position: center 35% !important; 
-    }
-    /* 5. Historia de amor / Carrusel (Fondo de manos tomadas con el anillo en bokeh) */
-    .seccion-nosotros { 
-      background-image: url('Sin ti\0301tulo-181.jpg'), url('Sin título-181.jpg'), url('Foto2.webp'); 
-      background-position: center 45% !important; 
-    }
-    /* 6. Código de vestimenta (Detalle del anillo en el abrazo) */
-    .seccion-vestimenta { 
-      background-image: url('Sin ti\0301tulo-161.jpg'), url('Sin título-161.jpg'), url('Foto13.webp'); 
-      background-position: center 45% !important; 
-    }
-    /* 7. Mesa de regalos (Mirándose de cerca con fondo oscuro de follaje) */
-    .seccion-regalos { 
-      background-image: url('Sin ti\0301tulo-171.jpg'), url('Sin título-171.jpg'), url('Foto3.webp'); 
+      background-image: url("Sin título-166.jpg"); 
       background-position: center 32% !important; 
     }
-    /* 8. Comparte tus fotos / QR (Mostrando el anillo entre helechos) */
-    .seccion-qr { 
-      background-image: url('Sin ti\0301tulo-164.jpg'), url('Sin título-164.jpg'), url('Foto4.webp'); 
-      background-position: center 38% !important; 
-    }
-    /* 9. Cierre final (Acariciando el rostro junto al río) */
-    .seccion-final { 
-      background-image: url('Sin ti\0301tulo-177.jpg'), url('Sin título-177.jpg'), url('Foto14.webp'); 
+    /* 5. Historia de amor (Carrusel): Mirándose de cerca con fondo verde oscuro */
+    .seccion-nosotros { 
+      background-image: url("Sin título-171.jpg"); 
       background-position: center 25% !important; 
     }
+    /* 6. Código de vestimenta: Manos entrelazadas mostrando el anillo con bokeh */
+    .seccion-vestimenta { 
+      background-image: url("Sin título-180.jpg"); 
+      background-position: center 55% !important; 
+    }
+    /* 7. Mesa de regalos: Tomados de la mano con frentes juntas */
+    .seccion-regalos { 
+      background-image: url("Sin título-181.jpg"); 
+      background-position: center 60% !important; 
+    }
+    /* 8. Comparte tus fotos (QR): Mostrando el anillo en primer plano */
+    .seccion-qr { 
+      background-image: url("Sin título-164.jpg"); 
+      background-position: center 42% !important; 
+    }
+    /* 9. Sección final: Acariciando la mejilla junto al río */
+    .seccion-final { 
+      background-image: url("Sin título-177.jpg"); 
+      background-position: center 20% !important; 
+    }
 
-    /* --- BOTONES EN VERDE BOSQUE Y VINO MALVA --- */
+    /* --- BOTONES EN VERDE EUCALIPTO Y ROSA PALO --- */
     .btn {
-      background: linear-gradient(135deg, var(--eucalyptus-mid) 0%, var(--forest-green) 100%); 
+      background: var(--eucalyptus); 
       color: #ffffff; 
-      padding: 14px 32px; 
-      border-radius: 50px;
+      padding: 15px 30px; 
+      border-radius: 30px;
       text-decoration: none; 
       font-weight: 500;
       display: inline-block; 
       margin-top: 16px;
       text-transform: uppercase; 
       font-size: 12px;
-      letter-spacing: 2px;
+      letter-spacing: 1.8px;
       font-family: 'Poppins', sans-serif;
-      border: 1.5px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 10px 24px rgba(35, 68, 46, 0.35); 
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); 
       cursor: pointer; 
-      transition: all 0.3s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(35, 68, 46, 0.45); }
-    .btn:active { transform: scale(0.97); }
+    .btn:hover { background: #496955; }
+    .btn:active { transform: scale(0.96); }
 
     .btn-decline {
-      background: linear-gradient(135deg, var(--mauve-rose) 0%, var(--berry-wine) 100%);
+      background: var(--rose-dark);
       color: #ffffff;
-      border: 1.5px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 8px 20px rgba(107, 53, 62, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    .btn-decline:hover {
-      box-shadow: 0 10px 24px rgba(107, 53, 62, 0.48);
-    }
+    .btn-decline:hover { background: #824449; }
 
+    /* Animaciones suaves y ligeras para evitar lag */
     .reveal { 
       opacity: 0; 
       transform: translateY(25px); 
-      transition: 0.9s ease-out; 
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
       position: relative; 
       z-index: 20; 
-      will-change: opacity, transform; 
     }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES (DEJA VER LAS FOTOS ARRIBA Y ABAJO)
+       AJUSTES PARA MÓVILES (COMO EN TU INVITACIÓN ORIGINAL)
        ============================================================== */
     @media (max-width: 600px) {
       section {
-        min-height: 105svh !important; 
-        padding-top: 85px;
-        padding-bottom: 85px;
+        min-height: 100svh !important; 
+        padding-top: 80px;
+        padding-bottom: 80px;
       }
       
       section:not(.hero) {
         justify-content: flex-end !important;
-        padding-top: 28vh !important; 
+        padding-top: 25vh !important; 
         padding-bottom: 10vh !important; 
       }
       
+      /* Degradado inferior suave para que las fotos se vean limpias arriba y el texto se lea abajo */
+      section:not(.hero) .overlay {
+        background: linear-gradient(to bottom, rgba(18,30,22,0.05) 0%, rgba(18,30,22,0.25) 45%, rgba(18,30,22,0.82) 95%) !important;
+      }
+      
       .glass-card {
-        padding: 44px 20px 40px 20px; 
+        padding: 38px 18px; 
         width: 100%;
         max-width: 96%;
-      }
-      .glass-card::before {
-        inset: -34px -26px;
       }
       
       .floating-text { 
@@ -656,28 +582,27 @@
         right: auto !important; 
         left: auto !important; 
         text-align: center !important; 
-        max-width: 95%; 
-        margin-top: 18px; 
+        max-width: 100%; 
+        margin-top: 20px; 
         margin-bottom: 0px;
-        font-size: 1rem;
-        padding: 20px 22px;
+        font-size: 1.05rem;
       }
       .floating-text.reveal { transform: translateY(20px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
       
       .seccion-pase, .seccion-lugar, .seccion-itinerario, .seccion-nosotros, .seccion-vestimenta, .seccion-regalos, .seccion-qr, .seccion-final { 
-        padding-left: 14px; padding-right: 14px; align-items: center !important; 
+        padding-left: 15px; padding-right: 15px; align-items: center !important; 
       }
       
-      h1 { font-size: 3.8rem; }
-      h2 { font-size: 1.35rem; margin-bottom: 10px; } 
-      h3 { font-size: 1.25rem; }
-      p { font-size: 0.96rem; line-height: 1.65; margin: 8px 0; }
+      h1 { font-size: 3.9rem; }
+      h2 { font-size: 1.38rem; margin-bottom: 12px; } 
+      h3 { font-size: 1.3rem; }
+      p { font-size: 0.98rem; line-height: 1.6; margin: 8px 0; }
       
       .time-box span { font-size: 1.55rem; }
       .time-box { padding: 8px 10px; min-width: 58px; }
       
-      .carousel-track img { width: 215px !important; height: 265px !important; } 
+      .carousel-track img { width: 215px !important; height: 270px !important; } 
       
       .tl-row { grid-template-columns: 76px 22px 30px 1fr; }
       .tl-row:not(:last-child)::after { left: 86.5px; }
@@ -689,16 +614,16 @@
       position: fixed;
       bottom: 22px;
       right: 22px;
-      background: var(--forest-green);
+      background: var(--eucalyptus);
       color: #ffffff;
-      border: 2px solid #ffffff;
+      border: 1.5px solid var(--rose-pale);
       border-radius: 50%;
       width: 48px;
       height: 48px;
       font-size: 18px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 6px 20px rgba(35, 68, 46, 0.35);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -707,67 +632,24 @@
     .music-btn.playing { animation: spin 5s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
     @media (max-width: 600px) {
-      .music-btn { bottom: 18px; right: 18px; width: 42px; height: 42px; font-size: 16px; }
+      .music-btn { bottom: 18px; right: 18px; width: 44px; height: 44px; font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- VIÑETAS FLORALES DELICADAS EN LAS TARJETAS (CON LOS TONOS DEL BOUQUET) -->
+  <!-- ICONO VECTORIAL LIGERO DE ANILLOS Y RAMAS DE EUCALIPTO -->
   <svg style="display: none;">
     <defs>
-      <g id="crest-royal">
-        <path d="M20,38 C65,38 82,18 120,18 C158,18 175,38 220,38" fill="none" stroke="#c98a88" stroke-width="1.35"/>
-        <path d="M88,24 C78,14 64,16 60,24 C66,30 78,30 88,24 Z" fill="#23442e" fill-opacity="0.85"/>
-        <path d="M152,24 C162,14 176,16 180,24 C174,30 162,30 152,24 Z" fill="#23442e" fill-opacity="0.85"/>
-        <circle cx="100" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
-        <circle cx="140" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
-        <circle cx="120" cy="18" r="9" fill="#c47d87"/>
-        <circle cx="120" cy="18" r="3" fill="#ffffff"/>
-      </g>
-
-      <g id="crest-rose">
-        <path d="M15,28 C55,12 85,38 120,26 C155,38 185,12 225,28" fill="none" stroke="#89a894" stroke-width="1.4"/>
-        <path d="M104,26 C92,14 76,16 70,25 C78,33 92,34 104,26 Z" fill="#23442e" fill-opacity="0.85"/>
-        <path d="M136,26 C148,14 164,16 170,25 C162,33 148,34 136,26 Z" fill="#23442e" fill-opacity="0.85"/>
-        <circle cx="120" cy="26" r="10.5" fill="#eb9f96" stroke="#c97267" stroke-width="1.1"/>
-        <path d="M114,24 C117,18 124,18 126,24 C127,29 120,32 116,29 C113,26 117,21 121,23" fill="none" stroke="#ffffff" stroke-width="1.1"/>
-      </g>
-
-      <g id="crest-olive-crossed">
-        <path d="M45,38 C85,36 125,22 165,12" fill="none" stroke="#23442e" stroke-width="1.4"/>
-        <path d="M195,38 C155,36 115,22 75,12" fill="none" stroke="#23442e" stroke-width="1.4"/>
-        <path d="M82,30 C72,22 78,14 88,18 C92,22 88,28 82,30 Z" fill="#89a894" fill-opacity="0.88" stroke="#5b7e68" stroke-width="0.9"/>
-        <path d="M158,30 C168,22 162,14 152,18 C148,22 152,28 158,30 Z" fill="#89a894" fill-opacity="0.88" stroke="#5b7e68" stroke-width="0.9"/>
-        <path d="M105,23 C96,14 102,8 111,12 C114,16 110,21 105,23 Z" fill="#eb9f96" fill-opacity="0.9" stroke="#c97267" stroke-width="0.9"/>
-        <path d="M135,23 C144,14 138,8 129,12 C126,16 130,21 135,23 Z" fill="#eb9f96" fill-opacity="0.9" stroke="#c97267" stroke-width="0.9"/>
-        <circle cx="120" cy="27" r="4" fill="#6b353e"/>
-      </g>
-
-      <g id="crest-silk-bow">
-        <path d="M20,30 C60,18 90,34 120,24 C150,34 180,18 220,30" fill="none" stroke="#89a894" stroke-width="1.35"/>
-        <path d="M120,24 C102,10 82,16 88,27 C94,35 110,30 120,24 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="1.1"/>
-        <path d="M120,24 C138,10 158,16 152,27 C146,35 130,30 120,24 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="1.1"/>
-        <circle cx="120" cy="24" r="3.5" fill="#23442e"/>
-      </g>
-
-      <g id="fine-rings">
-        <path d="M10,28 C42,12 68,36 92,26" fill="none" stroke="#c98a88" stroke-width="1.35" stroke-linecap="round"/>
-        <path d="M220,28 C188,12 162,36 138,26" fill="none" stroke="#c98a88" stroke-width="1.35" stroke-linecap="round"/>
-        <path d="M48,23 C42,15 51,12 57,19 C54,22 51,23 48,23 Z" fill="#23442e" opacity="0.85"/>
-        <path d="M68,25 C62,17 71,14 77,21 C74,24 71,25 68,25 Z" fill="#89a894" opacity="0.9"/>
-        <path d="M182,23 C188,15 179,12 173,19 C176,22 179,23 182,23 Z" fill="#23442e" opacity="0.85"/>
-        <path d="M162,25 C168,17 159,14 153,21 C156,24 159,25 162,25 Z" fill="#89a894" opacity="0.9"/>
-        <circle cx="108" cy="26" r="11.5" fill="none" stroke="#23442e" stroke-width="1.8"/>
-        <circle cx="122" cy="26" r="11.5" fill="none" stroke="#c47d87" stroke-width="1.8"/>
-      </g>
-
-      <g id="footer-flourish">
-        <path d="M25,16 C65,26 125,26 165,16" fill="none" stroke="#c98a88" stroke-width="1.2" opacity="0.9"/>
-        <path d="M65,18 C82,28 108,28 125,18" fill="none" stroke="#89a894" stroke-width="1.1" opacity="0.9"/>
-        <circle cx="95" cy="22" r="3" fill="#6b353e"/>
-        <circle cx="78" cy="20" r="2.5" fill="#eb9f96"/>
-        <circle cx="112" cy="20" r="2.5" fill="#eb9f96"/>
+      <g id="rings-minimal">
+        <path d="M12,18 Q42,10 68,18" fill="none" stroke="#89a894" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M138,18 Q108,10 82,18" fill="none" stroke="#89a894" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M35,15 C30,9 38,6 43,12 C40,15 37,15 35,15 Z" fill="#89a894"/>
+        <path d="M52,16 C47,10 55,7 60,13 C57,16 54,16 52,16 Z" fill="#89a894"/>
+        <path d="M115,15 C120,9 112,6 107,12 C110,15 113,15 115,15 Z" fill="#89a894"/>
+        <path d="M98,16 C103,10 95,7 90,13 C93,16 96,16 98,16 Z" fill="#89a894"/>
+        <circle cx="71" cy="18" r="8.5" fill="none" stroke="#f2c6c2" stroke-width="1.6"/>
+        <circle cx="81" cy="18" r="8.5" fill="none" stroke="#ffffff" stroke-width="1.5"/>
       </g>
     </defs>
   </svg>
@@ -782,17 +664,16 @@
   </button>
 
   <!-- 1. PORTADA -->
-  <section class="hero">
+  <section class="hero" data-bg="Sin título-1601.1.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal active">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
       <p class="cita-biblica">
         Nos elegimos hoy y siempre.
       </p>
       
       <h1>Yader &amp; Angélica</h1>
-      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
-      <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.92rem; text-transform: uppercase; color: var(--forest-green);">14 de marzo de 2027.</p>
+      <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
+      <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.95rem; text-transform: uppercase;">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="days">00</span><p>Días</p></div>
@@ -802,39 +683,36 @@
       </div>
 
       <button onclick="agendarFecha(event)" class="btn">Agendar Nuestra Fecha</button>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
   </section>
 
   <!-- 2. INVITADO -->
-  <section class="seccion-pase">
+  <section class="seccion-pase" data-bg="Sin título-178.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
+      <div class="fine-divider"></div>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 20px 0; font-size: 2.6rem; color: var(--charcoal-ink); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 22px 0; font-size: 2.6rem; color: var(--rose-pale); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
-      <p id="pases-invitado" style="font-size: 1.05rem; color: var(--berry-wine); font-weight: 600; margin-top: 16px; margin-bottom: 0; letter-spacing: 1.5px; text-transform: uppercase;"></p>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
+      <p id="pases-invitado" style="font-size: 1.1rem; color: var(--rose-pale); font-weight: 500; margin-top: 18px; margin-bottom: 0; letter-spacing: 1.5px; text-transform: uppercase;"></p>
     </div>
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
-  <section class="seccion-lugar">
+  <section class="seccion-lugar" data-bg="Sin título-162.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Ceremonia y recepción.</h2>
-      <p style="font-weight: 500;">Hora de inicio: 3:00pm.</p>
-      <p style="font-weight: 500;">Lugar: Los Cedros, Jiménez.</p>
+      <div class="fine-divider"></div>
+      <p>Hora de inicio: 3:00pm.</p>
+      <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 24px; padding-top: 16px;">
-        <svg class="botanical-footer" style="margin-top: 0; margin-bottom: 10px;" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
-        <p style="font-size: 0.96rem; margin-bottom: 16px; font-weight: 500;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
+      <div style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(242, 198, 194, 0.35);">
+        <p style="font-size: 0.98rem; margin-bottom: 16px;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
         <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
           <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn btn-decline" style="margin-top: 0;">No podré asistir</button>
@@ -844,12 +722,12 @@
   </section>
 
   <!-- 4. ITINERARIO -->
-  <section class="seccion-itinerario">
+  <section class="seccion-itinerario" data-bg="Sin título-166.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--berry-wine); font-weight: 500;">Boda de</p>
-      <div style="margin-top: 0; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.4rem; font-weight: 400; color: var(--charcoal-ink); line-height: 1.1;">Yader y Angélica</div>
-      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
+      <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
+      <div style="margin-top: 0; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.4rem; font-weight: 400; color: var(--rose-pale); line-height: 1.1;">Yader y Angélica</div>
+      <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
 
       <div class="timeline-container">
         <div class="tl-row">
@@ -951,93 +829,90 @@
           <div class="tl-text-col"><span class="tl-title">Fin del evento</span></div>
         </div>
       </div>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
   </section>
 
-  <!-- 5. FOTOS / CARRUSEL CON LAS FOTOS DE ELLOS -->
-  <section class="seccion-nosotros">
+  <!-- 5. FOTOS / CARRUSEL CON CARGA OPTIMIZADA -->
+  <section class="seccion-nosotros" data-bg="Sin título-171.jpg">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Un vistazo a nuestra historia de amor.</h2>
+      <div class="fine-divider"></div>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
-          <img src="Sin título-1601.1.jpg" data-alt-src="Sin ti&#769;tulo-1601.1.jpg" alt="1">
-          <img src="Sin título-171.jpg" data-alt-src="Sin ti&#769;tulo-171.jpg" alt="2">
-          <img src="Sin título-166.jpg" data-alt-src="Sin ti&#769;tulo-166.jpg" alt="3">
-          <img src="Sin título-164.jpg" data-alt-src="Sin ti&#769;tulo-164.jpg" alt="4">
-          <img src="Sin título-162.jpg" data-alt-src="Sin ti&#769;tulo-162.jpg" alt="5">
-          <img src="Sin título-180.jpg" data-alt-src="Sin ti&#769;tulo-180.jpg" alt="6">
-          <img src="Sin título-178.jpg" data-alt-src="Sin ti&#769;tulo-178.jpg" alt="7">
-          <img src="Sin título-177.jpg" data-alt-src="Sin ti&#769;tulo-177.jpg" alt="8">
+          <img src="Sin título-1601.1.jpg" data-alt-src="Sin ti&#769;tulo-1601.1.jpg" loading="lazy" decoding="async" alt="1">
+          <img src="Sin título-171.jpg" data-alt-src="Sin ti&#769;tulo-171.jpg" loading="lazy" decoding="async" alt="2">
+          <img src="Sin título-166.jpg" data-alt-src="Sin ti&#769;tulo-166.jpg" loading="lazy" decoding="async" alt="3">
+          <img src="Sin título-164.jpg" data-alt-src="Sin ti&#769;tulo-164.jpg" loading="lazy" decoding="async" alt="4">
+          <img src="Sin título-162.jpg" data-alt-src="Sin ti&#769;tulo-162.jpg" loading="lazy" decoding="async" alt="5">
+          <img src="Sin título-161.jpg" data-alt-src="Sin ti&#769;tulo-161.jpg" loading="lazy" decoding="async" alt="6">
+          <img src="Sin título-181.jpg" data-alt-src="Sin ti&#769;tulo-181.jpg" loading="lazy" decoding="async" alt="7">
+          <img src="Sin título-180.jpg" data-alt-src="Sin ti&#769;tulo-180.jpg" loading="lazy" decoding="async" alt="8">
+          <img src="Sin título-178.jpg" data-alt-src="Sin ti&#769;tulo-178.jpg" loading="lazy" decoding="async" alt="9">
+          <img src="Sin título-177.jpg" data-alt-src="Sin ti&#769;tulo-177.jpg" loading="lazy" decoding="async" alt="10">
         </div>
         <button class="carousel-btn next" id="nextBtn">&#10095;</button>
       </div>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"El amor se compone de una sola alma, que habita en dos cuerpos." - Aristóteles.</div>
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
-  <section class="seccion-vestimenta">
+  <section class="seccion-vestimenta" data-bg="Sin título-180.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
       <h2>Código de vestimenta:</h2>
-      <p style="letter-spacing: 1.5px; font-weight: 600; color: var(--berry-wine); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
+      <div class="fine-divider"></div>
+      <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=14" alt="Paleta de Colores" class="paleta-img">
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
+      <img src="paleta.png?v=15" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
-  <section class="seccion-regalos">
+  <section class="seccion-regalos" data-bg="Sin título-181.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-silk-bow"/></svg>
       <h2>Mesa de regalos</h2>
+      <div class="fine-divider"></div>
       <p>Contar con su compañía en nuestro día especial, será nuestro mejor regalo.</p>
       <p>Sin embargo, agradecemos que las muestras de cariño que nos quieran entregar, sean en efectivo, esto nos facilitará el inicio de nuestro viaje juntos.</p>
       <p>En la recepción encontrarás sobres y un cofre donde podrás depositarlos.</p>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
-  <section class="seccion-qr">
+  <section class="seccion-qr" data-bg="Sin título-164.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Comparte tus fotos</h2>
+      <div class="fine-divider"></div>
       <p>Escanea este código QR o toca el botón para subir todas las fotos y videos que tomes durante la celebración.</p>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="qr-link">
-        <img src="QRNUEVO.png" alt="QR Photos">
+        <img src="QRNUEVO.png" loading="lazy" alt="QR Photos">
       </a>
       <br>
       <a href="https://cali0998.github.io/BodaAngelica/index.html" target="_blank" class="btn">Subir Fotos Directamente</a>
-      <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"La fotografía extrae un instante del tiempo y altera la vida al mantenerla inmóvil." - Dorothea Lange</div>
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
-  <section class="seccion-final">
+  <section class="seccion-final" data-bg="Sin título-177.jpg">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
-      <p style="font-size: 1.08rem; margin-bottom: 14px; color: var(--charcoal-ink); font-weight: 400;">Deseamos que puedas acompañarnos.</p>
-      <p style="font-size: 0.95rem; color: var(--forest-green); margin-top: 8px; margin-bottom: 6px; font-weight: 500;">
+      <p style="font-size: 1.15rem; margin-bottom: 14px;">Deseamos que puedas acompañarnos.</p>
+      <div class="fine-divider"></div>
+      <p style="font-size: 0.98rem; margin-top: 8px; margin-bottom: 6px;">
         Con todo nuestro amor,
       </p>
-      <div style="font-family: 'Great Vibes', cursive; font-size: 2.75rem; color: var(--charcoal-ink); line-height: 1.25; margin: 6px 0;">
+      <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--rose-pale); line-height: 1.25; margin: 6px 0;">
         Yader Betanco Valle<br>
-        <span style="color: var(--mauve-rose); font-size: 2.2rem;">&amp;</span><br>
+        &amp;<br>
         Angélica Calderón Quirós.
       </div>
-      <svg class="rings-line-art" viewBox="0 0 230 52"><use href="#fine-rings"/></svg>
+      <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
     </div>
   </section>
 
@@ -1049,7 +924,16 @@
   </div>
 
   <script>
-    // Respaldo automático de codificación de tilde en imágenes del carrusel
+    // Detector ligero para asegurar que las fotos de fondo carguen sin importar cómo guardó GitHub la tilde
+    document.querySelectorAll('section[data-bg]').forEach(sec => {
+      const fileNFC = sec.getAttribute('data-bg');
+      const fileNFD = fileNFC.normalize('NFD');
+      const testImg = new Image();
+      testImg.onload = () => { sec.style.backgroundImage = `url("${fileNFC}")`; };
+      testImg.onerror = () => { sec.style.backgroundImage = `url("${fileNFD}")`; };
+      testImg.src = fileNFC;
+    });
+
     document.querySelectorAll('#carouselTrack img').forEach(img => {
       img.addEventListener('error', function() {
         const altSrc = this.getAttribute('data-alt-src');
@@ -1090,13 +974,13 @@
                 
                 if(data[0].estado && data[0].estado.toLowerCase().includes('confirmado')) {
                     btnConfirmar.innerText = "Asistencia Confirmada";
-                    btnConfirmar.style.background = "#23442e";
+                    btnConfirmar.style.background = "#496955";
                     btnConfirmar.style.color = "#fff";
                     btnConfirmar.style.pointerEvents = "none";
                     btnDeclinar.style.display = "none"; 
                 } else if (data[0].estado && data[0].estado.toLowerCase().includes('declinado')) {
                     btnDeclinar.innerText = "Asistencia Declinada";
-                    btnDeclinar.style.background = "#6b353e"; 
+                    btnDeclinar.style.background = "#7a5256"; 
                     btnDeclinar.style.color = "#fff";
                     btnDeclinar.style.pointerEvents = "none";
                     btnConfirmar.style.display = "none"; 
@@ -1137,7 +1021,7 @@
 
             if(response.ok) {
                 btnConfirmar.innerText = "Asistencia Confirmada";
-                btnConfirmar.style.background = "#23442e"; 
+                btnConfirmar.style.background = "#496955"; 
                 btnConfirmar.style.color = "#fff";
                 btnConfirmar.style.opacity = "1";
                 btnDeclinar.style.display = "none"; 
@@ -1183,7 +1067,7 @@
 
             if(response.ok) {
                 btnDeclinar.innerText = "Asistencia Declinada";
-                btnDeclinar.style.background = "#6b353e"; 
+                btnDeclinar.style.background = "#7a5256"; 
                 btnDeclinar.style.color = "#fff";
                 btnDeclinar.style.opacity = "1";
                 btnConfirmar.style.display = "none"; 
@@ -1232,7 +1116,7 @@
       const distance = countDownDate - now;
       if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countdown").innerHTML = "<p style='font-size:1.3rem; color:var(--forest-green); font-weight:500;'>Llegó el gran día</p>";
+        document.getElementById("countdown").innerHTML = "<p style='font-size:1.3rem; color:var(--rose-pale); font-weight:500;'>Llegó el gran día</p>";
         return;
       }
       document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
@@ -1254,7 +1138,7 @@
     let currentIndex = totalImages; 
     let isTransitioning = false;
     let autoPlayTimer; 
-    function getSlideWidth() { return track.children[0].offsetWidth + 18; }
+    function getSlideWidth() { return track.children[0].offsetWidth + 15; }
     function updateCarousel(animate = true) {
         track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
         track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
@@ -1341,7 +1225,7 @@
       }
     });
 
-    // --- CONTROL DE MÚSICA BLINDADO CONTRA DOBLE CLIC Y NOMBRES DE ARCHIVO ---
+    // --- CONTROL DE MÚSICA BLINDADO ---
     const bgMusic = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-btn');
 
