@@ -7,19 +7,17 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://wsrv.nl" crossorigin>
-  <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes (Cursiva para nombres) y Poppins (Limpia para todo el resto) -->
+  <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes y Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* --- PALETA DE LA DECORACIÓN: VERDE EUCALIPTO, ROSA PALO Y BLANCO MARFIL --- */
       --white-ivory: #fdfbf9;
-      --rose-pale: #f2c6c2;          /* Rosa palo luminoso para títulos sobre foto */
-      --rose-button: #c47d82;        /* Rosa palo definido para botones y acentos */
-      --rose-dark: #9e585e;          /* Rosa profundo para botón de declinar */
-      --eucalyptus: #5b7e68;         /* Verde eucalipto */
-      --eucalyptus-dark: #1b3022;    /* Verde bosque profundo para contraste limpio */
+      --rose-pale: #f2c6c2;
+      --rose-button: #c47d82;
+      --rose-dark: #9e585e;
+      --eucalyptus: #5b7e68;
+      --eucalyptus-dark: #1b3022;
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -36,7 +34,7 @@
     }
 
     /* ==============================================================
-       ESTRUCTURA ORIGINAL DE UNIÓN INFINITA (SEAMLESS Y SIN LAG)
+       SECCIONES OPTIMIZADAS CON ACELERACIÓN GPU (CERO LAG AL BAJAR)
        ============================================================== */
     section { 
       min-height: 100vh; 
@@ -44,17 +42,16 @@
       flex-direction: column; 
       position: relative;
       padding: 100px 20px;
-      
+      background-color: #142218;
       background-size: cover !important; 
       background-repeat: no-repeat !important;
-      
       margin-top: -21vh; 
-      
       -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
       mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
 
-    /* --- 1. PORTADA CENTRADA --- */
     .hero { 
       margin-top: 0; 
       z-index: 10; 
@@ -92,7 +89,7 @@
     }
 
     /* ==============================================================
-       TARJETA CON DIFUMINADO SUAVE Y LIGERO (CERO LAG)
+       TARJETA DIFUMINADA ULTRALIGERA
        ============================================================== */
     .glass-card {
       background: transparent; 
@@ -104,26 +101,18 @@
       position: relative; 
       z-index: 20; 
       text-align: center;
-      backdrop-filter: none !important; 
-      -webkit-backdrop-filter: none !important;
     }
 
     .glass-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle, rgba(22, 38, 28, 0.76) 0%, rgba(22, 38, 28, 0.62) 60%, transparent 100%); 
-      -webkit-mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
-      mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(22, 38, 28, 0.84) 0%, rgba(22, 38, 28, 0.65) 48%, rgba(22, 38, 28, 0) 76%); 
       z-index: -1; 
       pointer-events: none;
     }
 
     .glass-card-wide { max-width: 650px; }
-    .glass-card-wide::before {
-      -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
-      mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
-    }
 
     .fine-divider {
       width: 120px;
@@ -140,7 +129,6 @@
       transform: translate(-50%, -50%);
       color: var(--rose-pale);
       font-size: 11px;
-      background: transparent;
       padding: 0 6px;
     }
 
@@ -152,7 +140,7 @@
     }
 
     /* ==============================================================
-       TIPOGRAFÍA UNIFICADA Y LEGIBLE (GREAT VIBES + POPPINS)
+       TIPOGRAFÍA UNIFICADA (GREAT VIBES + POPPINS)
        ============================================================== */
     h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0px 0px 5px rgba(0, 0, 0, 0.7);
@@ -203,7 +191,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* --- CONTADOR LIMPIO --- */
+    /* --- CONTADOR --- */
     .countdown {
       display: flex;
       gap: 12px;
@@ -236,7 +224,7 @@
       font-weight: 500;
     }
 
-    /* --- FRASES LATERALES FLOTANTES --- */
+    /* --- FRASES LATERALES --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
@@ -257,7 +245,7 @@
     .seccion-qr .floating-text { right: 8%; text-align: right; }
     .seccion-nosotros .floating-text { left: 8%; text-align: left; }
 
-    /* --- DISEÑO DE ITINERARIO --- */
+    /* --- ITINERARIO --- */
     .timeline-container {
       display: flex;
       flex-direction: column;
@@ -357,7 +345,9 @@
       cursor: pointer;
     }
 
-    /* --- CARRETE INFINITO CON LAS 10 FOTOS --- */
+    /* ==============================================================
+       CARRETE DE FOTOS FLUIDO Y ESTABLE (SIN SALTOS NI FALLOS)
+       ============================================================== */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -365,7 +355,12 @@
       overflow: hidden;
     }
 
-    .carousel-track { display: flex; padding: 15px 0; gap: 15px; }
+    .carousel-track { 
+      display: flex; 
+      padding: 15px 0; 
+      gap: 15px; 
+      will-change: transform;
+    }
 
     .carousel-track img { 
       width: 240px !important; 
@@ -375,15 +370,17 @@
       flex-shrink: 0;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
       cursor: pointer;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(91, 126, 104, 0.9); color: #ffffff; border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(91, 126, 104, 0.92); color: #ffffff; border: 1px solid rgba(255,255,255,0.45);
       border-radius: 50%; width: 46px; height: 46px; font-size: 1.3rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      transition: background 0.3s ease;
+      transition: background 0.25s ease;
     }
     .carousel-btn:hover { background: var(--rose-button); }
     .carousel-btn.prev { left: 8px; }
@@ -403,7 +400,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
-    /* --- LIGHTBOX / MODAL CORREGIDO --- */
+    /* --- VISOR MODAL CORREGIDO --- */
     .modal {
       display: none;
       position: fixed;
@@ -458,7 +455,6 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: background 0.2s ease, transform 0.2s ease;
     }
     .modal-nav:hover { background: var(--rose-button); }
     .modal-nav:active { transform: translateY(-50%) scale(0.92); }
@@ -466,7 +462,7 @@
     .modal-nav.next { right: 18px; }
 
     /* ==============================================================
-       ENCUADRES EXACTOS PARA CADA FOTO DE YADER Y ANGÉLICA
+       ENCUADRES EXACTOS DE CADA SECCIÓN
        ============================================================== */
     .hero { background-position: center 22% !important; }
     .seccion-pase { background-position: center 22% !important; }
@@ -510,7 +506,7 @@
     .reveal { 
       opacity: 0; 
       transform: translateY(25px); 
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out; 
       position: relative; 
       z-index: 20; 
     }
@@ -608,7 +604,6 @@
 </head>
 <body>
 
-  <!-- ICONO VECTORIAL LIGERO DE ANILLOS Y RAMAS DE EUCALIPTO -->
   <svg style="display: none;">
     <defs>
       <g id="rings-minimal">
@@ -624,7 +619,6 @@
     </defs>
   </svg>
 
-  <!-- REPRODUCTOR CON PRELOAD="NONE" PARA NO FRENAR LA CARGA DE LAS IMÁGENES -->
   <audio id="bg-music" loop preload="none">
     <source src="musica.mp3" type="audio/mpeg">
     <source src="musica.mp3.mp3" type="audio/mpeg">
@@ -634,7 +628,7 @@
   </button>
 
   <!-- 1. PORTADA -->
-  <section class="hero" data-bg="Sin título-1601.1.jpg">
+  <section class="hero" data-bg="1601.1">
     <div class="overlay"></div>
     <div class="glass-card reveal active">
       <p class="cita-biblica">
@@ -657,7 +651,7 @@
   </section>
 
   <!-- 2. INVITADO -->
-  <section class="seccion-pase" data-bg="Sin título-178.jpg">
+  <section class="seccion-pase" data-bg="178">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <div class="fine-divider"></div>
@@ -672,7 +666,7 @@
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
-  <section class="seccion-lugar" data-bg="Sin título-162.jpg">
+  <section class="seccion-lugar" data-bg="162">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Ceremonia y recepción.</h2>
@@ -692,7 +686,7 @@
   </section>
 
   <!-- 4. ITINERARIO -->
-  <section class="seccion-itinerario" data-bg="Sin título-166.jpg">
+  <section class="seccion-itinerario" data-bg="166">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
@@ -802,26 +796,15 @@
     </div>
   </section>
 
-  <!-- 5. FOTOS / CARRUSEL CON LAS 10 FOTOS DE ELLOS Y MINIATURAS WEBP -->
-  <section class="seccion-nosotros" data-bg="Sin título-171.jpg">
+  <!-- 5. FOTOS / CARRUSEL CON LAS 10 FOTOS DE YADER Y ANGÉLICA -->
+  <section class="seccion-nosotros" data-bg="171">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="fine-divider"></div>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">&#10094;</button>
-        <div class="carousel-track" id="carouselTrack">
-          <img data-file="Sin título-1601.1.jpg" data-idx="0" loading="lazy" decoding="async" alt="Foto 1">
-          <img data-file="Sin título-171.jpg" data-idx="1" loading="lazy" decoding="async" alt="Foto 2">
-          <img data-file="Sin título-166.jpg" data-idx="2" loading="lazy" decoding="async" alt="Foto 3">
-          <img data-file="Sin título-164.jpg" data-idx="3" loading="lazy" decoding="async" alt="Foto 4">
-          <img data-file="Sin título-162.jpg" data-idx="4" loading="lazy" decoding="async" alt="Foto 5">
-          <img data-file="Sin título-161.jpg" data-idx="5" loading="lazy" decoding="async" alt="Foto 6">
-          <img data-file="Sin título-181.jpg" data-idx="6" loading="lazy" decoding="async" alt="Foto 7">
-          <img data-file="Sin título-180.jpg" data-idx="7" loading="lazy" decoding="async" alt="Foto 8">
-          <img data-file="Sin título-178.jpg" data-idx="8" loading="lazy" decoding="async" alt="Foto 9">
-          <img data-file="Sin título-177.jpg" data-idx="9" loading="lazy" decoding="async" alt="Foto 10">
-        </div>
+        <div class="carousel-track" id="carouselTrack"></div>
         <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">&#10095;</button>
       </div>
     </div>
@@ -829,19 +812,19 @@
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
-  <section class="seccion-vestimenta" data-bg="Sin título-180.jpg">
+  <section class="seccion-vestimenta" data-bg="180">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Código de vestimenta:</h2>
       <div class="fine-divider"></div>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=16" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=17" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
-  <section class="seccion-regalos" data-bg="Sin título-181.jpg">
+  <section class="seccion-regalos" data-bg="181">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Mesa de regalos</h2>
@@ -853,7 +836,7 @@
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
-  <section class="seccion-qr" data-bg="Sin título-164.jpg">
+  <section class="seccion-qr" data-bg="164">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <h2>Comparte tus fotos</h2>
@@ -869,7 +852,7 @@
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
-  <section class="seccion-final" data-bg="Sin título-177.jpg">
+  <section class="seccion-final" data-bg="177">
     <div class="overlay"></div>
     <div class="glass-card reveal">
       <p style="font-size: 1.15rem; margin-bottom: 14px;">Deseamos que puedas acompañarnos.</p>
@@ -895,44 +878,72 @@
 
   <script>
     // ==============================================================
-    // 1. OPTIMIZADOR AUTOMÁTICO DE IMÁGENES AL VUELO (WebP + Lazy Load)
+    // 1. RESOLUTOR INTELIGENTE DE FOTOS CON CACHÉ EN MEMORIA
+    //    Encuentra la imagen exacta en tu GitHub (NFD, NFC o WebP) una sola vez
     // ==============================================================
-    const REPO_BASE = 'https://cali0998.github.io/BodaAngelica/';
+    const PHOTO_IDS = ['1601.1', '171', '166', '164', '162', '161', '181', '180', '178', '177'];
+    const resolvedUrlCache = {};
+    const pendingResolvers = {};
 
-    function getOptimizedUrl(filename, width, quality = 78) {
-      // Usa wsrv.nl para comprimir las fotos de GitHub a WebP ligero automáticamente
-      const rawUrl = REPO_BASE + encodeURIComponent(filename);
-      return `https://wsrv.nl/?url=${encodeURIComponent(rawUrl)}&w=${width}&q=${quality}&output=webp`;
+    function getCandidateUrls(id) {
+      // Orden de prioridad:
+      // 1. Formato NFD exacto de tus fotos ("Sin ti\u0301tulo-...")
+      // 2. Formato NFC estándar ("Sin título-...")
+      // 3. Versión .webp por si luego las subes optimizadas
+      const nfdJpg = `Sin ti\u0301tulo-${id}.jpg`;
+      const nfcJpg = `Sin t\u00edtulo-${id}.jpg`;
+      const nfdWebp = `Sin ti\u0301tulo-${id}.webp`;
+      const nfcWebp = `Sin t\u00edtulo-${id}.webp`;
+      return [
+        encodeURI(nfdJpg),
+        encodeURI(nfcJpg),
+        nfdJpg,
+        nfcJpg,
+        encodeURI(nfdWebp),
+        encodeURI(nfcWebp)
+      ];
     }
 
+    function resolvePhotoUrl(id) {
+      if (resolvedUrlCache[id]) return Promise.resolve(resolvedUrlCache[id]);
+      if (pendingResolvers[id]) return pendingResolvers[id];
+
+      const candidates = getCandidateUrls(id);
+      pendingResolvers[id] = new Promise((resolve) => {
+        let i = 0;
+        function tryNext() {
+          if (i >= candidates.length) {
+            const fallback = candidates[0];
+            resolvedUrlCache[id] = fallback;
+            resolve(fallback);
+            return;
+          }
+          const testUrl = candidates[i++];
+          const tester = new Image();
+          tester.decoding = 'async';
+          tester.onload = () => {
+            resolvedUrlCache[id] = testUrl;
+            resolve(testUrl);
+          };
+          tester.onerror = tryNext;
+          tester.src = testUrl;
+        }
+        tryNext();
+      });
+
+      return pendingResolvers[id];
+    }
+
+    // Cargar la portada de inmediato y las demás secciones progresivamente al bajar
     function loadSectionBg(sec) {
       if (sec.dataset.bgLoaded) return;
       sec.dataset.bgLoaded = "true";
-      const fileNFC = sec.getAttribute('data-bg');
-      const fileNFD = fileNFC.normalize('NFD');
-      const targetWidth = window.innerWidth <= 600 ? 850 : 1350;
-
-      // Intenta primero la versión WebP comprimida; si falla, usa el archivo directo NFC o NFD
-      const optNFC = getOptimizedUrl(fileNFC, targetWidth, 78);
-      const optNFD = getOptimizedUrl(fileNFD, targetWidth, 78);
-
-      const img = new Image();
-      img.onload = () => { sec.style.backgroundImage = `url("${optNFC}")`; };
-      img.onerror = () => {
-        const img2 = new Image();
-        img2.onload = () => { sec.style.backgroundImage = `url("${optNFD}")`; };
-        img2.onerror = () => {
-          const img3 = new Image();
-          img3.onload = () => { sec.style.backgroundImage = `url("${fileNFC}")`; };
-          img3.onerror = () => { sec.style.backgroundImage = `url("${fileNFD}")`; };
-          img3.src = fileNFC;
-        };
-        img2.src = optNFD;
-      };
-      img.src = optNFC;
+      const id = sec.getAttribute('data-bg');
+      resolvePhotoUrl(id).then(url => {
+        sec.style.backgroundImage = `url("${url}")`;
+      });
     }
 
-    // Cargar la portada de inmediato y las demás secciones progresivamente antes de llegar a ellas
     const heroSection = document.querySelector('.hero');
     if (heroSection) loadSectionBg(heroSection);
 
@@ -943,101 +954,119 @@
           bgObserver.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '600px 0px' });
+    }, { rootMargin: '350px 0px' });
 
     document.querySelectorAll('section[data-bg]:not(.hero)').forEach(sec => bgObserver.observe(sec));
 
     // ==============================================================
-    // 2. CARRUSEL CON LAS 10 FOTOS + VISOR MODAL CON NAVEGACIÓN FIJA
+    // 2. CARRUSEL DE LAS 10 FOTOS + VISOR MODAL FIJO Y SIN FALLOS
     // ==============================================================
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const originalImages = Array.from(track.querySelectorAll('img'));
-    const totalImages = originalImages.length;
+    const totalImages = PHOTO_IDS.length;
 
-    // Lista de las 10 fotos para el modal a pantalla completa
-    const galleryFiles = originalImages.map(img => img.getAttribute('data-file'));
-
-    function attachSmartImageSrc(imgEl, filename, thumbWidth) {
-      const fileNFC = filename;
-      const fileNFD = filename.normalize('NFD');
-      const optNFC = getOptimizedUrl(fileNFC, thumbWidth, 75);
-      const optNFD = getOptimizedUrl(fileNFD, thumbWidth, 75);
-
-      imgEl.src = optNFC;
-      let step = 0;
-      imgEl.onerror = function() {
-        step++;
-        if (step === 1) this.src = optNFD;
-        else if (step === 2) this.src = fileNFC;
-        else if (step === 3) this.src = fileNFD;
-        else this.onerror = null;
-      };
+    function createSlideImg(photoId, index) {
+      const img = document.createElement('img');
+      img.setAttribute('data-idx', String(index));
+      img.setAttribute('data-photo-id', photoId);
+      img.alt = `Foto ${index + 1}`;
+      img.decoding = 'async';
+      // Pone la ruta NFD directa de inmediato y la confirma con el resolutor
+      img.src = encodeURI(`Sin ti\u0301tulo-${photoId}.jpg`);
+      resolvePhotoUrl(photoId).then(validUrl => {
+        if (img.src !== validUrl) img.src = validUrl;
+      });
+      return img;
     }
 
-    // Asignar miniaturas ligeras (420px WebP) a las 10 imágenes originales
-    originalImages.forEach(img => {
-      attachSmartImageSrc(img, img.getAttribute('data-file'), 420);
-    });
-
-    // Clonar para efecto infinito conservando el data-idx (0 a 9) para el modal
-    originalImages.forEach(img => {
-      const clone = img.cloneNode(true);
-      attachSmartImageSrc(clone, clone.getAttribute('data-file'), 420);
-      track.appendChild(clone);
-    });
+    // Construir pista infinita: [Clones finales] + [10 Fotos Originales] + [Clones iniciales]
+    for (let i = 0; i < totalImages; i++) {
+      track.appendChild(createSlideImg(PHOTO_IDS[i], i));
+    }
+    for (let i = 0; i < totalImages; i++) {
+      track.appendChild(createSlideImg(PHOTO_IDS[i], i));
+    }
     for (let i = totalImages - 1; i >= 0; i--) {
-      const clone = originalImages[i].cloneNode(true);
-      attachSmartImageSrc(clone, clone.getAttribute('data-file'), 420);
-      track.insertBefore(clone, track.firstChild);
+      track.insertBefore(createSlideImg(PHOTO_IDS[i], i), track.firstChild);
     }
 
-    let currentIndex = totalImages; 
+    let currentIndex = totalImages;
     let isTransitioning = false;
-    let autoPlayTimer; 
+    let autoPlayTimer;
 
-    function getSlideWidth() { return track.children[0].offsetWidth + 15; }
-    function updateCarousel(animate = true) {
-      track.style.transition = animate ? 'transform 0.4s ease-in-out' : 'none';
-      track.style.transform = `translateX(-${currentIndex * getSlideWidth()}px)`;
+    function getSlideWidth() {
+      const firstSlide = track.children[0];
+      return (firstSlide ? firstSlide.offsetWidth : 240) + 15;
     }
-    function startAutoPlay() { autoPlayTimer = setInterval(() => { nextBtn.click(); }, 3000); }
-    function resetAutoPlay() { clearInterval(autoPlayTimer); startAutoPlay(); }
 
-    window.addEventListener('load', () => { updateCarousel(false); startAutoPlay(); });
-    window.addEventListener('resize', () => updateCarousel(false));
+    function updateCarousel(animate = true) {
+      track.style.transition = animate ? 'transform 0.4s ease-out' : 'none';
+      track.style.transform = `translate3d(-${currentIndex * getSlideWidth()}px, 0, 0)`;
+    }
 
-    nextBtn.addEventListener('click', () => {
+    function nextSlide() {
       if (isTransitioning) return;
       isTransitioning = true;
       currentIndex++;
       updateCarousel(true);
-      resetAutoPlay();
-    });
-    prevBtn.addEventListener('click', () => {
+      // Desbloqueo de seguridad por si la pestaña estaba inactiva y transitionend no dispara
+      setTimeout(() => {
+        if (isTransitioning) {
+          isTransitioning = false;
+          checkInfiniteLoop();
+        }
+      }, 450);
+    }
+
+    function prevSlide() {
       if (isTransitioning) return;
       isTransitioning = true;
       currentIndex--;
       updateCarousel(true);
-      resetAutoPlay();
-    });
+      setTimeout(() => {
+        if (isTransitioning) {
+          isTransitioning = false;
+          checkInfiniteLoop();
+        }
+      }, 450);
+    }
+
+    function checkInfiniteLoop() {
+      if (currentIndex >= totalImages * 2) {
+        currentIndex = totalImages;
+        updateCarousel(false);
+      } else if (currentIndex < totalImages) {
+        currentIndex = (totalImages * 2) - 1;
+        updateCarousel(false);
+      }
+    }
+
+    function startAutoPlay() {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(nextSlide, 3200);
+    }
+
+    function resetAutoPlay() {
+      clearInterval(autoPlayTimer);
+      startAutoPlay();
+    }
+
+    nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+    prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
 
     track.addEventListener('transitionend', () => {
       isTransitioning = false;
-      if (currentIndex >= totalImages * 2) {
-        track.style.transition = 'none';
-        currentIndex = totalImages;
-        track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`;
-      }
-      if (currentIndex <= totalImages - 1) {
-        track.style.transition = 'none';
-        currentIndex = (totalImages * 2) - 1;
-        track.style.transform = `translateX(-${getSlideWidth() * currentIndex}px)`;
-      }
+      checkInfiniteLoop();
     });
 
-    // --- VISOR MODAL CORREGIDO CON ÍNDICE DIRECTO (0 a 9) ---
+    window.addEventListener('DOMContentLoaded', () => {
+      updateCarousel(false);
+      startAutoPlay();
+    });
+    window.addEventListener('resize', () => updateCarousel(false));
+
+    // --- VISOR A PANTALLA COMPLETA CON FLECHAS FUNCIONALES ---
     const modal = document.getElementById('imageModal');
     const expandedImg = document.getElementById('expandedImg');
     const closeModalBtn = document.getElementById('closeModal');
@@ -1046,13 +1075,20 @@
     let currentModalGalleryIndex = -1;
 
     function showGalleryPhotoByIndex(index) {
-      currentModalGalleryIndex = (index + galleryFiles.length) % galleryFiles.length;
-      const filename = galleryFiles[currentModalGalleryIndex];
-      // Carga la versión en alta resolución optimizada (1200px WebP) con respaldo automático
-      attachSmartImageSrc(expandedImg, filename, 1200);
+      currentModalGalleryIndex = (index + totalImages) % totalImages;
+      const photoId = PHOTO_IDS[currentModalGalleryIndex];
+      if (resolvedUrlCache[photoId]) {
+        expandedImg.src = resolvedUrlCache[photoId];
+      } else {
+        expandedImg.src = encodeURI(`Sin ti\u0301tulo-${photoId}.jpg`);
+        resolvePhotoUrl(photoId).then(validUrl => {
+          expandedImg.src = validUrl;
+        });
+      }
     }
 
     function openGalleryModal(index) {
+      clearInterval(autoPlayTimer);
       showGalleryPhotoByIndex(index);
       modalPrevBtn.style.display = 'flex';
       modalNextBtn.style.display = 'flex';
@@ -1061,8 +1097,8 @@
     }
 
     function openSingleImageModal(src) {
+      clearInterval(autoPlayTimer);
       currentModalGalleryIndex = -1;
-      expandedImg.onerror = null;
       expandedImg.src = src;
       modalPrevBtn.style.display = 'none';
       modalNextBtn.style.display = 'none';
@@ -1075,6 +1111,7 @@
       setTimeout(() => {
         modal.style.display = 'none';
         expandedImg.src = '';
+        startAutoPlay();
       }, 250);
     }
 
@@ -1092,7 +1129,6 @@
       }
     });
 
-    // Soporte de teclado (flechas izquierda/derecha y Escape) cuando el modal está abierto
     document.addEventListener('keydown', (e) => {
       if (modal.style.display === 'flex') {
         if (e.key === 'ArrowLeft' && currentModalGalleryIndex > -1) showGalleryPhotoByIndex(currentModalGalleryIndex - 1);
