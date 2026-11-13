@@ -9,22 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes (Cursiva para nombres) y Poppins (Limpia para todo el resto) -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  
-  <link rel="preload" as="image" href="Foto10.webp">
 
   <style>
     :root {
-      /* --- PALETA EXTRAÍDA EXACTAMENTE DE LAS 2 IMÁGENES DE REFERENCIA --- */
+      /* --- PALETA DE LOS BOUQUETS DE REFERENCIA --- */
       --pure-white: #ffffff;
-      --cream-blush: #fdf8f6;
-      --forest-green: #23442e;       /* Hojas oscuras profundas del bouquet */
-      --eucalyptus-mid: #5b7e68;     /* Verde eucalipto medio */
-      --eucalyptus-mint: #89a894;    /* Hojas redondas de eucalipto salvia/menta */
-      --blush-peach: #eb9f96;        /* Rosa durazno/salmón cálido de las rosas grandes */
-      --mauve-rose: #c47d87;         /* Rosa palo/malva de la rosa inferior */
-      --berry-wine: #6b353e;         /* Tono vino/baya de las ramitas y centro de flor */
-      --charcoal-ink: #1e2420;       /* Negro carbón elegante de la tipografía en la imagen 1 */
-      --text-soft: #435248;
+      --forest-green: #23442e;       /* Verde bosque profundo */
+      --eucalyptus-mid: #4e735c;     /* Verde eucalipto medio */
+      --eucalyptus-mint: #89a894;    /* Eucalipto salvia/menta */
+      --blush-peach: #eb9f96;        /* Rosa durazno cálido */
+      --mauve-rose: #c47d87;         /* Rosa palo/malva */
+      --berry-wine: #6b353e;         /* Vino/baya profundo */
+      --charcoal-ink: #1b221e;       /* Negro carbón nítido para textos */
     }
 
     * { scroll-behavior: smooth; box-sizing: border-box; }
@@ -33,9 +29,8 @@
       margin: 0; 
       font-family: 'Poppins', sans-serif; 
       font-weight: 300;
-      background-color: var(--pure-white); 
-      background-image: linear-gradient(135deg, #ffffff 0%, #eef4f0 50%, #fcedea 100%);
-      background-attachment: fixed;
+      /* Fondo oscuro elegante de respaldo para que las uniones entre fotos nunca se vean planas ni blancas */
+      background-color: #1b2620; 
       color: var(--charcoal-ink); 
       overflow-x: hidden; 
       -webkit-font-smoothing: antialiased;
@@ -43,163 +38,107 @@
     }
 
     /* ==============================================================
-       SECCIONES CON FUNDIDO ULTRA SUAVE ENTRE FOTOS
+       UNIÓN INFINITA DE FOTOS DE FONDO (COMO EN TU INVITACIÓN ORIGINAL)
        ============================================================== */
     section { 
-      min-height: 108vh; 
+      min-height: 105vh; 
       display: flex; 
       flex-direction: column; 
       position: relative;
-      padding: 130px 24px;
+      padding: 110px 24px;
       
       background-size: cover !important; 
-      background-position: center !important;
       background-repeat: no-repeat !important;
       
-      margin-top: -22vh; 
+      margin-top: -21vh; 
       
-      -webkit-mask-image: linear-gradient(
-        to bottom, 
-        transparent 0%, 
-        rgba(0,0,0,0.35) 6%, 
-        rgba(0,0,0,0.8) 12%, 
-        black 18%, 
-        black 82%, 
-        rgba(0,0,0,0.8) 88%, 
-        rgba(0,0,0,0.35) 94%, 
-        transparent 100%
-      );
-      mask-image: linear-gradient(
-        to bottom, 
-        transparent 0%, 
-        rgba(0,0,0,0.35) 6%, 
-        rgba(0,0,0,0.8) 12%, 
-        black 18%, 
-        black 82%, 
-        rgba(0,0,0,0.8) 88%, 
-        rgba(0,0,0,0.35) 94%, 
-        transparent 100%
-      );
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, black 84%, transparent 100%);
     }
 
+    /* --- PORTADA CENTRADA --- */
     .hero { 
       margin-top: 0; 
       z-index: 10; 
       align-items: center; 
       justify-content: center; 
       text-align: center;
-      -webkit-mask-image: linear-gradient(to bottom, black 78%, rgba(0,0,0,0.5) 90%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 78%, rgba(0,0,0,0.5) 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 84%, transparent 100%);
     }
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC --- */
-    .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 10%; } 
-    .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 10%; } 
-    .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 10%; }
-    .seccion-nosotros { z-index: 6; align-items: flex-end; justify-content: center; padding-right: 10%; } 
-    .seccion-vestimenta { z-index: 5; align-items: flex-start; justify-content: center; padding-left: 10%; } 
-    .seccion-regalos { z-index: 4; align-items: flex-end; justify-content: center; padding-right: 10%; } 
-    .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 10%; } 
+    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC (DEJA LIBRE EL LADO DONDE SALEN LOS NOVIOS) --- */
+    .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 8%; } 
+    .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 8%; } 
+    .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 8%; }
+    .seccion-nosotros { z-index: 6; align-items: flex-end; justify-content: center; padding-right: 8%; } 
+    .seccion-vestimenta { z-index: 5; align-items: flex-start; justify-content: center; padding-left: 8%; } 
+    .seccion-regalos { z-index: 4; align-items: flex-end; justify-content: center; padding-right: 8%; } 
+    .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 8%; } 
     .seccion-final { 
       z-index: 2; 
       align-items: flex-end; 
       justify-content: center; 
-      padding-right: 10%; 
-      -webkit-mask-image: linear-gradient(to top, black 80%, rgba(0,0,0,0.5) 91%, transparent 100%); 
-      mask-image: linear-gradient(to top, black 80%, rgba(0,0,0,0.5) 91%, transparent 100%); 
+      padding-right: 8%; 
+      -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); 
+      mask-image: linear-gradient(to top, black 85%, transparent 100%); 
     } 
 
-    /* Velo atmosférico limpio que realza los verdes y rosas sin apagar las fotos */
+    /* Velo sumamente ligero para que las fotos de fondo se vean claras, vivas y nítidas */
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(137, 168, 148, 0.28) 50%, rgba(235, 159, 150, 0.28) 100%); 
+      background: linear-gradient(180deg, rgba(25, 38, 30, 0.08) 0%, rgba(25, 38, 30, 0.18) 100%); 
       z-index: 1; 
       pointer-events: none;
     }
 
-    /* --- CAPAS DE SEDA Y BOUQUETS BOTÁNICOS --- */
-    .bg-silk-waves {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 1;
-    }
-
-    .bg-botanical-watermark {
-      position: absolute;
-      width: 490px;
-      height: 590px;
-      z-index: 3;
-      pointer-events: none;
-      opacity: 0.96;
-    }
-    .watermark-right { right: -25px; top: 8%; }
-    .watermark-left { left: -25px; top: 8%; transform: scaleX(-1); }
-    .watermark-bottom-left { left: -35px; bottom: 6%; transform: scaleX(-1) rotate(-8deg); width: 390px; height: 450px; opacity: 0.9; }
-    .watermark-bottom-right { right: -35px; bottom: 6%; transform: rotate(-8deg); width: 390px; height: 450px; opacity: 0.9; }
-
-    .section-wave-divider {
-      position: absolute;
-      bottom: 3vh;
-      left: 0;
-      width: 100%;
-      height: 150px;
-      z-index: 4;
-      pointer-events: none;
-    }
-
     /* ==============================================================
-       NUBE BLANCA LUMINOSA CON DIFUMINADO MULTICAPA Y HALO ROSA/SALVIA
+       NUBE DIFUMINADA MULTICAPA SOBRE LAS FOTOS (ESTILO BOUQUET)
        ============================================================== */
     .glass-card {
       background: transparent; 
       border: none;
       box-shadow: none; 
-      padding: 64px 46px 56px 46px; 
+      padding: 62px 46px 56px 46px; 
       width: 100%; 
-      max-width: 500px; 
+      max-width: 495px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
     }
 
+    /* Nube blanca/marfil en el centro que se funde con rubor rosa durazno hacia la foto */
     .glass-card::before {
       content: '';
       position: absolute;
-      inset: -55px -68px;
+      inset: -48px -58px;
       background: radial-gradient(
         ellipse at center,
-        rgba(255, 255, 255, 0.98) 0%,
-        rgba(255, 255, 255, 0.95) 30%,
-        rgba(253, 242, 240, 0.82) 50%,
-        rgba(235, 159, 150, 0.42) 68%,
-        rgba(137, 168, 148, 0.15) 84%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(255, 252, 250, 0.92) 32%,
+        rgba(252, 230, 226, 0.78) 54%,
+        rgba(235, 159, 150, 0.38) 72%,
+        rgba(235, 159, 150, 0) 96%
       );
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       -webkit-mask-image: radial-gradient(
         ellipse at center,
         black 0%,
-        black 30%,
-        rgba(0, 0, 0, 0.82) 48%,
-        rgba(0, 0, 0, 0.42) 66%,
-        rgba(0, 0, 0, 0.12) 82%,
-        transparent 96%
+        black 32%,
+        rgba(0, 0, 0, 0.78) 52%,
+        rgba(0, 0, 0, 0.35) 70%,
+        transparent 92%
       );
       mask-image: radial-gradient(
         ellipse at center,
         black 0%,
-        black 30%,
-        rgba(0, 0, 0, 0.82) 48%,
-        rgba(0, 0, 0, 0.42) 66%,
-        rgba(0, 0, 0, 0.12) 82%,
-        transparent 96%
+        black 32%,
+        rgba(0, 0, 0, 0.78) 52%,
+        rgba(0, 0, 0, 0.35) 70%,
+        transparent 92%
       );
       z-index: -1;
       pointer-events: none;
@@ -212,48 +151,47 @@
     .seccion-qr .glass-card::before {
       background: radial-gradient(
         ellipse at center,
-        rgba(255, 255, 255, 0.98) 0%,
-        rgba(255, 255, 255, 0.95) 30%,
-        rgba(240, 246, 242, 0.82) 50%,
-        rgba(137, 168, 148, 0.45) 68%,
-        rgba(235, 159, 150, 0.15) 84%,
-        rgba(255, 255, 255, 0) 100%
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(248, 252, 249, 0.92) 32%,
+        rgba(214, 230, 219, 0.78) 54%,
+        rgba(137, 168, 148, 0.42) 72%,
+        rgba(137, 168, 148, 0) 96%
       );
     }
 
     .glass-card-wide { 
-      max-width: 670px; 
-      padding: 58px 42px;
+      max-width: 660px; 
+      padding: 56px 42px;
     }
 
-    /* Ornamentos superiores e inferiores */
+    /* Ramilletes florales sutiles dentro de las tarjetas */
     .botanical-crest {
-      width: 250px;
-      height: 58px;
+      width: 240px;
+      height: 54px;
       margin: 0 auto 10px auto;
       display: block;
     }
 
     .botanical-footer {
-      width: 200px;
-      height: 38px;
-      margin: 16px auto 0 auto;
+      width: 190px;
+      height: 36px;
+      margin: 14px auto 0 auto;
       display: block;
     }
 
     .rings-line-art {
-      width: 230px;
-      height: 54px;
-      margin: 6px auto 12px auto;
+      width: 220px;
+      height: 50px;
+      margin: 4px auto 10px auto;
       display: block;
     }
 
     /* ==============================================================
-       TIPOGRAFÍA UNIFICADA (NEGRO CARBÓN ELEGANTE SOBRE BLANCO, COMO IMAGEN 1)
+       TIPOGRAFÍA UNIFICADA (GREAT VIBES + POPPINS)
        ============================================================== */
     h1 { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 4.7rem; 
+      font-size: 4.6rem; 
       color: var(--charcoal-ink); 
       margin: 4px 0; 
       line-height: 1.08; 
@@ -261,12 +199,12 @@
     }
     h2 { 
       font-family: 'Poppins', sans-serif; 
-      font-size: 1.5rem; 
+      font-size: 1.48rem; 
       color: var(--forest-green); 
       margin-top: 0; 
-      margin-bottom: 14px; 
-      font-weight: 500; 
-      letter-spacing: 2.5px;
+      margin-bottom: 12px; 
+      font-weight: 600; 
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
     h3 { 
@@ -279,66 +217,64 @@
     p { 
       font-family: 'Poppins', sans-serif;
       font-size: 1.02rem; 
-      line-height: 1.75; 
+      line-height: 1.72; 
       margin: 10px 0; 
       color: var(--charcoal-ink); 
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .cita-biblica {
       font-family: 'Poppins', sans-serif; 
       font-style: italic;
       font-size: 1.08rem;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--berry-wine);
       line-height: 1.5;
-      margin: 0 auto 10px auto;
-      letter-spacing: 0.5px;
+      margin: 0 auto 8px auto;
     }
 
-    /* --- CONTADOR CON ACENTOS EN ROSA DURAZNO Y VERDE BOSQUE --- */
+    /* --- CONTADOR --- */
     .countdown {
       display: flex;
-      gap: 14px;
-      margin: 22px auto 18px auto;
+      gap: 12px;
+      margin: 20px auto 16px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: radial-gradient(circle, rgba(252, 232, 228, 0.85) 0%, rgba(137, 168, 148, 0.22) 60%, transparent 85%);
-      border: none; 
+      background: radial-gradient(circle, rgba(247, 213, 207, 0.85) 0%, rgba(137, 168, 148, 0.25) 65%, transparent 90%);
       border-radius: 50%;
-      padding: 12px 14px;
-      min-width: 68px;
+      padding: 10px 13px;
+      min-width: 66px;
       text-align: center;
       position: relative;
     }
     .time-box:not(:last-child)::after {
       content: '•';
       position: absolute;
-      right: -11px;
-      top: 36%;
+      right: -10px;
+      top: 35%;
       font-size: 1rem;
       color: var(--mauve-rose);
     }
     .time-box span { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.75rem; 
-      font-weight: 500; 
+      font-size: 1.7rem; 
+      font-weight: 600; 
       color: var(--forest-green); 
       display: block; 
       line-height: 1.1; 
     }
     .time-box p { 
       font-size: 0.65rem; 
-      margin: 4px 0 0 0; 
+      margin: 3px 0 0 0; 
       text-transform: uppercase; 
       letter-spacing: 2px; 
       color: var(--berry-wine); 
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    /* --- FRASES LATERALES FLOTANTES --- */
+    /* --- FRASES LATERALES FLOTANTES SOBRE LAS FOTOS --- */
     .floating-text {
       position: absolute !important; 
       top: 50%; 
@@ -348,10 +284,8 @@
       font-weight: 400;
       color: var(--charcoal-ink); 
       background: transparent;
-      padding: 36px 40px;
-      border: none;
-      box-shadow: none;
-      max-width: 355px;
+      padding: 34px 38px;
+      max-width: 340px;
       line-height: 1.65;
       z-index: 15; 
       pointer-events: none;
@@ -360,29 +294,27 @@
     .floating-text::before {
       content: '';
       position: absolute;
-      inset: -32px -42px;
+      inset: -28px -38px;
       background: radial-gradient(
         ellipse at center, 
-        rgba(255, 255, 255, 0.97) 0%, 
-        rgba(253, 238, 235, 0.84) 42%, 
-        rgba(235, 159, 150, 0.35) 68%, 
-        transparent 94%
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(252, 230, 226, 0.82) 45%, 
+        rgba(235, 159, 150, 0.35) 70%, 
+        transparent 95%
       );
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       -webkit-mask-image: radial-gradient(
         ellipse at center, 
         black 28%, 
-        rgba(0,0,0,0.65) 52%, 
-        rgba(0,0,0,0.2) 76%, 
-        transparent 95%
+        rgba(0,0,0,0.65) 54%, 
+        transparent 94%
       );
       mask-image: radial-gradient(
         ellipse at center, 
         black 28%, 
-        rgba(0,0,0,0.65) 52%, 
-        rgba(0,0,0,0.2) 76%, 
-        transparent 95%
+        rgba(0,0,0,0.65) 54%, 
+        transparent 94%
       );
       z-index: -1;
     }
@@ -398,7 +330,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin: 12px auto 0 auto;
+      margin: 10px auto 0 auto;
       width: 100%;
       max-width: 370px;
       position: relative;
@@ -409,7 +341,7 @@
       grid-template-columns: 82px 26px 34px 1fr;
       align-items: center;
       width: 100%;
-      padding: 7.5px 0;
+      padding: 7px 0;
       position: relative;
     }
 
@@ -421,7 +353,7 @@
       height: 100%;
       width: 1.5px;
       background: linear-gradient(to bottom, var(--eucalyptus-mid), var(--mauve-rose));
-      opacity: 0.75;
+      opacity: 0.8;
       z-index: 1;
     }
 
@@ -440,7 +372,7 @@
       border-radius: 20px;
       letter-spacing: 0.5px;
       white-space: nowrap;
-      box-shadow: 0 4px 10px rgba(107, 53, 62, 0.25);
+      box-shadow: 0 3px 10px rgba(107, 53, 62, 0.25);
     }
 
     .tl-node-col {
@@ -478,19 +410,18 @@
 
     .tl-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       color: var(--charcoal-ink);
-      font-weight: 400;
+      font-weight: 500;
     }
 
     /* --- PALETA DE VESTIMENTA --- */
     .paleta-img {
       width: 100%;
       max-width: 390px;
-      margin-top: 16px;
+      margin-top: 14px;
       border-radius: 18px;
-      border: none;
-      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.15);
+      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.18);
       cursor: pointer;
     }
 
@@ -500,8 +431,8 @@
       width: 100%;
       margin-top: 15px;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
 
     .carousel-track { display: flex; padding: 15px 0; gap: 18px; }
@@ -511,9 +442,8 @@
       height: 295px !important; 
       object-fit: cover !important; 
       border-radius: 95px 95px 18px 18px;
-      border: none; 
       flex-shrink: 0;
-      box-shadow: 0 12px 28px rgba(35, 68, 46, 0.16), 0 0 0 5px #ffffff; 
+      box-shadow: 0 12px 28px rgba(35, 68, 46, 0.22), 0 0 0 4px #ffffff; 
       cursor: pointer;
     }
 
@@ -522,7 +452,7 @@
       background: var(--forest-green); color: #ffffff; border: none;
       border-radius: 50%; width: 44px; height: 44px; font-size: 1.2rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(35, 68, 46, 0.28);
+      box-shadow: 0 6px 18px rgba(35, 68, 46, 0.3);
       transition: all 0.3s ease;
     }
     .carousel-btn:hover { background: var(--berry-wine); color: white; }
@@ -540,8 +470,7 @@
       background: #ffffff; 
       padding: 14px; 
       border-radius: 22px;
-      border: none;
-      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.14);
+      box-shadow: 0 12px 30px rgba(35, 68, 46, 0.16);
     }
 
     /* --- LIGHTBOX --- */
@@ -553,7 +482,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.96);
+      background-color: rgba(25, 34, 28, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       opacity: 0;
@@ -567,7 +496,7 @@
       max-width: 90%;
       max-height: 85vh;
       border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(35, 68, 46, 0.22);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
       transform: scale(0.9);
       transition: transform 0.3s ease;
       object-fit: contain;
@@ -577,7 +506,7 @@
       position: absolute;
       top: 25px;
       right: 35px;
-      color: var(--forest-green);
+      color: #ffffff;
       font-size: 38px;
       font-weight: 300;
       cursor: pointer;
@@ -590,8 +519,7 @@
       transform: translateY(-50%);
       background: var(--forest-green);
       color: #ffffff;
-      border: none;
-      box-shadow: 0 6px 18px rgba(35, 68, 46, 0.25);
+      border: 1.5px solid rgba(255,255,255,0.6);
       border-radius: 50%;
       width: 48px;
       height: 48px;
@@ -605,18 +533,57 @@
     .modal-nav.prev { left: 20px; }
     .modal-nav.next { right: 20px; }
 
-    /* --- FONDOS --- */
-    .hero { background-image: url('Foto10.webp'); background-position: center; }
-    .seccion-pase { background-image: url('Foto11.webp'); background-position: center; }
-    .seccion-lugar { background-image: url('Foto1.webp'); background-position: center 35% !important; }
-    .seccion-itinerario { background-image: url('Foto5.webp') !important; background-size: cover !important; background-position: center 35% !important; }
-    .seccion-nosotros { background-image: url('Foto2.webp'); background-position: center 40%; }
-    .seccion-vestimenta { background-image: url('Foto13.webp'); background-position: center; }
-    .seccion-final { background-image: url('Foto14.webp') !important; background-size: cover !important; background-position: center 20% !important; }
-    .seccion-regalos { background-image: url('Foto3.webp'); background-position: center 40%; }
-    .seccion-qr { background-image: url('Foto4.webp'); background-position: center; }
+    /* ==============================================================
+       FONDOS Y ENCUADRES ACOMODADOS CON LAS 10 FOTOS DE YADER Y ANGÉLICA
+       (Incluye soporte doble de nombre por si el sistema usa tilde NFC o NFD)
+       ============================================================== */
+    /* 1. Portada: Abrazados mirando hacia adelante junto al río */
+    .hero { 
+      background-image: url('Sin ti\0301tulo-1601.1.jpg'), url('Sin título-1601.1.jpg'), url('Foto10.webp'); 
+      background-position: center 28% !important; 
+    }
+    /* 2. Invitado (Tarjeta a la izquierda -> Novios a la derecha junto al árbol) */
+    .seccion-pase { 
+      background-image: url('Sin ti\0301tulo-178.jpg'), url('Sin título-178.jpg'), url('Foto11.webp'); 
+      background-position: center 30% !important; 
+    }
+    /* 3. Ceremonia y Recepción (Tarjeta a la derecha -> Novios de perfil en el bosque) */
+    .seccion-lugar { 
+      background-image: url('Sin ti\0301tulo-162.jpg'), url('Sin título-162.jpg'), url('Foto1.webp'); 
+      background-position: center 35% !important; 
+    }
+    /* 4. Itinerario (Tarjeta a la izquierda -> Caminando bajo las palmas) */
+    .seccion-itinerario { 
+      background-image: url('Sin ti\0301tulo-166.jpg'), url('Sin título-166.jpg'), url('Foto5.webp'); 
+      background-position: center 35% !important; 
+    }
+    /* 5. Historia de amor / Carrusel (Fondo de manos tomadas con el anillo en bokeh) */
+    .seccion-nosotros { 
+      background-image: url('Sin ti\0301tulo-181.jpg'), url('Sin título-181.jpg'), url('Foto2.webp'); 
+      background-position: center 45% !important; 
+    }
+    /* 6. Código de vestimenta (Detalle del anillo en el abrazo) */
+    .seccion-vestimenta { 
+      background-image: url('Sin ti\0301tulo-161.jpg'), url('Sin título-161.jpg'), url('Foto13.webp'); 
+      background-position: center 45% !important; 
+    }
+    /* 7. Mesa de regalos (Mirándose de cerca con fondo oscuro de follaje) */
+    .seccion-regalos { 
+      background-image: url('Sin ti\0301tulo-171.jpg'), url('Sin título-171.jpg'), url('Foto3.webp'); 
+      background-position: center 32% !important; 
+    }
+    /* 8. Comparte tus fotos / QR (Mostrando el anillo entre helechos) */
+    .seccion-qr { 
+      background-image: url('Sin ti\0301tulo-164.jpg'), url('Sin título-164.jpg'), url('Foto4.webp'); 
+      background-position: center 38% !important; 
+    }
+    /* 9. Cierre final (Acariciando el rostro junto al río) */
+    .seccion-final { 
+      background-image: url('Sin ti\0301tulo-177.jpg'), url('Sin título-177.jpg'), url('Foto14.webp'); 
+      background-position: center 25% !important; 
+    }
 
-    /* --- BOTONES EN VERDE BOSQUE PROFUNDO Y VINO/MALVA (ALTO CONTRASTE) --- */
+    /* --- BOTONES EN VERDE BOSQUE Y VINO MALVA --- */
     .btn {
       background: linear-gradient(135deg, var(--eucalyptus-mid) 0%, var(--forest-green) 100%); 
       color: #ffffff; 
@@ -631,22 +598,21 @@
       letter-spacing: 2px;
       font-family: 'Poppins', sans-serif;
       border: 1.5px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 10px 24px rgba(35, 68, 46, 0.32); 
+      box-shadow: 0 10px 24px rgba(35, 68, 46, 0.35); 
       cursor: pointer; 
       transition: all 0.3s ease;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(35, 68, 46, 0.42); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(35, 68, 46, 0.45); }
     .btn:active { transform: scale(0.97); }
 
-    /* Botón "No podré asistir" en tono Malva/Vino profundo de las bayas de la imagen */
     .btn-decline {
       background: linear-gradient(135deg, var(--mauve-rose) 0%, var(--berry-wine) 100%);
       color: #ffffff;
       border: 1.5px solid rgba(255, 255, 255, 0.75);
-      box-shadow: 0 8px 20px rgba(107, 53, 62, 0.32);
+      box-shadow: 0 8px 20px rgba(107, 53, 62, 0.35);
     }
     .btn-decline:hover {
-      box-shadow: 0 10px 24px rgba(107, 53, 62, 0.45);
+      box-shadow: 0 10px 24px rgba(107, 53, 62, 0.48);
     }
 
     .reveal { 
@@ -660,42 +626,28 @@
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES
+       AJUSTES PARA MÓVILES (DEJA VER LAS FOTOS ARRIBA Y ABAJO)
        ============================================================== */
     @media (max-width: 600px) {
       section {
-        min-height: 100svh !important; 
-        padding-top: 80px;
+        min-height: 105svh !important; 
+        padding-top: 85px;
         padding-bottom: 85px;
       }
       
       section:not(.hero) {
-        justify-content: center !important;
-        padding-top: 14vh !important; 
-        padding-bottom: 11vh !important; 
-      }
-      
-      section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 0%, rgba(137, 168, 148, 0.35) 52%, rgba(235, 159, 150, 0.65) 95%) !important;
-      }
-
-      .bg-botanical-watermark {
-        width: 280px;
-        height: 360px;
-        opacity: 0.88;
-      }
-      .watermark-bottom-left, .watermark-bottom-right {
-        width: 230px;
-        height: 280px;
+        justify-content: flex-end !important;
+        padding-top: 28vh !important; 
+        padding-bottom: 10vh !important; 
       }
       
       .glass-card {
-        padding: 46px 22px 42px 22px; 
+        padding: 44px 20px 40px 20px; 
         width: 100%;
         max-width: 96%;
       }
       .glass-card::before {
-        inset: -38px -32px;
+        inset: -34px -26px;
       }
       
       .floating-text { 
@@ -708,7 +660,7 @@
         margin-top: 18px; 
         margin-bottom: 0px;
         font-size: 1rem;
-        padding: 22px 24px;
+        padding: 20px 22px;
       }
       .floating-text.reveal { transform: translateY(20px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
@@ -746,7 +698,7 @@
       font-size: 18px;
       cursor: pointer;
       z-index: 9999;
-      box-shadow: 0 6px 20px rgba(35, 68, 46, 0.32);
+      box-shadow: 0 6px 20px rgba(35, 68, 46, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -761,144 +713,23 @@
 </head>
 <body>
 
-  <!-- ILUSTRACIONES BOTÁNICAS CON LA PALETA EXACTA DE LAS 2 IMÁGENES (ROSAS DURAZNO, ROSA MALVA, EUCALIPTO MENTA, VERDE BOSQUE Y BAYAS VINO) -->
+  <!-- VIÑETAS FLORALES DELICADAS EN LAS TARJETAS (CON LOS TONOS DEL BOUQUET) -->
   <svg style="display: none;">
     <defs>
-      <linearGradient id="eucalyptusRoseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#23442e" stop-opacity="0.45"/>
-        <stop offset="50%" stop-color="#89a894" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#eb9f96" stop-opacity="0.65"/>
-      </linearGradient>
-
-      <linearGradient id="roseSilkFill" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05"/>
-        <stop offset="35%" stop-color="#f5c6c0" stop-opacity="0.72"/>
-        <stop offset="70%" stop-color="#b2cbbd" stop-opacity="0.68"/>
-        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
-      </linearGradient>
-
-      <linearGradient id="sageSilkFill" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.05"/>
-        <stop offset="50%" stop-color="#b2cbbd" stop-opacity="0.75"/>
-        <stop offset="100%" stop-color="#f5c6c0" stop-opacity="0.45"/>
-      </linearGradient>
-
-      <linearGradient id="ivoryRoseFill" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#f5c6c0" stop-opacity="0.70"/>
-        <stop offset="100%" stop-color="#b2cbbd" stop-opacity="0.35"/>
-      </linearGradient>
-
-      <!-- ONDAS DE SEDA DEL FONDO -->
-      <g id="silk-background-a">
-        <path d="M-100,90 C320,390 680,-80 1150,230 C1320,340 1420,160 1540,250 L1540,900 L-100,900 Z" fill="url(#roseSilkFill)"/>
-        <path d="M-80,150 C380,450 720,-50 1220,270 C1380,370 1460,230 1560,290" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="2"/>
-        <path d="M-80,195 C420,380 660,20 1180,310 C1340,400 1440,270 1560,330" fill="none" stroke="#c47d87" stroke-width="1.1" stroke-dasharray="5,7" opacity="0.75"/>
-        <path d="M-100,680 C380,430 880,860 1540,540" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.8"/>
-      </g>
-
-      <g id="silk-background-b">
-        <path d="M1540,80 C1100,370 740,-90 260,230 C100,330 -20,170 -100,250 L-100,900 L1540,900 Z" fill="url(#sageSilkFill)"/>
-        <path d="M1520,140 C1040,430 680,-60 180,270 C40,360 -40,210 -120,280" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="2"/>
-        <path d="M1520,185 C1000,360 740,10 220,310 C80,390 -20,250 -120,320" fill="none" stroke="#23442e" stroke-width="1" opacity="0.65"/>
-        <path d="M1540,660 C1020,440 560,840 -100,520" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.8"/>
-      </g>
-
-      <g id="silk-background-c">
-        <path d="M-100,320 C260,80 680,480 1080,180 C1280,40 1420,220 1540,140 L1540,900 L-100,900 Z" fill="url(#ivoryRoseFill)"/>
-        <path d="M-100,350 C280,100 660,510 1100,200 C1290,65 1430,240 1540,165" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.9"/>
-        <path d="M-100,520 C340,760 780,340 1220,620 C1380,710 1460,590 1540,640" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.5"/>
-      </g>
-
-      <!-- DIVISORES DE ONDA SUAVES -->
-      <g id="section-wave-1">
-        <path d="M0,70 C360,145 720,-5 1080,75 C1260,115 1380,65 1440,40 L1440,150 L0,150 Z" fill="#f5c6c0" fill-opacity="0.55"/>
-        <path d="M0,70 C360,145 720,-5 1080,75 C1260,115 1380,65 1440,40" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.8"/>
-      </g>
-
-      <g id="section-wave-2">
-        <path d="M0,45 C320,125 780,10 1140,85 C1300,118 1390,70 1440,55 L1440,150 L0,150 Z" fill="#b2cbbd" fill-opacity="0.55"/>
-        <path d="M0,45 C320,125 780,10 1140,85 C1300,118 1390,70 1440,55" fill="none" stroke="url(#eucalyptusRoseGrad)" stroke-width="1.8"/>
-      </g>
-
-      <!-- 1. RAMILLETE DE EUCALIPTO SALVIA REDONDO, FOLLAJE VERDE BOSQUE Y BAYAS VINO (COMO EN LAS 2 FOTOS) -->
-      <g id="watermark-eucalyptus">
-        <!-- Tallos principales -->
-        <path d="M320,520 C275,390 185,300 218,175 C240,90 180,38 125,8" fill="none" stroke="#23442e" stroke-width="1.6" opacity="0.85"/>
-        <path d="M248,370 C155,335 105,245 118,140" fill="none" stroke="#5b7e68" stroke-width="1.35" opacity="0.85"/>
-        <!-- Hojas redondas de Eucalipto Silver Dollar en verde salvia/menta (#89a894) -->
-        <circle cx="205" cy="235" r="24" fill="#89a894" fill-opacity="0.68" stroke="#5b7e68" stroke-width="1"/>
-        <circle cx="235" cy="185" r="22" fill="#a3c1ad" fill-opacity="0.72" stroke="#5b7e68" stroke-width="1"/>
-        <circle cx="195" cy="128" r="20" fill="#89a894" fill-opacity="0.68" stroke="#5b7e68" stroke-width="1"/>
-        <circle cx="118" cy="195" r="21" fill="#a3c1ad" fill-opacity="0.68" stroke="#5b7e68" stroke-width="1"/>
-        <!-- Hojas lanceoladas en Verde Bosque Profundo (#23442e) -->
-        <path d="M175,75 C208,56 220,24 190,8 C162,26 164,56 175,75 Z" fill="#23442e" fill-opacity="0.78" stroke="#183020" stroke-width="1"/>
-        <path d="M258,320 C298,304 316,266 284,244 C254,262 248,298 258,320 Z" fill="#23442e" fill-opacity="0.75" stroke="#183020" stroke-width="1"/>
-        <path d="M145,275 C110,265 95,235 120,218 C142,232 148,255 145,275 Z" fill="#23442e" fill-opacity="0.75" stroke="#183020" stroke-width="1"/>
-        <!-- Ramitas de Bayas Vino/Borgona (#5e2b32) idénticas a la imagen 1 -->
-        <path d="M218,175 C255,155 280,135 298,110" fill="none" stroke="#5e2b32" stroke-width="1.1"/>
-        <circle cx="298" cy="110" r="4" fill="#5e2b32"/>
-        <circle cx="284" cy="122" r="3.5" fill="#5e2b32"/>
-        <circle cx="292" cy="130" r="3.5" fill="#7a3e48"/>
-        <circle cx="272" cy="136" r="3.2" fill="#5e2b32"/>
-        <circle cx="265" cy="124" r="3" fill="#7a3e48"/>
-      </g>
-
-      <!-- 2. BOUQUET DE ROSA DURAZNO/SALMÓN, ROSA MALVA, ANÉMONA BLANCA Y HELECHOS (COMO EN LAS 2 FOTOS) -->
-      <g id="watermark-wildrose">
-        <path d="M310,510 C250,390 220,270 155,155 C120,95 85,55 45,25" fill="none" stroke="#23442e" stroke-width="1.5" opacity="0.82"/>
-        <path d="M235,340 C285,280 295,195 255,120" fill="none" stroke="#5b7e68" stroke-width="1.3" opacity="0.82"/>
-        <!-- Rosa Grande en Rosa Durazno / Salmón Cálido (#eb9f96 / #f5c6c0) -->
-        <g transform="translate(155, 155)">
-          <circle cx="0" cy="0" r="42" fill="#f7d5cf" fill-opacity="0.85"/>
-          <path d="M0,-38 C24,-42 44,-18 36,8 C28,32 -4,44 -26,30 C-46,16 -42,-18 -20,-32 C-6,-40 16,-32 22,-14 C28,4 12,22 -6,18 C-22,14 -24,-6 -12,-16 C-2,-24 12,-14 8,-2 C6,6 -4,8 -8,2" fill="#eb9f96" fill-opacity="0.82" stroke="#c97267" stroke-width="1.2"/>
-          <circle cx="0" cy="-2" r="6" fill="#c97267" fill-opacity="0.7"/>
-        </g>
-        <!-- Rosa Malva / Rosa Palo Intenso (#c47d87 / #8c4652) de la imagen 2 -->
-        <g transform="translate(245, 235) scale(0.78)">
-          <circle cx="0" cy="0" r="36" fill="#dfadb4" fill-opacity="0.85"/>
-          <path d="M0,-32 C20,-36 38,-14 30,8 C22,28 -4,38 -22,26 C-38,14 -36,-14 -16,-26 C-4,-34 14,-26 18,-10 C22,4 10,18 -4,14 C-18,10 -18,-6 -8,-12" fill="#c47d87" fill-opacity="0.88" stroke="#7a3e48" stroke-width="1.2"/>
-          <circle cx="0" cy="0" r="5" fill="#6b353e"/>
-        </g>
-        <!-- Flor Blanca Marfil con centro oscuro (Anémona de la imagen 1) -->
-        <g transform="translate(185, 255) scale(0.68)">
-          <circle cx="0" cy="-18" r="16" fill="#ffffff" stroke="#e6dcd8" stroke-width="1"/>
-          <circle cx="18" cy="-5" r="16" fill="#ffffff" stroke="#e6dcd8" stroke-width="1"/>
-          <circle cx="11" cy="15" r="16" fill="#ffffff" stroke="#e6dcd8" stroke-width="1"/>
-          <circle cx="-11" cy="15" r="16" fill="#ffffff" stroke="#e6dcd8" stroke-width="1"/>
-          <circle cx="-18" cy="-5" r="16" fill="#ffffff" stroke="#e6dcd8" stroke-width="1"/>
-          <circle cx="0" cy="0" r="9" fill="#233028"/>
-          <circle cx="0" cy="0" r="12" fill="none" stroke="#5e2b32" stroke-width="2" stroke-dasharray="2,3"/>
-        </g>
-        <!-- Hojas Verde Bosque y Eucalipto Menta -->
-        <path d="M115,105 C75,115 55,88 78,65 C102,70 112,88 115,105 Z" fill="#23442e" fill-opacity="0.78" stroke="#183020" stroke-width="1"/>
-        <circle cx="255" cy="120" r="20" fill="#89a894" fill-opacity="0.72" stroke="#5b7e68" stroke-width="1"/>
-      </g>
-
-      <!-- 3. FOLLAJE MIXTO DE HELECHO, OLIVO Y EUCALIPTO -->
-      <g id="watermark-olive">
-        <path d="M330,490 C290,350 240,220 140,110 C95,60 50,30 15,12" fill="none" stroke="#23442e" stroke-width="1.5" opacity="0.82"/>
-        <path d="M250,320 C215,305 200,275 218,262 C238,272 248,298 250,320 Z" fill="#23442e" fill-opacity="0.75" stroke="#183020" stroke-width="1"/>
-        <path d="M258,305 C288,282 300,250 282,238 C264,252 258,280 258,305 Z" fill="#89a894" fill-opacity="0.75" stroke="#5b7e68" stroke-width="1"/>
-        <path d="M210,235 C175,222 158,192 176,178 C196,188 208,212 210,235 Z" fill="#89a894" fill-opacity="0.75" stroke="#5b7e68" stroke-width="1"/>
-        <path d="M218,220 C248,198 260,168 242,155 C224,168 218,195 218,220 Z" fill="#eb9f96" fill-opacity="0.75" stroke="#c97267" stroke-width="1"/>
-        <path d="M162,155 C128,145 112,118 128,104 C148,112 160,135 162,155 Z" fill="#23442e" fill-opacity="0.75" stroke="#183020" stroke-width="1"/>
-      </g>
-
-      <!-- VIÑETAS DE ENCABEZADO CON LA PALETA DEL BOUQUET -->
       <g id="crest-royal">
         <path d="M20,38 C65,38 82,18 120,18 C158,18 175,38 220,38" fill="none" stroke="#c98a88" stroke-width="1.35"/>
-        <path d="M88,24 C78,14 64,16 60,24 C66,30 78,30 88,24 Z" fill="#23442e" fill-opacity="0.82"/>
-        <path d="M152,24 C162,14 176,16 180,24 C174,30 162,30 152,24 Z" fill="#23442e" fill-opacity="0.82"/>
-        <circle cx="100" cy="20" r="7" fill="#eb9f96" fill-opacity="0.88"/>
-        <circle cx="140" cy="20" r="7" fill="#eb9f96" fill-opacity="0.88"/>
+        <path d="M88,24 C78,14 64,16 60,24 C66,30 78,30 88,24 Z" fill="#23442e" fill-opacity="0.85"/>
+        <path d="M152,24 C162,14 176,16 180,24 C174,30 162,30 152,24 Z" fill="#23442e" fill-opacity="0.85"/>
+        <circle cx="100" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
+        <circle cx="140" cy="20" r="7" fill="#eb9f96" fill-opacity="0.9"/>
         <circle cx="120" cy="18" r="9" fill="#c47d87"/>
         <circle cx="120" cy="18" r="3" fill="#ffffff"/>
       </g>
 
       <g id="crest-rose">
         <path d="M15,28 C55,12 85,38 120,26 C155,38 185,12 225,28" fill="none" stroke="#89a894" stroke-width="1.4"/>
-        <path d="M104,26 C92,14 76,16 70,25 C78,33 92,34 104,26 Z" fill="#23442e" fill-opacity="0.82"/>
-        <path d="M136,26 C148,14 164,16 170,25 C162,33 148,34 136,26 Z" fill="#23442e" fill-opacity="0.82"/>
+        <path d="M104,26 C92,14 76,16 70,25 C78,33 92,34 104,26 Z" fill="#23442e" fill-opacity="0.85"/>
+        <path d="M136,26 C148,14 164,16 170,25 C162,33 148,34 136,26 Z" fill="#23442e" fill-opacity="0.85"/>
         <circle cx="120" cy="26" r="10.5" fill="#eb9f96" stroke="#c97267" stroke-width="1.1"/>
         <path d="M114,24 C117,18 124,18 126,24 C127,29 120,32 116,29 C113,26 117,21 121,23" fill="none" stroke="#ffffff" stroke-width="1.1"/>
       </g>
@@ -906,17 +737,17 @@
       <g id="crest-olive-crossed">
         <path d="M45,38 C85,36 125,22 165,12" fill="none" stroke="#23442e" stroke-width="1.4"/>
         <path d="M195,38 C155,36 115,22 75,12" fill="none" stroke="#23442e" stroke-width="1.4"/>
-        <path d="M82,30 C72,22 78,14 88,18 C92,22 88,28 82,30 Z" fill="#89a894" fill-opacity="0.85" stroke="#5b7e68" stroke-width="0.9"/>
-        <path d="M158,30 C168,22 162,14 152,18 C148,22 152,28 158,30 Z" fill="#89a894" fill-opacity="0.85" stroke="#5b7e68" stroke-width="0.9"/>
-        <path d="M105,23 C96,14 102,8 111,12 C114,16 110,21 105,23 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="0.9"/>
-        <path d="M135,23 C144,14 138,8 129,12 C126,16 130,21 135,23 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="0.9"/>
+        <path d="M82,30 C72,22 78,14 88,18 C92,22 88,28 82,30 Z" fill="#89a894" fill-opacity="0.88" stroke="#5b7e68" stroke-width="0.9"/>
+        <path d="M158,30 C168,22 162,14 152,18 C148,22 152,28 158,30 Z" fill="#89a894" fill-opacity="0.88" stroke="#5b7e68" stroke-width="0.9"/>
+        <path d="M105,23 C96,14 102,8 111,12 C114,16 110,21 105,23 Z" fill="#eb9f96" fill-opacity="0.9" stroke="#c97267" stroke-width="0.9"/>
+        <path d="M135,23 C144,14 138,8 129,12 C126,16 130,21 135,23 Z" fill="#eb9f96" fill-opacity="0.9" stroke="#c97267" stroke-width="0.9"/>
         <circle cx="120" cy="27" r="4" fill="#6b353e"/>
       </g>
 
       <g id="crest-silk-bow">
         <path d="M20,30 C60,18 90,34 120,24 C150,34 180,18 220,30" fill="none" stroke="#89a894" stroke-width="1.35"/>
-        <path d="M120,24 C102,10 82,16 88,27 C94,35 110,30 120,24 Z" fill="#eb9f96" fill-opacity="0.85" stroke="#c97267" stroke-width="1.1"/>
-        <path d="M120,24 C138,10 158,16 152,27 C146,35 130,30 120,24 Z" fill="#eb9f96" fill-opacity="0.85" stroke="#c97267" stroke-width="1.1"/>
+        <path d="M120,24 C102,10 82,16 88,27 C94,35 110,30 120,24 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="1.1"/>
+        <path d="M120,24 C138,10 158,16 152,27 C146,35 130,30 120,24 Z" fill="#eb9f96" fill-opacity="0.88" stroke="#c97267" stroke-width="1.1"/>
         <circle cx="120" cy="24" r="3.5" fill="#23442e"/>
       </g>
 
@@ -953,10 +784,6 @@
   <!-- 1. PORTADA -->
   <section class="hero">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
-
     <div class="glass-card reveal active">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
       <p class="cita-biblica">
@@ -977,17 +804,11 @@
       <button onclick="agendarFecha(event)" class="btn">Agendar Nuestra Fecha</button>
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 2. INVITADO -->
   <section class="seccion-pase">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
-
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
@@ -999,17 +820,11 @@
       <p id="pases-invitado" style="font-size: 1.05rem; color: var(--berry-wine); font-weight: 600; margin-top: 16px; margin-bottom: 0; letter-spacing: 1.5px; text-transform: uppercase;"></p>
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 3. CEREMONIA Y RECEPCIÓN -->
   <section class="seccion-lugar">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
-
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Ceremonia y recepción.</h2>
@@ -1026,17 +841,11 @@
         </div>
       </div>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 4. ITINERARIO -->
   <section class="seccion-itinerario">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-
     <div class="glass-card reveal">
       <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--berry-wine); font-weight: 500;">Boda de</p>
       <div style="margin-top: 0; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.4rem; font-weight: 400; color: var(--charcoal-ink); line-height: 1.1;">Yader y Angélica</div>
@@ -1144,64 +953,49 @@
       </div>
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
-  <!-- 5. FOTOS -->
+  <!-- 5. FOTOS / CARRUSEL CON LAS FOTOS DE ELLOS -->
   <section class="seccion-nosotros">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-
     <div class="glass-card glass-card-wide reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Un vistazo a nuestra historia de amor.</h2>
       <div class="carousel-container">
         <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
-          <img src="Foto1.webp" alt="1">
-          <img src="Foto2.webp" alt="2">
-          <img src="Foto3.webp" alt="3">
-          <img src="Foto4.webp" alt="4">
-          <img src="Foto5.webp" alt="5">
+          <img src="Sin título-1601.1.jpg" data-alt-src="Sin ti&#769;tulo-1601.1.jpg" alt="1">
+          <img src="Sin título-171.jpg" data-alt-src="Sin ti&#769;tulo-171.jpg" alt="2">
+          <img src="Sin título-166.jpg" data-alt-src="Sin ti&#769;tulo-166.jpg" alt="3">
+          <img src="Sin título-164.jpg" data-alt-src="Sin ti&#769;tulo-164.jpg" alt="4">
+          <img src="Sin título-162.jpg" data-alt-src="Sin ti&#769;tulo-162.jpg" alt="5">
+          <img src="Sin título-180.jpg" data-alt-src="Sin ti&#769;tulo-180.jpg" alt="6">
+          <img src="Sin título-178.jpg" data-alt-src="Sin ti&#769;tulo-178.jpg" alt="7">
+          <img src="Sin título-177.jpg" data-alt-src="Sin ti&#769;tulo-177.jpg" alt="8">
         </div>
         <button class="carousel-btn next" id="nextBtn">&#10095;</button>
       </div>
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"El amor se compone de una sola alma, que habita en dos cuerpos." - Aristóteles.</div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 6. CÓDIGO DE VESTIMENTA -->
   <section class="seccion-vestimenta">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-left" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
-    
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-olive-crossed"/></svg>
       <h2>Código de vestimenta:</h2>
       <p style="letter-spacing: 1.5px; font-weight: 600; color: var(--berry-wine); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=13" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=14" alt="Paleta de Colores" class="paleta-img">
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 7. MESA DE REGALOS -->
   <section class="seccion-regalos">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-a"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
-    <svg class="bg-botanical-watermark watermark-bottom-right" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-silk-bow"/></svg>
       <h2>Mesa de regalos</h2>
@@ -1210,16 +1004,11 @@
       <p>En la recepción encontrarás sobres y un cofre donde podrás depositarlos.</p>
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-1"/></svg>
   </section>
 
   <!-- 8. COMPARTE TUS FOTOS (QR) -->
   <section class="seccion-qr">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-b"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-olive"/></svg>
-
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-rose"/></svg>
       <h2>Comparte tus fotos</h2>
@@ -1232,21 +1021,15 @@
       <svg class="botanical-footer" viewBox="0 0 190 36"><use href="#footer-flourish"/></svg>
     </div>
     <div class="floating-text reveal">"La fotografía extrae un instante del tiempo y altera la vida al mantenerla inmóvil." - Dorothea Lange</div>
-
-    <svg class="section-wave-divider" viewBox="0 0 1440 150" preserveAspectRatio="none"><use href="#section-wave-2"/></svg>
   </section>
 
   <!-- 9. SECCIÓN FINAL -->
   <section class="seccion-final">
     <div class="overlay"></div>
-    <svg class="bg-silk-waves" viewBox="0 0 1440 900" preserveAspectRatio="none"><use href="#silk-background-c"/></svg>
-    <svg class="bg-botanical-watermark watermark-left" viewBox="0 0 360 520"><use href="#watermark-wildrose"/></svg>
-    <svg class="bg-botanical-watermark watermark-right" viewBox="0 0 360 520"><use href="#watermark-eucalyptus"/></svg>
-
     <div class="glass-card reveal">
       <svg class="botanical-crest" viewBox="0 0 240 48"><use href="#crest-royal"/></svg>
       <p style="font-size: 1.08rem; margin-bottom: 14px; color: var(--charcoal-ink); font-weight: 400;">Deseamos que puedas acompañarnos.</p>
-      <p style="font-size: 0.95rem; color: var(--text-soft); margin-top: 8px; margin-bottom: 6px; font-weight: 400;">
+      <p style="font-size: 0.95rem; color: var(--forest-green); margin-top: 8px; margin-bottom: 6px; font-weight: 500;">
         Con todo nuestro amor,
       </p>
       <div style="font-family: 'Great Vibes', cursive; font-size: 2.75rem; color: var(--charcoal-ink); line-height: 1.25; margin: 6px 0;">
@@ -1266,6 +1049,16 @@
   </div>
 
   <script>
+    // Respaldo automático de codificación de tilde en imágenes del carrusel
+    document.querySelectorAll('#carouselTrack img').forEach(img => {
+      img.addEventListener('error', function() {
+        const altSrc = this.getAttribute('data-alt-src');
+        if (altSrc && this.src.indexOf(altSrc) === -1) {
+          this.src = altSrc;
+        }
+      }, { once: true });
+    });
+
     // --- VARIABLES DE SUPABASE ---
     const SUPABASE_URL = 'https://xivwjycapgbmvstqmonp.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ONwOEEIzAHgHKvkBWsUxBQ_ImHINPbq';
