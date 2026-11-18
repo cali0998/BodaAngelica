@@ -7,6 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- ÚNICAMENTE 2 TIPOGRAFÍAS: Great Vibes y Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
 
   <style>
@@ -33,70 +34,136 @@
     }
 
     /* ==============================================================
-       SECCIONES OPTIMIZADAS CON ACELERACIÓN GPU (CERO LAG)
+       ESTRUCTURA DE SECCIONES ULTRA FLUIDA (ACELERACIÓN POR HARDWARE)
        ============================================================== */
     section { 
-      min-height: 100vh; 
+      min-height: 104vh; 
       display: flex; 
       flex-direction: column; 
       position: relative;
-      padding: 100px 20px;
+      padding: 90px 20px;
       background-color: #142218;
       background-size: cover !important; 
       background-repeat: no-repeat !important;
-      margin-top: -21vh; 
-      -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+      margin-top: -18vh; 
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
       transform: translateZ(0);
-      backface-visibility: hidden;
     }
 
     .hero { 
       margin-top: 0; 
       z-index: 10; 
       align-items: center; 
-      justify-content: center; 
+      justify-content: flex-end; 
+      padding-bottom: 14vh;
       text-align: center;
-      -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-      mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 86%, transparent 100%);
     }
     
     .hero .reveal { margin: 0 auto; position: relative; z-index: 20; } 
 
-    /* --- DISTRIBUCIÓN EN ZIG-ZAG EN PC --- */
-    .seccion-pase { z-index: 9; align-items: flex-start; justify-content: center; padding-left: 8%; } 
-    .seccion-lugar { z-index: 8; align-items: flex-end; justify-content: center; padding-right: 8%; } 
-    .seccion-itinerario { z-index: 7; align-items: flex-start; justify-content: center; padding-left: 8%; }
-    .seccion-nosotros { z-index: 6; align-items: flex-end; justify-content: center; padding-right: 8%; } 
-    .seccion-vestimenta { z-index: 5; align-items: flex-start; justify-content: center; padding-left: 8%; } 
-    .seccion-regalos { z-index: 4; align-items: flex-end; justify-content: center; padding-right: 8%; } 
-    .seccion-qr { z-index: 3; align-items: flex-start; justify-content: center; padding-left: 8%; } 
+    /* ==============================================================
+       ENCUADRES EXACTOS Y POSICIÓN DE TARJETAS SEGÚN CADA FOTO REAL
+       ============================================================== */
+    
+    /* 1. PORTADA (1601.1): Abrazados junto al río; el rostro sonriente de Angélica está al 30% de altura */
+    .hero { 
+      background-position: 50% 30% !important; 
+    }
+
+    /* 2. INVITADO (178): Novios a la derecha junto al tronco del árbol (rostros al 24% de altura) -> Tarjeta a la IZQUIERDA */
+    .seccion-pase { 
+      z-index: 9; 
+      align-items: flex-start; 
+      justify-content: center; 
+      padding-left: 7%; 
+      background-position: 62% 24% !important; 
+    } 
+
+    /* 3. CEREMONIA Y RECEPCIÓN (162): Sentados mirándose entre helechos (rostros al 52% de altura) -> Tarjeta a la DERECHA */
+    .seccion-lugar { 
+      z-index: 8; 
+      align-items: flex-end; 
+      justify-content: center; 
+      padding-right: 7%; 
+      background-position: 45% 52% !important; 
+    } 
+
+    /* 4. ITINERARIO (166): Dando vuelta bajo las hojas de palma (rostros al 42% de altura) -> Tarjeta a la IZQUIERDA */
+    .seccion-itinerario { 
+      z-index: 7; 
+      align-items: flex-start; 
+      justify-content: center; 
+      padding-left: 7%; 
+      background-position: 55% 42% !important; 
+    }
+
+    /* 5. CARRUSEL / HISTORIA DE AMOR (171): Mirándose de cerca con fondo verde oscuro (rostros al 36% de altura) -> Tarjeta a la DERECHA */
+    .seccion-nosotros { 
+      z-index: 6; 
+      align-items: flex-end; 
+      justify-content: center; 
+      padding-right: 7%; 
+      background-position: 38% 36% !important; 
+    } 
+
+    /* 6. CÓDIGO DE VESTIMENTA (180): Manos entrelazadas con anillo en el centro (54% de altura) -> Tarjeta a la IZQUIERDA */
+    .seccion-vestimenta { 
+      z-index: 5; 
+      align-items: flex-start; 
+      justify-content: center; 
+      padding-left: 7%; 
+      background-position: 58% 54% !important; 
+    } 
+
+    /* 7. MESA DE REGALOS (161): Detalle de las manos y el anillo sobre la espalda (52% de altura) -> Tarjeta a la DERECHA */
+    .seccion-regalos { 
+      z-index: 4; 
+      align-items: flex-end; 
+      justify-content: center; 
+      padding-right: 7%; 
+      background-position: 48% 52% !important; 
+    } 
+
+    /* 8. COMPARTE TUS FOTOS / QR (164): Mano mostrando el anillo al centro (48% de altura) -> Tarjeta a la IZQUIERDA */
+    .seccion-qr { 
+      z-index: 3; 
+      align-items: flex-start; 
+      justify-content: center; 
+      padding-left: 7%; 
+      background-position: 52% 48% !important; 
+    } 
+
+    /* 9. SECCIÓN FINAL (177): Acariciando la mejilla junto al río (rostros al 28% de altura) -> Tarjeta a la IZQUIERDA */
     .seccion-final { 
       z-index: 2; 
       align-items: flex-start; 
       justify-content: center; 
-      padding-left: 8%; 
-      -webkit-mask-image: linear-gradient(to top, black 85%, transparent 100%); 
-      mask-image: linear-gradient(to top, black 85%, transparent 100%); 
+      padding-left: 7%; 
+      background-position: 55% 28% !important; 
+      -webkit-mask-image: linear-gradient(to top, black 88%, transparent 100%); 
+      mask-image: linear-gradient(to top, black 88%, transparent 100%); 
     } 
 
     .overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(18, 30, 22, 0.22); 
+      background: linear-gradient(to bottom, rgba(16, 26, 19, 0.12) 0%, rgba(16, 26, 19, 0.28) 100%); 
       z-index: 1; 
       pointer-events: none;
     }
 
     /* ==============================================================
-       TARJETA DIFUMINADA ULTRALIGERA
+       TARJETA DIFUMINADA ULTRALIGERA (DEJA VER LA FOTO NÍTIDA)
        ============================================================== */
     .glass-card {
       background: transparent; 
       border: none;
       box-shadow: none; 
-      padding: 55px 38px; 
+      padding: 44px 34px; 
       width: 100%; 
-      max-width: 480px; 
+      max-width: 455px; 
       position: relative; 
       z-index: 20; 
       text-align: center;
@@ -105,19 +172,19 @@
     .glass-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(22, 38, 28, 0.84) 0%, rgba(22, 38, 28, 0.65) 48%, rgba(22, 38, 28, 0) 76%); 
+      inset: -15px -20px;
+      background: radial-gradient(ellipse at center, rgba(20, 34, 24, 0.82) 0%, rgba(20, 34, 24, 0.58) 50%, rgba(20, 34, 24, 0) 78%); 
       z-index: -1; 
       pointer-events: none;
     }
 
-    .glass-card-wide { max-width: 650px; }
+    .glass-card-wide { max-width: 630px; }
 
     .fine-divider {
-      width: 120px;
+      width: 110px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--rose-pale), transparent);
-      margin: 12px auto 18px auto;
+      margin: 10px auto 16px auto;
       position: relative;
     }
     .fine-divider::after {
@@ -132,9 +199,9 @@
     }
 
     .rings-icon {
-      width: 150px;
-      height: 36px;
-      margin: 6px auto 10px auto;
+      width: 145px;
+      height: 34px;
+      margin: 4px auto 8px auto;
       display: block;
     }
 
@@ -142,39 +209,39 @@
        TIPOGRAFÍA UNIFICADA (GREAT VIBES + POPPINS)
        ============================================================== */
     h1, h2, h3, p, .floating-text, .time-box span, .time-box p, .tl-title {
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85), 0px 0px 5px rgba(0, 0, 0, 0.7);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.88), 0px 0px 4px rgba(0, 0, 0, 0.75);
     }
 
     h1 { 
       font-family: 'Great Vibes', cursive; 
-      font-size: 4.8rem; 
+      font-size: 4.6rem; 
       color: var(--rose-pale); 
-      margin: 4px 0; 
-      line-height: 1.08; 
+      margin: 2px 0; 
+      line-height: 1.06; 
       font-weight: 400; 
     }
     h2 { 
       font-family: 'Poppins', sans-serif; 
-      font-size: 1.55rem; 
+      font-size: 1.48rem; 
       color: var(--rose-pale); 
       margin-top: 0; 
-      margin-bottom: 14px; 
+      margin-bottom: 12px; 
       font-weight: 500; 
       letter-spacing: 2px;
       text-transform: uppercase;
     }
     h3 { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.4rem; 
+      font-size: 1.35rem; 
       color: var(--white-ivory); 
       margin: 0; 
       font-weight: 500; 
     } 
     p { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.06rem; 
-      line-height: 1.72; 
-      margin: 10px 0; 
+      font-size: 1.03rem; 
+      line-height: 1.68; 
+      margin: 8px 0; 
       color: var(--white-ivory); 
       font-weight: 300;
     }
@@ -182,43 +249,43 @@
     .cita-biblica {
       font-family: 'Poppins', sans-serif; 
       font-style: italic;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 400;
       color: var(--white-ivory);
-      line-height: 1.5;
-      margin: 0 auto 12px auto;
+      line-height: 1.45;
+      margin: 0 auto 8px auto;
       letter-spacing: 0.5px;
     }
 
     /* --- CONTADOR --- */
     .countdown {
       display: flex;
-      gap: 12px;
-      margin: 20px auto;
+      gap: 10px;
+      margin: 16px auto;
       justify-content: center;
       flex-wrap: wrap;
     }
     .time-box {
-      background: rgba(22, 38, 28, 0.55);
-      border: 1px solid rgba(242, 198, 194, 0.4); 
+      background: rgba(20, 34, 24, 0.6);
+      border: 1px solid rgba(242, 198, 194, 0.45); 
       border-radius: 12px;
-      padding: 10px 14px;
-      min-width: 68px;
+      padding: 8px 13px;
+      min-width: 64px;
       text-align: center;
     }
     .time-box span { 
       font-family: 'Poppins', sans-serif;
-      font-size: 1.8rem; 
+      font-size: 1.7rem; 
       font-weight: 600; 
       color: var(--rose-pale); 
       display: block; 
       line-height: 1.15; 
     }
     .time-box p { 
-      font-size: 0.7rem; 
-      margin: 3px 0 0 0; 
+      font-size: 0.68rem; 
+      margin: 2px 0 0 0; 
       text-transform: uppercase; 
-      letter-spacing: 2px; 
+      letter-spacing: 1.8px; 
       color: var(--white-ivory); 
       font-weight: 500;
     }
@@ -229,45 +296,45 @@
       top: 50%; 
       font-family: 'Poppins', sans-serif;
       font-style: italic;
-      font-size: 1.15rem; 
+      font-size: 1.12rem; 
       font-weight: 400;
       color: var(--white-ivory); 
-      max-width: 320px;
+      max-width: 310px;
       line-height: 1.55;
       z-index: 15; 
       pointer-events: none;
     }
     
-    .floating-text.reveal { transform: translateY(calc(-50% + 30px)); }
+    .floating-text.reveal { transform: translateY(calc(-50% + 25px)); }
     .floating-text.reveal.active { transform: translateY(-50%); }
 
-    .seccion-qr .floating-text { right: 8%; text-align: right; }
-    .seccion-nosotros .floating-text { left: 8%; text-align: left; }
+    .seccion-qr .floating-text { right: 7%; text-align: right; }
+    .seccion-nosotros .floating-text { left: 7%; text-align: left; }
 
     /* --- ITINERARIO --- */
     .timeline-container {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin: 12px auto 0 auto;
+      margin: 10px auto 0 auto;
       width: 100%;
-      max-width: 370px;
+      max-width: 360px;
       position: relative;
     }
 
     .tl-row {
       display: grid;
-      grid-template-columns: 82px 26px 34px 1fr;
+      grid-template-columns: 80px 24px 32px 1fr;
       align-items: center;
       width: 100%;
-      padding: 7.5px 0;
+      padding: 6.5px 0;
       position: relative;
     }
 
     .tl-row:not(:last-child)::after {
       content: '';
       position: absolute;
-      left: 94.5px;
+      left: 91.5px;
       top: 50%;
       height: 100%;
       width: 1.5px;
@@ -284,9 +351,9 @@
     .tl-pill {
       background: var(--rose-button);
       color: #fff;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 500;
-      padding: 4px 10px;
+      padding: 3.5px 9px;
       border-radius: 20px;
       letter-spacing: 0.5px;
       white-space: nowrap;
@@ -302,8 +369,8 @@
     }
 
     .tl-dot {
-      width: 10px;
-      height: 10px;
+      width: 9.5px;
+      height: 9.5px;
       border-radius: 50%;
       background: var(--eucalyptus);
       border: 2px solid var(--rose-pale);
@@ -316,8 +383,8 @@
     }
 
     .tl-icon-col svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       stroke: var(--rose-pale);
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
     }
@@ -329,7 +396,7 @@
 
     .tl-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       color: var(--white-ivory);
       font-weight: 400;
     }
@@ -337,33 +404,33 @@
     /* --- PALETA DE VESTIMENTA --- */
     .paleta-img {
       width: 100%;
-      max-width: 380px;
-      margin-top: 16px;
+      max-width: 360px;
+      margin-top: 14px;
       border-radius: 14px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
       cursor: pointer;
     }
 
     /* ==============================================================
-       CARRETE DE FOTOS FLUIDO
+       CARRETE DE FOTOS CON ENCUADRE INDIVIDUAL POR FOTO
        ============================================================== */
     .carousel-container {
       position: relative;
       width: 100%;
-      margin-top: 15px;
+      margin-top: 12px;
       overflow: hidden;
     }
 
     .carousel-track { 
       display: flex; 
-      padding: 15px 0; 
+      padding: 12px 0; 
       gap: 15px; 
       will-change: transform;
     }
 
     .carousel-track img { 
-      width: 240px !important; 
-      height: 295px !important; 
+      width: 235px !important; 
+      height: 290px !important; 
       object-fit: cover !important; 
       border-radius: 12px;
       flex-shrink: 0;
@@ -377,7 +444,7 @@
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(91, 126, 104, 0.92); color: #ffffff; border: 1px solid rgba(255,255,255,0.45);
-      border-radius: 50%; width: 46px; height: 46px; font-size: 1.3rem;
+      border-radius: 50%; width: 44px; height: 44px; font-size: 1.25rem;
       cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center;
       transition: background 0.25s ease;
     }
@@ -387,19 +454,19 @@
 
     .qr-link {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 10px;
       transition: transform 0.3s ease; 
     }
     .qr-link:hover { transform: scale(1.04); }
     .qr-link img {
-      width: 145px; 
+      width: 140px; 
       background: #ffffff; 
       padding: 12px; 
       border-radius: 12px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 
-    /* --- VISOR MODAL CON FLECHAS --- */
+    /* --- VISOR MODAL --- */
     .modal {
       display: none;
       position: fixed;
@@ -410,7 +477,7 @@
       height: 100%;
       background-color: rgba(15, 24, 18, 0.95);
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.22s ease;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -460,29 +527,16 @@
     .modal-nav.prev { left: 18px; }
     .modal-nav.next { right: 18px; }
 
-    /* ==============================================================
-       ENCUADRES EXACTOS DE CADA SECCIÓN
-       ============================================================== */
-    .hero { background-position: center 22% !important; }
-    .seccion-pase { background-position: center 22% !important; }
-    .seccion-lugar { background-position: center 35% !important; }
-    .seccion-itinerario { background-position: center 32% !important; }
-    .seccion-nosotros { background-position: center 25% !important; }
-    .seccion-vestimenta { background-position: center 55% !important; }
-    .seccion-regalos { background-position: center 60% !important; }
-    .seccion-qr { background-position: center 42% !important; }
-    .seccion-final { background-position: center 20% !important; }
-
     /* --- BOTONES --- */
     .btn {
       background: var(--eucalyptus); 
       color: #ffffff; 
-      padding: 15px 30px; 
+      padding: 14px 28px; 
       border-radius: 30px;
       text-decoration: none; 
       font-weight: 500;
       display: inline-block; 
-      margin-top: 16px;
+      margin-top: 14px;
       text-transform: uppercase; 
       font-size: 12px;
       letter-spacing: 1.8px;
@@ -504,35 +558,59 @@
 
     .reveal { 
       opacity: 0; 
-      transform: translateY(25px); 
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out; 
+      transform: translateY(20px); 
+      transition: opacity 0.65s ease-out, transform 0.65s ease-out; 
       position: relative; 
       z-index: 20; 
     }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* ==============================================================
-       AJUSTES PARA MÓVILES
+       AJUSTES PARA MÓVILES: LAS TARJETAS QUEDAN ABAJO PARA DEJAR
+       SIEMPRE LIBRE Y VISIBLE A LOS NOVIOS ARRIBA
        ============================================================== */
     @media (max-width: 600px) {
       section {
-        min-height: 100svh !important; 
-        padding-top: 80px;
-        padding-bottom: 80px;
+        min-height: 102svh !important; 
+        padding-top: 60px;
+        padding-bottom: 60px;
       }
       
+      .hero {
+        justify-content: flex-end !important;
+        padding-bottom: 11vh !important;
+        background-position: 50% 22% !important;
+      }
+
       section:not(.hero) {
         justify-content: flex-end !important;
-        padding-top: 25vh !important; 
-        padding-bottom: 10vh !important; 
+        padding-top: 34vh !important; 
+        padding-bottom: 9vh !important; 
       }
+
+      /* Encuadres móviles centrados en los novios y el anillo */
+      .seccion-pase { background-position: 56% 18% !important; }
+      .seccion-lugar { background-position: 48% 42% !important; }
+      .seccion-itinerario { background-position: 52% 30% !important; }
+      .seccion-nosotros { background-position: 45% 24% !important; }
+      .seccion-vestimenta { background-position: 52% 42% !important; }
+      .seccion-regalos { background-position: 50% 38% !important; }
+      .seccion-qr { background-position: 50% 35% !important; }
+      .seccion-final { background-position: 52% 20% !important; }
       
-      section:not(.hero) .overlay {
-        background: linear-gradient(to bottom, rgba(18,30,22,0.05) 0%, rgba(18,30,22,0.25) 45%, rgba(18,30,22,0.82) 95%) !important;
+      /* Velo transparente arriba (0% a 48%) para que sus rostros se vean sin filtro, y oscuro abajo para leer el texto */
+      section .overlay {
+        background: linear-gradient(
+          to bottom, 
+          rgba(16, 26, 19, 0.02) 0%, 
+          rgba(16, 26, 19, 0.08) 42%, 
+          rgba(16, 26, 19, 0.68) 72%, 
+          rgba(16, 26, 19, 0.88) 100%
+        ) !important;
       }
       
       .glass-card {
-        padding: 38px 18px; 
+        padding: 28px 16px; 
         width: 100%;
         max-width: 96%;
       }
@@ -544,34 +622,34 @@
         left: auto !important; 
         text-align: center !important; 
         max-width: 100%; 
-        margin-top: 20px; 
+        margin-top: 14px; 
         margin-bottom: 0px;
-        font-size: 1.05rem;
+        font-size: 1rem;
       }
-      .floating-text.reveal { transform: translateY(20px) !important; }
+      .floating-text.reveal { transform: translateY(15px) !important; }
       .floating-text.reveal.active { transform: translateY(0) !important; }
       
       .seccion-pase, .seccion-lugar, .seccion-itinerario, .seccion-nosotros, .seccion-vestimenta, .seccion-regalos, .seccion-qr, .seccion-final { 
-        padding-left: 15px; padding-right: 15px; align-items: center !important; 
+        padding-left: 14px; padding-right: 14px; align-items: center !important; 
       }
       
-      h1 { font-size: 3.9rem; }
-      h2 { font-size: 1.38rem; margin-bottom: 12px; } 
-      h3 { font-size: 1.3rem; }
-      p { font-size: 0.98rem; line-height: 1.6; margin: 8px 0; }
+      h1 { font-size: 3.7rem; }
+      h2 { font-size: 1.32rem; margin-bottom: 10px; } 
+      h3 { font-size: 1.25rem; }
+      p { font-size: 0.95rem; line-height: 1.58; margin: 7px 0; }
       
-      .time-box span { font-size: 1.55rem; }
-      .time-box { padding: 8px 10px; min-width: 58px; }
+      .time-box span { font-size: 1.5rem; }
+      .time-box { padding: 7px 10px; min-width: 56px; }
       
-      .carousel-track img { width: 215px !important; height: 270px !important; } 
+      .carousel-track img { width: 210px !important; height: 265px !important; } 
       
       .modal-nav { width: 42px; height: 42px; font-size: 1.2rem; }
       .modal-nav.prev { left: 10px; }
       .modal-nav.next { right: 10px; }
 
-      .tl-row { grid-template-columns: 76px 22px 30px 1fr; }
-      .tl-row:not(:last-child)::after { left: 86.5px; }
-      .tl-title { font-size: 0.94rem; }
+      .tl-row { grid-template-columns: 74px 22px 28px 1fr; padding: 5.5px 0; }
+      .tl-row:not(:last-child)::after { left: 84.5px; }
+      .tl-title { font-size: 0.92rem; }
     }
 
     /* --- BOTÓN DE MÚSICA --- */
@@ -636,7 +714,7 @@
       
       <h1>Yader &amp; Angélica</h1>
       <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
-      <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.95rem; text-transform: uppercase;">14 de marzo de 2027.</p>
+      <p style="letter-spacing: 3px; font-weight: 500; font-size: 0.92rem; text-transform: uppercase;">14 de marzo de 2027.</p>
       
       <div id="countdown" class="countdown">
         <div class="time-box"><span id="days">00</span><p>Días</p></div>
@@ -656,11 +734,11 @@
       <div class="fine-divider"></div>
       <p>Hay momentos en la vida que son muy especiales por sí solos, pero al compartirlos con personas importantes, se convierten en momentos imposibles de olvidar. Es por esto que deseamos que:</p>
       
-      <h3 id="nombre-invitado" style="margin: 22px 0; font-size: 2.6rem; color: var(--rose-pale); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
+      <h3 id="nombre-invitado" style="margin: 18px 0; font-size: 2.5rem; color: var(--rose-pale); font-family: 'Great Vibes', cursive; font-weight: 400;">Cargando invitación...</h3>
       
       <p>Nos acompañes a celebrar la unión de nuestras vidas.</p>
       
-      <p id="pases-invitado" style="font-size: 1.1rem; color: var(--rose-pale); font-weight: 500; margin-top: 18px; margin-bottom: 0; letter-spacing: 1.5px; text-transform: uppercase;"></p>
+      <p id="pases-invitado" style="font-size: 1.05rem; color: var(--rose-pale); font-weight: 500; margin-top: 16px; margin-bottom: 0; letter-spacing: 1.5px; text-transform: uppercase;"></p>
     </div>
   </section>
 
@@ -674,9 +752,9 @@
       <p>Lugar: Los Cedros, Jiménez.</p>
       <a href="https://waze.com/ul?ll=10.283417,-83.776611&navigate=yes" target="_blank" class="btn">COMO LLEGAR CON WAZE.</a>
 
-      <div style="margin-top: 26px; padding-top: 20px; border-top: 1px solid rgba(242, 198, 194, 0.35);">
-        <p style="font-size: 0.98rem; margin-bottom: 16px;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
-        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <div style="margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(242, 198, 194, 0.35);">
+        <p style="font-size: 0.95rem; margin-bottom: 14px;">Agradecemos confirmar asistencia antes del 14 de febrero de 2027.</p>
+        <div id="contenedor-botones" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
           <button id="btn-confirmar" onclick="confirmarAsistenciaSupabase()" class="btn" style="margin-top: 0;">PRESIONA PARA CONFIRMAR ASISTENCIA.</button>
           <button id="btn-declinar" onclick="declinarAsistenciaSupabase()" class="btn btn-decline" style="margin-top: 0;">No podré asistir</button>
         </div>
@@ -688,8 +766,8 @@
   <section class="seccion-itinerario" data-slot="3">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
-      <div style="margin-top: 0; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.4rem; font-weight: 400; color: var(--rose-pale); line-height: 1.1;">Yader y Angélica</div>
+      <p style="font-size: 0.88rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2px; color: var(--white-ivory);">Boda de</p>
+      <div style="margin-top: 0; margin-bottom: 0; font-family: 'Great Vibes', cursive; font-size: 3.3rem; font-weight: 400; color: var(--rose-pale); line-height: 1.1;">Yader y Angélica</div>
       <svg class="rings-icon" viewBox="0 0 150 36"><use href="#rings-minimal"/></svg>
 
       <div class="timeline-container">
@@ -796,7 +874,7 @@
   </section>
 
   <!-- 5. FOTOS / CARRUSEL -->
-  <section class="seccion-nosotros" data-slot="4">
+  <section class="seccion-nosotros" data-slot="4" id="seccionCarrusel">
     <div class="overlay"></div>
     <div class="glass-card glass-card-wide reveal">
       <h2>Un vistazo a nuestra historia de amor.</h2>
@@ -818,7 +896,7 @@
       <div class="fine-divider"></div>
       <p style="letter-spacing: 1.5px; font-weight: 500; color: var(--rose-pale); font-size: 1.15rem; text-transform: uppercase;">Semi formal / Casual</p>
       <p>Si deseas sumarte a la estética de nuestra celebración, te sugerimos vestir con tonalidades de nuestra paleta de colores. Tu comodidad es lo más importante.</p>
-      <img src="paleta.png?v=19" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
+      <img src="paleta.png?v=20" loading="lazy" decoding="async" alt="Paleta de Colores" class="paleta-img">
     </div>
   </section>
 
@@ -854,12 +932,12 @@
   <section class="seccion-final" data-slot="8">
     <div class="overlay"></div>
     <div class="glass-card reveal">
-      <p style="font-size: 1.15rem; margin-bottom: 14px;">Deseamos que puedas acompañarnos.</p>
+      <p style="font-size: 1.12rem; margin-bottom: 12px;">Deseamos que puedas acompañarnos.</p>
       <div class="fine-divider"></div>
-      <p style="font-size: 0.98rem; margin-top: 8px; margin-bottom: 6px;">
+      <p style="font-size: 0.96rem; margin-top: 6px; margin-bottom: 4px;">
         Con todo nuestro amor,
       </p>
-      <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--rose-pale); line-height: 1.25; margin: 6px 0;">
+      <div style="font-family: 'Great Vibes', cursive; font-size: 2.75rem; color: var(--rose-pale); line-height: 1.25; margin: 6px 0;">
         Yader Betanco Valle<br>
         &amp;<br>
         Angélica Calderón Quirós.
@@ -877,95 +955,99 @@
 
   <script>
     // ==============================================================
-    // 1. DETECTOR UNIVERSAL DE NOMBRES DE FOTO (.webp y .jpg)
-    //    Encuentra las fotos ya sea que se llamen "Sin título-1601.1.webp",
-    //    "Foto1.webp", "foto1.webp" o "Sin título-1601.1.jpg"
+    // 1. GESTOR DE IMÁGENES EN PARALELO CON ENCUADRE INDIVIDUAL (CERO ESPERA EN SERIE)
+    //    Detecta el patrón de nombres una sola vez con la portada y
+    //    aplica el mismo patrón instantáneamente al resto de fotos.
     // ==============================================================
     const PHOTO_SLOTS = [
-      { num: 1, orig: '1601.1', fallback: 'Foto10.webp' },
-      { num: 2, orig: '178',    fallback: 'Foto11.webp' },
-      { num: 3, orig: '162',    fallback: 'Foto1.webp'  },
-      { num: 4, orig: '166',    fallback: 'Foto5.webp'  },
-      { num: 5, orig: '171',    fallback: 'Foto2.webp'  },
-      { num: 6, orig: '180',    fallback: 'Foto13.webp' },
-      { num: 7, orig: '181',    fallback: 'Foto3.webp'  },
-      { num: 8, orig: '164',    fallback: 'Foto4.webp'  },
-      { num: 9, orig: '177',    fallback: 'Foto14.webp' },
-      { num: 10, orig: '161',   fallback: 'Foto1.webp'  }
+      { num: 1,  orig: '1601.1', focus: '50% 25%', fallback: 'Foto10.webp' },
+      { num: 2,  orig: '178',    focus: '55% 20%', fallback: 'Foto11.webp' },
+      { num: 3,  orig: '162',    focus: '50% 52%', fallback: 'Foto1.webp'  },
+      { num: 4,  orig: '166',    focus: '50% 38%', fallback: 'Foto5.webp'  },
+      { num: 5,  orig: '171',    focus: '48% 32%', fallback: 'Foto2.webp'  },
+      { num: 6,  orig: '180',    focus: '50% 55%', fallback: 'Foto13.webp' },
+      { num: 7,  orig: '161',    focus: '50% 52%', fallback: 'Foto3.webp'  },
+      { num: 8,  orig: '164',    focus: '50% 48%', fallback: 'Foto4.webp'  },
+      { num: 9,  orig: '177',    focus: '52% 24%', fallback: 'Foto14.webp' },
+      { num: 10, orig: '181',    focus: '50% 65%', fallback: 'Foto3.webp'  }
     ];
 
     const resolvedSlotCache = {};
-    const pendingSlotPromises = {};
+    let preferredPatternIndex = 0; // Guarda qué formato de nombre funcionó primero
 
-    function getCandidatesForSlot(slotIndex) {
-      const slot = PHOTO_SLOTS[slotIndex];
+    function buildUrlByPattern(slot, patternIdx) {
       const n = slot.num;
       const id = slot.orig;
-      return [
-        // 1. Si las convertiste a WebP dejando el nombre original ("Sin título-...")
-        encodeURI(`Sin ti\u0301tulo-${id}.webp`),
-        encodeURI(`Sin t\u00edtulo-${id}.webp`),
-        encodeURI(`Sin titulo-${id}.webp`),
-        // 2. Si las renombraste a Foto1.webp, foto1.webp, etc.
-        `Foto${n}.webp`,
-        `foto${n}.webp`,
-        `Foto ${n}.webp`,
-        `foto ${n}.webp`,
-        // 3. Si están en .jpg con nombre original o Foto1.jpg
-        encodeURI(`Sin ti\u0301tulo-${id}.jpg`),
-        encodeURI(`Sin t\u00edtulo-${id}.jpg`),
-        `Foto${n}.jpg`,
-        `foto${n}.jpg`,
-        // 4. Respaldo final que ya exista en el repo
-        slot.fallback
-      ];
+      switch (patternIdx) {
+        case 0: return encodeURI(`Sin ti\u0301tulo-${id}.webp`);
+        case 1: return encodeURI(`Sin t\u00edtulo-${id}.webp`);
+        case 2: return `Foto${n}.webp`;
+        case 3: return `foto${n}.webp`;
+        case 4: return encodeURI(`Sin ti\u0301tulo-${id}.jpg`);
+        case 5: return encodeURI(`Sin t\u00edtulo-${id}.jpg`);
+        case 6: return `Foto${n}.jpg`;
+        default: return slot.fallback;
+      }
     }
 
-    function resolveSlotUrl(slotIndex) {
+    function resolveSlotUrlFast(slotIndex) {
       if (resolvedSlotCache[slotIndex]) return Promise.resolve(resolvedSlotCache[slotIndex]);
-      if (pendingSlotPromises[slotIndex]) return pendingSlotPromises[slotIndex];
+      const slot = PHOTO_SLOTS[slotIndex];
 
-      const list = getCandidatesForSlot(slotIndex);
-      pendingSlotPromises[slotIndex] = new Promise((resolve) => {
-        let i = 0;
-        function testNext() {
-          if (i >= list.length) {
-            const last = list[list.length - 1];
-            resolvedSlotCache[slotIndex] = last;
-            resolve(last);
-            return;
-          }
-          const candidate = list[i++];
-          const probe = new Image();
-          probe.onload = () => {
-            resolvedSlotCache[slotIndex] = candidate;
-            resolve(candidate);
-          };
-          probe.onerror = testNext;
-          probe.src = candidate;
-        }
-        testNext();
+      return new Promise((resolve) => {
+        // Primero intenta el patrón que ya sabemos que funcionó en este repositorio
+        const primaryUrl = buildUrlByPattern(slot, preferredPatternIndex);
+        const fastProbe = new Image();
+        fastProbe.decoding = 'async';
+        fastProbe.onload = () => {
+          resolvedSlotCache[slotIndex] = primaryUrl;
+          resolve(primaryUrl);
+        };
+        fastProbe.onerror = () => {
+          // Si falla, lanza las variantes principales y se queda con la primera que responda
+          let settled = false;
+          const patterns = [0, 1, 2, 3, 4, 5, 6];
+          let remaining = patterns.length;
+          patterns.forEach(pIdx => {
+            const url = buildUrlByPattern(slot, pIdx);
+            const img = new Image();
+            img.decoding = 'async';
+            img.onload = () => {
+              if (!settled) {
+                settled = true;
+                preferredPatternIndex = pIdx;
+                resolvedSlotCache[slotIndex] = url;
+                resolve(url);
+              }
+            };
+            img.onerror = () => {
+              remaining--;
+              if (remaining === 0 && !settled) {
+                settled = true;
+                resolvedSlotCache[slotIndex] = slot.fallback;
+                resolve(slot.fallback);
+              }
+            };
+            img.src = url;
+          });
+        };
+        fastProbe.src = primaryUrl;
       });
-
-      return pendingSlotPromises[slotIndex];
     }
 
-    // Asignar fondos a cada sección
     function applySectionBackground(sec) {
       if (sec.dataset.bgDone) return;
       sec.dataset.bgDone = "true";
       const slotIndex = parseInt(sec.getAttribute('data-slot'), 10);
-      resolveSlotUrl(slotIndex).then(validUrl => {
+      resolveSlotUrlFast(slotIndex).then(validUrl => {
         sec.style.backgroundImage = `url("${validUrl}")`;
       });
     }
 
-    // Cargar la portada y la segunda sección de inmediato, y el resto al acercarse
-    document.querySelectorAll('section[data-slot]').forEach((sec, idx) => {
-      if (idx < 2) {
-        applySectionBackground(sec);
-      }
-    });
+    // Cargar la portada al instante y luego la sección 2
+    const allSlotSections = document.querySelectorAll('section[data-slot]');
+    if (allSlotSections[0]) applySectionBackground(allSlotSections[0]);
+    if (allSlotSections[1]) setTimeout(() => applySectionBackground(allSlotSections[1]), 120);
 
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -974,47 +1056,47 @@
           sectionObserver.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '500px 0px' });
+    }, { rootMargin: '450px 0px' });
 
-    document.querySelectorAll('section[data-slot]').forEach((sec, idx) => {
+    allSlotSections.forEach((sec, idx) => {
       if (idx >= 2) sectionObserver.observe(sec);
     });
 
     // ==============================================================
-    // 2. CARRUSEL INFINITO CON LAS 10 FOTOS + VISOR MODAL FIJO
+    // 2. CARRUSEL INFINITO DIFERIDO (SE CONSTRUYE SIN FRENAR EL INICIO)
     // ==============================================================
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const totalImages = PHOTO_SLOTS.length;
+    let currentIndex = totalImages;
+    let isTransitioning = false;
+    let autoPlayTimer;
+    let carouselInitialized = false;
 
     function buildSlideElement(slotIndex) {
+      const slot = PHOTO_SLOTS[slotIndex];
       const img = document.createElement('img');
       img.setAttribute('data-idx', String(slotIndex));
       img.alt = `Foto ${slotIndex + 1}`;
       img.decoding = 'async';
-      resolveSlotUrl(slotIndex).then(validUrl => {
+      img.loading = 'lazy';
+      // Aplica el encuadre exacto también dentro de la tarjeta del carrusel para que no corte cabezas
+      img.style.objectPosition = slot.focus;
+      resolveSlotUrlFast(slotIndex).then(validUrl => {
         img.src = validUrl;
       });
       return img;
     }
 
-    // Crear [Clones finales] + [Originales] + [Clones iniciales]
-    for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
-    for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
-    for (let i = totalImages - 1; i >= 0; i--) track.insertBefore(buildSlideElement(i), track.firstChild);
-
-    let currentIndex = totalImages;
-    let isTransitioning = false;
-    let autoPlayTimer;
-
     function getSlideWidth() {
       const firstSlide = track.children[0];
-      return (firstSlide ? firstSlide.offsetWidth : 240) + 15;
+      return (firstSlide ? firstSlide.offsetWidth : 235) + 15;
     }
 
     function updateCarousel(animate = true) {
-      track.style.transition = animate ? 'transform 0.4s ease-out' : 'none';
+      if (!carouselInitialized) return;
+      track.style.transition = animate ? 'transform 0.38s ease-out' : 'none';
       track.style.transform = `translate3d(-${currentIndex * getSlideWidth()}px, 0, 0)`;
     }
 
@@ -1029,7 +1111,7 @@
     }
 
     function nextSlide() {
-      if (isTransitioning) return;
+      if (!carouselInitialized || isTransitioning) return;
       isTransitioning = true;
       currentIndex++;
       updateCarousel(true);
@@ -1038,11 +1120,11 @@
           isTransitioning = false;
           checkInfiniteLoop();
         }
-      }, 450);
+      }, 420);
     }
 
     function prevSlide() {
-      if (isTransitioning) return;
+      if (!carouselInitialized || isTransitioning) return;
       isTransitioning = true;
       currentIndex--;
       updateCarousel(true);
@@ -1051,7 +1133,7 @@
           isTransitioning = false;
           checkInfiniteLoop();
         }
-      }, 450);
+      }, 420);
     }
 
     function startAutoPlay() {
@@ -1064,6 +1146,28 @@
       startAutoPlay();
     }
 
+    function initCarousel() {
+      if (carouselInitialized) return;
+      carouselInitialized = true;
+      for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
+      for (let i = 0; i < totalImages; i++) track.appendChild(buildSlideElement(i));
+      for (let i = totalImages - 1; i >= 0; i--) track.insertBefore(buildSlideElement(i), track.firstChild);
+      requestAnimationFrame(() => {
+        updateCarousel(false);
+        startAutoPlay();
+      });
+    }
+
+    // Construir el carrusel cuando el usuario se acerca a la sección (o 1.2s después de cargar la portada)
+    const carruselObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        initCarousel();
+        carruselObserver.disconnect();
+      }
+    }, { rootMargin: '600px 0px' });
+    carruselObserver.observe(document.getElementById('seccionCarrusel'));
+    window.addEventListener('load', () => setTimeout(initCarousel, 1200));
+
     nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
     prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
 
@@ -1072,10 +1176,6 @@
       checkInfiniteLoop();
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      updateCarousel(false);
-      startAutoPlay();
-    });
     window.addEventListener('resize', () => updateCarousel(false));
 
     // --- VISOR MODAL CON FLECHAS SIGUIENTE / ANTERIOR ---
@@ -1088,7 +1188,7 @@
 
     function showGalleryPhotoByIndex(index) {
       currentModalGalleryIndex = (index + totalImages) % totalImages;
-      resolveSlotUrl(currentModalGalleryIndex).then(validUrl => {
+      resolveSlotUrlFast(currentModalGalleryIndex).then(validUrl => {
         expandedImg.src = validUrl;
       });
     }
@@ -1118,7 +1218,7 @@
         modal.style.display = 'none';
         expandedImg.src = '';
         startAutoPlay();
-      }, 250);
+      }, 220);
     }
 
     modalPrevBtn.addEventListener('click', (e) => {
